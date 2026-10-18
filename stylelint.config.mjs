@@ -32,9 +32,12 @@ const config = {
         'lightness-notation': 'number',
         'hue-degree-notation': 'number',
         'import-notation': 'string',
+        // Immutable vendor names use a scoped disable on the nested :global() line.
+        // Keep the authored owner outside that disable; never relax this pattern globally.
         'selector-class-pattern': '^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$',
         'custom-property-pattern': '^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$',
         'keyframes-name-pattern': '^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$',
+        // The root rule is depth 0; nested block at-rules also consume depth.
         'max-nesting-depth': 2,
         'selector-max-specificity': '0,3,1',
         'selector-max-id': 0,

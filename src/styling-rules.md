@@ -5,6 +5,22 @@ Read the root, source and applicable local `AGENTS.md` files as well. These rule
 apply to new and modified code; do not mass-migrate unrelated or generated code.
 Examples illustrate technical patterns, not portfolio content or approved designs.
 
+The requirements have different sources; their origin does not change their scope:
+
+| Origin                  | Meaning in this document                                                   | Authoritative source                                                                                               |
+| ----------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Tool constraint         | Syntax, processing and detection behavior the tool implements              | Installed Next.js/Stylelint documentation and [Tailwind compatibility](https://tailwindcss.com/docs/compatibility) |
+| Upstream recommendation | A manufacturer's preferred approach, adapted to this stack                 | [Next.js CSS guide](../node_modules/next/dist/docs/01-app/01-getting-started/11-css.md) and Tailwind documentation |
+| Project policy          | Our mandatory choice among supported alternatives                          | This document and applicable `AGENTS.md` files                                                                     |
+| Accessibility criterion | The specified WCAG success criterion, not a claim of full WCAG conformance | WCAG references in section 13                                                                                      |
+
+Naming, units, spacing ownership, declaration grouping, layer placement and the
+specificity/nesting limits are project policies, not universal manufacturer
+requirements. Tailwind-first follows Next.js guidance. Tailwind permits Modules
+but recommends avoiding unnecessary use; our plain-CSS exception is a project
+choice. Restricting `@apply` and CSS-in-JS is also project policy; Tailwind's
+preprocessor compatibility limitation is documented upstream.
+
 ## 1. Choose a styling owner
 
 | Need                                                                      | Use                      | Boundary                                                                           |
@@ -86,6 +102,28 @@ local class, for example `.chart :global(.vendor-tooltip)`. Never target another
 component's private selectors or generated hash. Do not use `composes` to create
 hidden cross-component styling dependencies; compose components/classes explicitly.
 
+Preserve immutable public vendor class names even when they are not lower-kebab-case.
+For that case only, use an explained `selector-class-pattern` exception on the
+nested external selector. Keep the authored owner on a separate, checked line;
+do not put additional authored classes on the exempted selector line. Identify the
+library/public API in a real integration's reason, and remove the exception if that
+API is removed or adopts a conforming name. For example:
+
+```css
+@layer components {
+  .chart {
+    /* stylelint-disable-next-line selector-class-pattern -- VendorChart public tooltip class is immutable; remove with the integration. */
+    & :global(.VendorTooltip) {
+      color: var(--foreground);
+    }
+  }
+}
+```
+
+This uses Stylelint's [scoped exceptions](https://stylelint.io/user-guide/ignore-code/),
+not a relaxed naming rule. Other lint rules still apply to the external selector;
+the scope and public ownership are reviewed manually.
+
 Modules bypass the Tailwind loader. Use plain declarations and `var()`; no Tailwind
 directives, `@apply`, `@reference` or stylesheet `@import` in Modules. Importing the
 global stylesheet into a Module duplicates responsibilities and is forbidden.
@@ -135,15 +173,74 @@ Stylelint does not inspect JSX classes.
   contradictory unconditional values from multiple systems are not.
 - HTML class order is not CSS precedence. Use `cn` for supported Tailwind conflicts,
   not as a CSS cascade analyzer. Inline values should only own runtime data.
-- Ban ID selectors. Maximum specificity is `0,3,1`; maximum nesting depth is two
-  selector levels (conditional at-rules do not justify deeper DOM coupling).
-  Prefer a direct class or `:where()` over adding specificity to defeat a conflict.
+- Ban ID selectors. Maximum specificity is `0,3,1`; maximum nesting depth is `2`.
+  These thresholds are project policies. Under Stylelint's counting, a root rule
+  has depth `0` and can contain two further nested levels. Nested rules and block
+  at-rules consume levels; root-level at-rules such as `@layer`/`@media` do not.
+  Conditional wrappers do not reset depth or justify deeper DOM coupling. Prefer
+  a direct class or `:where()` over adding specificity to defeat a conflict.
 - `!important` is forbidden except a narrowly documented accessibility or external
   integration constraint that cannot be solved at its owner. Never use important
   utilities as a routine override. Important declarations reverse layer precedence.
-- Required third-party styles should use a named layer imported before author
-  overrides when supported. If library loading cannot be layered, document its
-  public override contract and test the real cascade; do not guess from class order.
+- Import ordinary precompiled third-party CSS into the `components.vendor` sublayer
+  at the global composition boundary. Keep authored component rules directly in
+  `components`, not in `components.vendor`; keep utilities in `utilities`. Do not
+  append a new top-level vendor layer after utilities. If the library cannot be
+  layered, document its public override contract and test the real cascade.
+
+The import pattern below is illustrative; do not add a vendor dependency or import
+without a real consumer. Declare the order before imports, then keep imports before
+ordinary rules:
+
+```css
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss';
+@import 'vendor-package/styles.css' layer(components.vendor);
+```
+
+For normal author declarations, `components.vendor` loses to rules directly in
+`components`, which lose to `utilities`, independent of specificity between those
+layers. This project arrangement relies on the [CSS layer ordering rules](https://www.w3.org/TR/css-cascade-5/#layer-order);
+important declarations reverse layer precedence and still require an explicit
+integration contract. Importing a library into a newly declared top-level layer
+after utilities would give that library higher normal priority instead.
+
+Nesting examples follow the [Stylelint depth definition](https://stylelint.io/user-guide/rules/max-nesting-depth/).
+Allowed: the root-level layer is free, and two levels are nested below the root rule:
+
+```css
+@layer components {
+  .surface {
+    /* depth 0 */
+    .content {
+      /* depth 1 */
+      .action {
+        /* depth 2 */
+        opacity: 1;
+      }
+    }
+  }
+}
+```
+
+Rejected: the nested conditional consumes depth 2, so its child is too deep:
+
+```css
+.surface {
+  /* depth 0 */
+  .content {
+    /* depth 1 */
+    @media (width >= 40rem) {
+      /* depth 2 */
+      &:hover {
+        /* depth 3 */
+        opacity: 1;
+      }
+    }
+  }
+}
+```
 
 Verify lint limits, computed styles and production route navigation. The existing
 global reduced-motion override intentionally takes priority even over inline motion.
@@ -269,12 +366,29 @@ active, disabled and invalid states when the component supports them.
 
 Keep a visible focus indicator; remove a default outline only with a working
 replacement. Never make essential information/action available only on hover.
-Preserve text contrast of at least 4.5:1 (3:1 for large text) and 3:1 for essential
-non-text UI/focus boundaries; decorative/inactive exceptions require actual context.
-Support text enlargement to 200% without clipping. Use `sr-only` for visually hidden
-accessible content; do not leave invisible interactive elements focusable by merely
-setting opacity. Hidden content must have an explicit focus/accessibility contract.
-Retain OS forced-color behavior; do not disable it globally.
+The following are the specific accessibility criteria adopted here:
+
+- [WCAG 1.4.3, Contrast (Minimum)](https://www.w3.org/TR/WCAG22/#contrast-minimum):
+  text contrast is at least 4.5:1, or 3:1 for large text. Large means at least
+  18 pt in regular weight or 14 pt in bold (or equivalent sizing for CJK fonts).
+  These are classification thresholds, not a requirement to author CSS in points;
+  keep the project's `rem`/`em` policy. Apply incidental/inactive/logotype exceptions
+  only in their actual context. See the [official explanation](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html).
+- [WCAG 1.4.11, Non-text Contrast](https://www.w3.org/TR/WCAG22/#non-text-contrast):
+  essential visual information identifying controls, states, authored focus cues
+  and meaningful graphics has at least 3:1 contrast against adjacent colors.
+  This does not require every decorative border to reach 3:1; apply the criterion's
+  inactive, unmodified user-agent and essential-presentation exceptions as relevant.
+- [WCAG 1.4.4, Resize Text](https://www.w3.org/TR/WCAG22/#resize-text): except for
+  captions and images of text, text must resize up to 200% without assistive
+  technology and without loss of content or functionality. Verify intermediate
+  enlargement steps as well as 200%, including labels and controls. Avoid clipping
+  and make sure actions remain usable. See the [official explanation](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html).
+
+These criteria do not constitute a complete WCAG audit. Use `sr-only` for visually
+hidden accessible content; do not leave invisible interactive elements focusable
+by merely setting opacity. Hidden content must have an explicit focus/accessibility
+contract. Retain OS forced-color behavior; do not disable it globally.
 
 Verify keyboard order/focus, supported states, contrast and text enlargement in the
 browser. Essential content/navigation must work without JavaScript in production.

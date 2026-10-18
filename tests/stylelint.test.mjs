@@ -78,6 +78,118 @@ test('plain Modules accept owned vendor selectors, states, tokens and fluid type
     assert.equal(result.errored, false, JSON.stringify(diagnostics(result)));
 });
 
+test('vendor imports can stay below authored components and utilities', async () => {
+    const result = await lint(`
+        @layer theme, base, components, utilities;
+        @import 'tailwindcss';
+        @import 'vendor-package/styles.css' layer(components.vendor);
+        @layer components {
+            .chart { color: var(--foreground); }
+        }
+    `);
+
+    // This proves accepted source syntax; browser verification owns cascade behavior.
+    assert.equal(result.errored, false, JSON.stringify(diagnostics(result)));
+});
+
+test('depth counts from zero, including nested conditionals but not root at-rules', async (t) => {
+    const cases = [
+        ['root plus two nested rules', '.surface { .content { .action { opacity: 1; } } }', false],
+        [
+            'root layer adds no depth',
+            '@layer components { .surface { .content { .action { opacity: 1; } } } }',
+            false,
+        ],
+        [
+            'root media query adds no depth',
+            '@media (width >= 40rem) { .surface { .content { .action { opacity: 1; } } } }',
+            false,
+        ],
+        [
+            'nested media plus child reaches depth two',
+            '.surface { @media (width >= 40rem) { .content { opacity: 1; } } }',
+            false,
+        ],
+        [
+            'third nested rule exceeds depth two',
+            '.surface { .content { .action { &:hover { opacity: 1; } } } }',
+            true,
+        ],
+        [
+            'nested media does not reset depth',
+            '.surface { .content { @media (width >= 40rem) { &:hover { opacity: 1; } } } }',
+            true,
+        ],
+    ];
+
+    for (const [name, code, rejected] of cases) {
+        await t.test(name, async () => {
+            const result = await lint(code, 'chart.module.css');
+            assert.equal(result.errored, rejected, JSON.stringify(diagnostics(result)));
+            if (rejected) {
+                assert.ok(
+                    diagnostics(result).some((warning) => warning.rule === 'max-nesting-depth'),
+                );
+            }
+        });
+    }
+});
+
+test('a vendor naming exception preserves authored owner and other rule checks', async () => {
+    const code = `
+        @layer components {
+            .chart {
+                /* stylelint-disable-next-line selector-class-pattern -- VendorChart public tooltip class is immutable; remove with the integration. */
+                & :global(.VendorTooltip) {
+                    color: var(--foreground);
+                }
+            }
+        }
+    `;
+    const accepted = await lint(code, 'chart.module.css');
+    assert.equal(accepted.errored, false, JSON.stringify(diagnostics(accepted)));
+
+    const badOwner = await lint(code.replace('.chart {', '.BadOwner {'), 'chart.module.css');
+    assert.equal(badOwner.errored, true);
+    assert.ok(
+        diagnostics(badOwner).some(
+            (warning) =>
+                warning.rule === 'selector-class-pattern' && warning.text.includes('BadOwner'),
+        ),
+    );
+
+    const badProperty = await lint(code.replace('color:', 'colro:'), 'chart.module.css');
+    assert.ok(diagnostics(badProperty).some((warning) => warning.rule === 'property-no-unknown'));
+});
+
+test('vendor names still require a necessary and explained exception', async () => {
+    const withoutException = await lint(
+        '.chart { & :global(.VendorTooltip) { color: var(--foreground); } }',
+        'chart.module.css',
+    );
+    assert.ok(
+        diagnostics(withoutException).some((warning) => warning.rule === 'selector-class-pattern'),
+    );
+
+    const unexplained = await lint(
+        `.chart {
+            /* stylelint-disable-next-line selector-class-pattern */
+            & :global(.VendorTooltip) { color: var(--foreground); }
+        }`,
+        'chart.module.css',
+    );
+    assert.equal(unexplained.errored, true, JSON.stringify(diagnostics(unexplained)));
+
+    const needless = await lint(
+        `.chart {
+            /* stylelint-disable-next-line selector-class-pattern -- Vendor API name. */
+            & :global(.vendor-tooltip) { color: var(--foreground); }
+        }`,
+        'chart.module.css',
+    );
+    assert.equal(needless.errored, true, JSON.stringify(diagnostics(needless)));
+});
+
 test('syntax and policy violations remain errors', async (t) => {
     const cases = [
         ['.card { colro: red; }', 'property-no-unknown'],
