@@ -38,7 +38,8 @@ pnpm start
 `format` and `format:check` accept explicit paths; without paths they cover the
 project. Formatting is separate from build. Native Node tests cover analytics
 initialization, navigation deduplication, events, provider failures and SEO origin
-validation. Server-only tests use the `react-server` export condition.
+validation, plus CSS lint policy boundaries. Server-only tests use the `react-server`
+export condition.
 `next/font` downloads the existing Geist fonts at build time; network access is
 required for the first uncached production build. There is no CI/CD or hosting setup.
 
@@ -98,6 +99,26 @@ feature contracts own endpoints, authentication, retries, freshness and recovery
 No backend, credentials or error response format is selected by these standards.
 
 ## UI and animation
+
+Read [styling rules](src/styling-rules.md) before changing styles, UI or animation.
+Tailwind is the default; colocated plain CSS Modules own complex local effects.
+Global CSS owns imports, semantic tokens, themes and base accessibility. Modules
+use the components layer and bypass the Tailwind loader; they consume CSS variables
+without importing global CSS or using Tailwind directives. No preprocessor or
+runtime styling library is required.
+
+`pnpm lint` runs `pnpm lint:js` (ESLint) and `pnpm lint:css` (Stylelint) sequentially.
+Stylelint checks CSS syntax, naming, duplicates, nesting, specificity, important
+declarations and explicit typography units, with Tailwind and CSS Module syntax
+handled explicitly. Prettier owns indentation, wrapping and whitespace; declaration
+grouping remains a review rule. None of these check commands rewrites files.
+Stylelint does not inspect JSX utilities/inline styles, resolve cross-file tokens,
+or replace browser checks of layout, accessibility and compatibility. Scoped lint
+exceptions require a reason and must remain necessary. For a focused CSS check:
+
+```bash
+pnpm exec stylelint src/app/globals.css --max-warnings 0
+```
 
 `components.json` maps shadcn primitives to `src/shared/ui`. Generate additional
 components with `pnpm exec shadcn add <component>`, review the diff and format the

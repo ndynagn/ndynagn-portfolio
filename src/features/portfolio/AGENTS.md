@@ -8,3 +8,5 @@
 - Language links preserve the case slug when that translation is published, otherwise
   link to the target language home. Use content-owned publication lookups.
 - Details render safe text/paragraphs, not executable MDX or unsanitized HTML.
+- Portfolio composition owns section rhythm and placement of shared primitives;
+  keep feature-specific effects beside their component rather than in global CSS.

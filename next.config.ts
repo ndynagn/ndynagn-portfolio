@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
     turbopack: {
         rules: {
             '*.css': {
+                // Keep native CSS Module exports; these files contain plain CSS.
+                condition: { not: { path: '*.module.css' } },
                 loaders: ['@tailwindcss/turbopack'],
                 as: '*.css',
             },
