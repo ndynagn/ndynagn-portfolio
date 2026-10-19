@@ -17,6 +17,8 @@ const buttonVariants = cva(
                 secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
                 ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
                 link: 'text-primary underline-offset-4 hover:underline',
+                pill: 'rounded-full bg-foreground font-design text-background transition-transform duration-300 ease-[ease] motion-safe:not-disabled:hover:-translate-y-[3px] motion-safe:focus-visible:-translate-y-[3px] [&_svg]:stroke-[1.5]',
+                round: 'rounded-full border border-border bg-transparent font-design transition-[background-color,color,transform,rotate,translate] duration-300 ease-[ease] not-disabled:hover:bg-foreground not-disabled:hover:text-background focus-visible:bg-foreground focus-visible:text-background [&_svg]:stroke-[1.5]',
             },
             size: {
                 default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -27,8 +29,41 @@ const buttonVariants = cva(
                 'icon-xs': "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
                 'icon-sm': 'size-8',
                 'icon-lg': 'size-10',
+                action: "h-auto min-w-0 max-w-full shrink justify-between gap-[27px] px-[22px] py-[18px] text-[0.6875rem] whitespace-normal wrap-anywhere md:gap-[22px] md:px-5 md:py-[17px] lg:gap-8 lg:px-[25px] lg:py-[19px] lg:text-xs [&_svg:not([class*='size-'])]:size-[17px]",
+                control: "size-[33px] p-0 md:size-[37px] [&_svg:not([class*='size-'])]:size-[17px]",
+                gallery:
+                    "size-11 p-0 disabled:opacity-30 [&_svg:not([class*='size-'])]:size-[19px]",
+                orb: "size-[63px] bg-foreground p-0 text-background duration-400 md:size-[100px] lg:size-[125px] motion-safe:not-disabled:hover:rotate-45 motion-safe:focus-visible:rotate-45 [&_svg:not([class*='size-'])]:size-[25px] md:[&_svg:not([class*='size-'])]:size-[43px] [&_svg]:stroke-1",
             },
         },
+        compoundVariants: [
+            {
+                variant: 'round',
+                size: 'orb',
+                className: 'border-0',
+            },
+            {
+                size: 'action',
+                className: 'leading-[1.5]',
+            },
+            {
+                variant: 'round',
+                size: 'control',
+                className:
+                    'not-disabled:hover:bg-transparent not-disabled:hover:text-foreground focus-visible:bg-transparent focus-visible:text-foreground',
+            },
+            {
+                variant: 'round',
+                size: 'gallery',
+                className:
+                    'duration-200 not-disabled:hover:bg-border not-disabled:hover:text-foreground focus-visible:bg-border focus-visible:text-foreground',
+            },
+            {
+                variant: ['pill', 'round'],
+                className:
+                    'focus-visible:border-border focus-visible:ring-0 focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-foreground focus-visible:outline-offset-[7px] forced-colors:focus-visible:[outline-color:Highlight] disabled:transition-none disabled:translate-none disabled:rotate-none disabled:transform-none',
+            },
+        ],
         defaultVariants: {
             variant: 'default',
             size: 'default',

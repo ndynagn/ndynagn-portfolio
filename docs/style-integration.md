@@ -15,8 +15,38 @@ to today's ownership, units, naming, layer and lint policy.
 Only visual mechanisms and technical examples are implemented. The home, case
 routes, content records/models, SEO and analytics retain their existing owners.
 No Vite configuration, hash-router, history writes, source instructions, dependency
-versions or monolithic App.tsx are imported. UI-kit components and page composition
-are separate later stages. No source gallery or manual dialog focus trap is copied.
+versions or monolithic App.tsx are imported. The first UI-kit increment adds only
+buttons and links; other components and page composition remain later stages.
+No source gallery or manual dialog focus trap is copied.
+
+### Buttons and links increment
+
+`shared/ui/button.tsx` preserves legacy defaults and adds pill/round presentation
+with action/control/gallery/orb sizes. `shared/ui/text-link.tsx` owns underlined,
+inline, scroll, index, contact and next anchor recipes; consumers own destinations,
+download/external policy and actions. Workbench fixtures are not public records.
+The control sample composes a borderless GlassSurface with a bordered Button for
+one edge and an outer size of 33/37px. Orb icons are 25px below 768px and 43px above it. Source boundaries are
+normalized to 768/1024/1536px; geometry is suppressed under reduced motion, and
+focus reproduces hover feedback with a 2px outline and 7px offset, using system
+Highlight in forced colors. Existing materials,
+cursor, theme and animation mechanisms are unchanged.
+
+Individual CSS rotate/translate properties participate in transitions with the
+source ease curve: pill lift 3px/300ms, orb rotation 45deg/400ms, link-circle
+rotation -10deg/300ms, contact-arrow translation (3px, -3px)/300ms and gallery
+background 200ms. Disabled pill/round buttons have no hover feedback, transition
+or geometric movement, even when disabled during a transition; the cursor owner's
+native hit testing remains intact. Index counters retain the source's top alignment,
+intervening text space and 5px margin. Gallery fixtures use 19px Lucide chevrons
+with a 1.5 stroke, without introducing gallery behavior.
+
+This increment supersedes the foundation inventory's deferred status only for
+`.button`, `.resume-link`, `.inline-link`, `.scroll-cue`, `.round-icon`,
+`.all-projects-link`, `.contact-orb`, contact anchor presentation and `.next-project`.
+Their surrounding sections and grids remain deferred. Readable semantic ink replaces
+decorative muted ink on meaningful labels. Native anchors remain functional without
+JS; the demonstration theme action uses the existing shared theme owner.
 
 ## Group mapping
 

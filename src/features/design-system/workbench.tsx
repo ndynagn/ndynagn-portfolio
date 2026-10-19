@@ -7,6 +7,7 @@ import { locales, type Locale } from '@/shared/i18n/locales';
 import { GlassSurface } from '@/shared/styles/glass-surface';
 
 import { getWorkbenchCopy } from './copy';
+import { ButtonLinkSamples } from './button-link-samples';
 import { HoverDemo } from './hover-demo';
 import { MaterialSamples } from './material-samples';
 import { MotionDemo } from './motion-demo';
@@ -173,6 +174,7 @@ export function Workbench({ locale }: WorkbenchProps): JSX.Element {
                         ))}
                     </div>
                 </section>
+                <ButtonLinkSamples locale={locale} />
             </main>
         </CursorBoundary>
     );

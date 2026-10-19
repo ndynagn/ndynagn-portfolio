@@ -154,8 +154,15 @@ OOMI/Potlucky distinction. Public originals are excluded from formatting.
 shadcn/Radix is used for complex real controls needing focus, Escape, portals or
 keyboard contracts, and other primitives with a demonstrated benefit. Styling,
 glass, typography, layout, cursor and animation do not require shadcn wrappers.
-Only the existing Button is used now. UI kit and page composition are later stages;
-no dependency was added, and the CSS loader remains unchanged.
+The first UI-kit increment adds Button pill/round variants and native TextLink
+variants at `/ru/design-system#buttons-links` (also available in EN). Tab and hover
+show interactive states; disabled examples, wrapping labels, circular sizes and
+the existing 15px control material are included. Theme actions belong to the demo.
+Motion uses the source ease curve, including orb's 400ms rotation and the links'
+300ms movement. New controls use a 2px focus outline with a 7px offset; native
+disabled buttons retain hit testing without hover feedback or animation.
+Other UI-kit components and page composition remain later stages. No dependency
+was added, and the CSS loader remains unchanged.
 
 After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
 declarations in actual output. The prefix-first ordering has a scoped, explained
