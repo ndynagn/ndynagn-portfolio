@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import { YandexMetrica } from '@/shared/analytics/yandex-metrica';
 import { getDictionary } from '@/shared/i18n/dictionaries';
 import { isLocale, locales, type Locale } from '@/shared/i18n/locales';
+import { themeBootstrap } from '@/shared/theme/preference';
+import { ThemeObserver } from '@/shared/theme/theme-observer';
 
 import '../globals.css';
 
@@ -30,8 +32,19 @@ export default async function LocaleLayout({
     const dictionary = getDictionary(locale);
 
     return (
-        <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <html
+            lang={locale}
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            suppressHydrationWarning
+        >
+            <head>
+                <script
+                    id="theme-preference"
+                    dangerouslySetInnerHTML={{ __html: themeBootstrap }}
+                />
+            </head>
             <body className="min-h-dvh bg-background font-sans text-foreground">
+                <ThemeObserver />
                 <a
                     href="#main"
                     className="sr-only rounded-md bg-background p-3 focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:outline-2 focus:outline-ring"

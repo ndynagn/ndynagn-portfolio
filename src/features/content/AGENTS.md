@@ -15,3 +15,6 @@
 - Load records server-side and pass only necessary display values across client
   boundaries. Changes are published by rebuilding; no Query cache or HTTP adapter
   is needed for the current repository content.
+- design-assets.ts is a byte/hash inventory of supplied public resources, not
+  published records. Preserve original bytes, the font license and provenance;
+  OOMI screenshots must not be presented as Potlucky screenshots.

@@ -42,7 +42,8 @@ Instructions and documentation are tracked and written in English.
 - Keep data separate from rendering. Components render inputs and forward actions;
   React state owns local interactions. Document non-obvious behavior at its owner.
 - Use semantic HTML, accessible names, keyboard focus and responsive layouts.
-  Essential content and navigation work without JavaScript. Shared UI uses shadcn.
+  Essential content and navigation work without JavaScript. Select shadcn when its
+  interaction contract adds value, following the policy in shared UI rules.
 - Prettier owns formatting: four spaces in TS/TSX/CSS, two in JSON/YAML/Markdown,
   single TypeScript quotes, semicolons and 100-column wrapping. Format affected files.
 

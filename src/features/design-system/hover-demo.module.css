@@ -1,0 +1,66 @@
+@layer components {
+    .sample {
+        transition: border-radius 500ms;
+    }
+    .title {
+        transition: transform 500ms cubic-bezier(0.2, 0.65, 0.3, 1);
+    }
+    .arrow {
+        transition: transform 350ms;
+    }
+    .orb {
+        transition: transform 400ms;
+    }
+    .round {
+        transition: transform 300ms;
+    }
+    .contact {
+        transition: transform 300ms;
+    }
+    .thumbnail {
+        transition: transform 400ms;
+    }
+    .enlarge {
+        opacity: 0;
+        transform: translateY(5px);
+        transition:
+            opacity 200ms,
+            transform 200ms;
+    }
+
+    .sample:is(:hover, :focus-within) {
+        border-radius: 10px;
+    }
+    .sample:is(:hover, :focus-within) .title {
+        transform: translateX(2%);
+    }
+    .sample:is(:hover, :focus-within) .arrow {
+        transform: rotate(45deg);
+    }
+    .sample:is(:hover, :focus-within) .orb {
+        transform: rotate(45deg);
+    }
+    .sample:is(:hover, :focus-within) .round {
+        transform: rotate(-10deg);
+    }
+    .sample:is(:hover, :focus-within) .contact {
+        transform: translate(3px, -3px);
+    }
+    .sample:is(:hover, :focus-within) .thumbnail {
+        transform: scale(1.025);
+    }
+    .sample:is(:hover, :focus-within) .enlarge {
+        opacity: 1;
+        transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .sample:is(:hover, :focus-within)
+            :is(.title, .arrow, .orb, .round, .contact, .thumbnail, .enlarge) {
+            transform: none;
+        }
+        .enlarge {
+            opacity: 1;
+        }
+    }
+}

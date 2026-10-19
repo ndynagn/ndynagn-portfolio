@@ -1,7 +1,13 @@
 # Shared UI
 
-- Use shadcn/ui new-york with Radix, semantic neutral light/dark tokens and Lucide.
-  Follow the OS theme until a theme-switcher design is accepted.
+- Use shadcn/ui new-york with Radix for real consumers needing complex interaction:
+  dialogs, focus management, Escape, portals or keyboard navigation. Use other
+  primitives when their contract reduces custom code; explain that benefit when
+  adding them. Preserve semantic tokens and Lucide.
+- Do not wrap glass, tokens, typography, layout, decorative surfaces, cursors or
+  animation in shadcn without that benefit. The visual-foundation stage preserves
+  the existing Button and adds no UI-kit components. Theme mechanics belong to
+  shared/theme; production controls belong to the later UI-kit stage.
 - `components.json` maps UI and the class-merging helper here. Generate primitives
   with the pinned `pnpm exec shadcn add <component>`, then review imports and format.
 - Add primitives for actual consumers. Import components directly; avoid a global

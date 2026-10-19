@@ -1,7 +1,6 @@
-'use client';
-
 import type { JSX, ReactNode } from 'react';
-import { MotionConfig, motion, useReducedMotion } from 'motion/react';
+
+import { cn } from '@/shared/ui/cn';
 
 interface MotionSurfaceProps {
     readonly children: ReactNode;
@@ -10,18 +9,14 @@ interface MotionSurfaceProps {
 
 /** Content is visible in server HTML; only an optional hover treatment is animated. */
 export function MotionSurface({ children, className }: MotionSurfaceProps): JSX.Element {
-    const reducedMotion = useReducedMotion();
-
     return (
-        <MotionConfig reducedMotion="user">
-            <motion.div
-                initial={false}
-                whileHover={reducedMotion ? undefined : { y: -2 }}
-                transition={{ duration: 0.2 }}
-                className={className}
-            >
-                {children}
-            </motion.div>
-        </MotionConfig>
+        <div
+            className={cn(
+                'transition-transform duration-200 motion-safe:hover:-translate-y-[2px]',
+                className,
+            )}
+        >
+            {children}
+        </div>
     );
 }

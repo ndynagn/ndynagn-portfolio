@@ -1,0 +1,61 @@
+@layer components {
+    .panel {
+        --sample-badge-ink: var(--foreground);
+        --sample-badge-shadow: none;
+        position: relative;
+        background: var(--background);
+        border: 1px solid var(--border);
+
+        &[data-backdrop='contrast'] {
+            --sample-badge-ink: var(--primary-foreground);
+            background: var(--primary);
+            color: var(--primary-foreground);
+        }
+
+        &[data-backdrop='photo'] {
+            --sample-badge-ink: var(--on-image);
+            --sample-badge-shadow: 0 0 1px var(--image-dim), 0 1px 2px var(--image-dim);
+            background: var(--badge-solid);
+            color: var(--on-image);
+        }
+    }
+
+    .detail {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        overflow: hidden;
+        padding: 1rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        white-space: nowrap;
+        background: repeating-linear-gradient(90deg, transparent 0 30px, currentcolor 30px 31px);
+    }
+
+    .badge-ink {
+        color: var(--on-image);
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+        .badge-ink:where(:not([data-opaque])) {
+            color: var(--sample-badge-ink);
+            text-shadow: var(--sample-badge-shadow);
+        }
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+        .badge-ink {
+            color: var(--on-image);
+            text-shadow: none;
+        }
+    }
+
+    @media (forced-colors: active) {
+        .badge-ink {
+            color: CanvasText;
+            text-shadow: none;
+        }
+    }
+}

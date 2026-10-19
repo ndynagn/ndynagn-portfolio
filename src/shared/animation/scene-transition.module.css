@@ -1,0 +1,36 @@
+@layer components {
+    .overlay {
+        position: fixed;
+        z-index: var(--layer-scene);
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--palette-transition-ink);
+        background: var(--palette-accent);
+        pointer-events: none;
+
+        &[data-scene-phase='cover'] {
+            animation: scene-cover 600ms var(--ease-cover) both;
+        }
+        &[data-scene-phase='reveal'] {
+            animation: scene-reveal 650ms var(--ease-cover) both;
+        }
+    }
+
+    @keyframes scene-cover {
+        from {
+            clip-path: circle(45px at var(--scene-x) var(--scene-y));
+        }
+        to {
+            clip-path: circle(var(--scene-radius) at var(--scene-x) var(--scene-y));
+        }
+    }
+    @keyframes scene-reveal {
+        from {
+            clip-path: circle(var(--scene-radius) at var(--scene-x) var(--scene-y));
+        }
+        to {
+            clip-path: circle(0 at var(--scene-x) var(--scene-y));
+        }
+    }
+}

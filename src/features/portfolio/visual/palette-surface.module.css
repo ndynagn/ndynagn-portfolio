@@ -1,0 +1,58 @@
+@layer components {
+    .palette {
+        --palette-surface: color-mix(
+            in srgb,
+            var(--palette-bg) calc(15% + var(--theme-light-weight) * 0.85),
+            var(--card)
+        );
+        --palette-foreground: color-mix(
+            in srgb,
+            var(--palette-ink) var(--theme-light-weight),
+            var(--foreground)
+        );
+        --palette-transition-ink: var(--palette-bg);
+
+        &[data-palette='onetouch'] {
+            --palette-bg: #e0e9e7;
+            --palette-ink: #243f40;
+            --palette-accent: #35898e;
+        }
+        &[data-palette='potlucky'] {
+            --palette-bg: #dba79b;
+            --palette-ink: #4f302b;
+            --palette-accent: color-mix(in srgb, #f8dc93 var(--theme-light-weight), #e0be7b);
+            --palette-transition-ink: var(--palette-ink);
+        }
+        &[data-palette='immergas'] {
+            --palette-bg: #eae1d9;
+            --palette-ink: #553b32;
+            --palette-accent: #c45b41;
+        }
+        &[data-palette='klimatprof'] {
+            --palette-bg: #dfe5ed;
+            --palette-ink: #30475e;
+            --palette-accent: #4a72a6;
+        }
+        &[data-palette='checkai'] {
+            --palette-bg: #efdfd2;
+            --palette-ink: #753a28;
+            --palette-accent: #dc6239;
+        }
+        &[data-palette='galleria-minsk'] {
+            --palette-bg: #e9dce0;
+            --palette-ink: #683147;
+            --palette-accent: #b1345a;
+        }
+        &[data-palette='golden-plate'] {
+            --palette-bg: #e5e1d3;
+            --palette-ink: #323e50;
+            --palette-accent: #ad8844;
+            --palette-transition-ink: var(--palette-ink);
+        }
+        &[data-palette='aventin'] {
+            --palette-bg: #eadcda;
+            --palette-ink: #713a38;
+            --palette-accent: #ba4c48;
+        }
+    }
+}

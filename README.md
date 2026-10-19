@@ -71,7 +71,7 @@ under `src/shared/i18n`; content translations stay in the content feature.
 - Rebuild to publish repository content. Only approved public material belongs
   here, including any unpublished translations: do not commit private drafts.
 
-No CMS, database, authentication, network data client or global state is installed.
+No CMS, database, authentication, network data client or global-state library is installed.
 
 ## Selected integration standards
 
@@ -125,11 +125,49 @@ components with `pnpm exec shadcn add <component>`, review the diff and format t
 affected files. The generator may import the npm `cn` package; use the local
 `@/shared/ui/cn` helper instead and remove an added duplicate dependency.
 
-Semantic neutral tokens follow the OS light/dark theme. No theme picker is included.
-MotionSurface is a narrow client wrapper around server-rendered content with an
-optional hover transform and `reducedMotion="user"`. Content starts visible and
-navigation works without JavaScript. Use CSS for simple transitions and Motion for
-coordinated effects. Preserve reduced motion, visible focus and native scrolling.
+The visual foundation provides local Manrope, semantic light/dark design tokens,
+native frosted materials, one document theme owner and scoped animation mechanisms.
+The OS is the default. A saved explicit choice is applied before paint; denied
+storage keeps the current document usable. No production theme picker is added.
+
+With `pnpm dev`, open `/ru/design-system` or `/en/design-system` for the technical
+workbench. It demonstrates glass/photo/theme combinations, opaque fallback, actual
+image-load failure, cursor modes, local cover/reveal, measured indicator/scroll
+progress, Motion filtering, hover/focus and local scroll snap. The route returns
+HTTP 404 in production and is not part of the sitemap or public navigation.
+Read [the style integration map](docs/style-integration.md) for source ownership,
+parameters, adaptations, compatibility and the complete selector inventory.
+
+GlassSurface preserves complete source recipes: surface/badge use 24px blur with
+1.3 saturation; control uses 15px without added saturation or shadows. Badge uses
+the original #a0a19755 tint, border and shadows. Consumers own text contrast,
+geometry and solid-fallback ink. The workbench compares all three materials over
+photo/page/contrasting backdrops; background text makes blur visible. A failed
+decorative matrix photo reveals a readable solid backing. No universal blur radius,
+new material API or animation mechanism is introduced.
+
+The supplied 88 resources are byte-identical in `public`, inventoried separately in
+`src/features/content/design-assets.ts` with size/SHA-256. They do not publish
+profile/project records. Preserve Manrope OFL and image provenance, including the
+OOMI/Potlucky distinction. Public originals are excluded from formatting.
+
+shadcn/Radix is used for complex real controls needing focus, Escape, portals or
+keyboard contracts, and other primitives with a demonstrated benefit. Styling,
+glass, typography, layout, cursor and animation do not require shadcn wrappers.
+Only the existing Button is used now. UI kit and page composition are later stages;
+no dependency was added, and the CSS loader remains unchanged.
+
+After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
+declarations in actual output. The prefix-first ordering has a scoped, explained
+lint exception; the optimizer regression test checks that boundary independently.
+
+MotionSurface uses a CSS-only 2px hover lift over 200ms when motion is allowed.
+AnimatedItems subscribes to live reduced motion, including exiting items, and stops
+active layout projection without remounting content. The measured indicator animates
+selection changes only; geometry synchronization is immediate. Theme bootstrap runs
+while the head is parsed, and cross-tab preferences invalidate stale transitions.
+Content starts visible and navigation works without JavaScript. Use CSS for simple
+transitions and Motion for coordinated effects. Preserve visible focus and native scrolling.
 
 ## SEO configuration
 
