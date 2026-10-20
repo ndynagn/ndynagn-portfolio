@@ -6,6 +6,7 @@ import type { Locale } from '@/shared/i18n/locales';
 
 interface CardFixture {
     readonly id: string;
+    readonly filterCategory: 'commerce' | 'service';
     readonly palette: PaletteName;
     readonly title: Readonly<Record<Locale, string>>;
     readonly titleLines?: Readonly<Record<Locale, readonly string[]>>;
@@ -18,6 +19,7 @@ interface CardFixture {
 const fixtures: readonly CardFixture[] = [
     {
         id: 'onetouch',
+        filterCategory: 'service',
         palette: 'onetouch',
         title: { ru: 'OneTouch', en: 'OneTouch' },
         category: { ru: 'Сервисное приложение', en: 'Service application' },
@@ -26,6 +28,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'potlucky',
+        filterCategory: 'commerce',
         palette: 'potlucky',
         title: { ru: 'Potlucky / OOMI', en: 'Potlucky / OOMI' },
         titleLines: { ru: ['Potlucky', 'OOMI'], en: ['Potlucky', 'OOMI'] },
@@ -35,6 +38,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'immergas',
+        filterCategory: 'service',
         palette: 'immergas',
         title: { ru: 'Immergas', en: 'Immergas' },
         category: { ru: 'Сервисная экосистема', en: 'Service ecosystem' },
@@ -43,6 +47,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'klimatprof',
+        filterCategory: 'commerce',
         palette: 'klimatprof',
         title: { ru: 'KlimatProf', en: 'KlimatProf' },
         category: { ru: 'E-commerce', en: 'E-commerce' },
@@ -51,6 +56,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'checkai',
+        filterCategory: 'commerce',
         palette: 'checkai',
         title: { ru: 'Чекай', en: 'Chekai' },
         category: { ru: 'Кешбэк-сервис', en: 'Cashback service' },
@@ -59,6 +65,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'galleria-minsk',
+        filterCategory: 'service',
         palette: 'galleria-minsk',
         title: { ru: 'Galleria Minsk', en: 'Galleria Minsk' },
         titleLines: { ru: ['Galleria', 'Minsk'], en: ['Galleria', 'Minsk'] },
@@ -68,6 +75,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'golden-plate',
+        filterCategory: 'commerce',
         palette: 'golden-plate',
         title: { ru: 'Золотая Плата', en: 'Golden Plate' },
         titleLines: { ru: ['Золотая', 'Плата'], en: ['Golden', 'Plate'] },
@@ -77,6 +85,7 @@ const fixtures: readonly CardFixture[] = [
     },
     {
         id: 'aventin',
+        filterCategory: 'service',
         palette: 'aventin',
         title: { ru: 'Авентин', en: 'Aventin' },
         category: { ru: 'Безопасный дом', en: 'Home security' },
@@ -95,6 +104,22 @@ export function getProjectCardFixtures(locale: Locale): readonly ProjectCardData
         platformLabel: fixture.platform,
         counterLabel: `${String(index + 1).padStart(2, '0')} / ${String(fixtures.length).padStart(2, '0')}`,
         palette: fixture.palette,
+    }));
+}
+
+interface ProjectFilterFixture {
+    readonly id: string;
+    readonly category: 'commerce' | 'service';
+    readonly data: ProjectCardData;
+}
+
+export function getProjectFilterFixtures(locale: Locale): readonly ProjectFilterFixture[] {
+    const cards = getProjectCardFixtures(locale);
+
+    return fixtures.map((fixture, index) => ({
+        id: fixture.id,
+        category: fixture.filterCategory,
+        data: cards[index],
     }));
 }
 

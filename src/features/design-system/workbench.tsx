@@ -15,13 +15,15 @@ import { MotionDemo } from './motion-demo';
 import { NavigationSamples } from './navigation-samples';
 import { PhotoDemo } from './photo-demo';
 import { ProjectCardSamples } from './project-card-samples';
+import { ProjectFilterSamples } from './project-filter-samples';
 import { ThemeDemo } from './theme-demo';
 
 interface WorkbenchProps {
     readonly locale: Locale;
+    readonly filterCategory?: string;
 }
 
-export function Workbench({ locale }: WorkbenchProps): JSX.Element {
+export function Workbench({ locale, filterCategory }: WorkbenchProps): JSX.Element {
     const copy = getWorkbenchCopy(locale);
 
     return (
@@ -181,6 +183,7 @@ export function Workbench({ locale }: WorkbenchProps): JSX.Element {
                 <LabelSamples locale={locale} />
                 <NavigationSamples locale={locale} />
                 <ProjectCardSamples locale={locale} />
+                <ProjectFilterSamples locale={locale} initialCategory={filterCategory} />
             </main>
         </CursorBoundary>
     );

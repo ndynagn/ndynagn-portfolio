@@ -17,7 +17,7 @@ routes, content records/models, SEO and analytics retain their existing owners.
 No Vite configuration, hash-router, history writes, source instructions, dependency
 versions or monolithic App.tsx are imported. The first UI-kit increment adds only
 buttons and links; subsequent increments add labels, navigation and project cards.
-Filters, gallery, case covers and page composition remain later stages.
+Gallery, case covers and page composition remain later stages.
 No source gallery or manual dialog focus trap is copied.
 
 ### Buttons and links increment
@@ -163,6 +163,28 @@ reuse without publishing records. This increment supersedes deferred card artwor
 caption selectors only, not source ProjectGrid filtering, hero artwork, source
 hash routing, scene navigation, page grids or gallery. Existing foundation, labels,
 buttons/links and navigation samples remain unchanged.
+
+### Project-filter increment
+
+The portfolio/filters entry exposes controlled ProjectFilters with readonly options
+(value, label, countLabel), value, accessible group label and optional onValueChange.
+The native field name defaults to category; the workbench supplies kitCategory.
+Pressed submit buttons preserve native GET behavior without JS; an enhanced consumer
+prevents submission and owns URL changes. The component owns no catalogue or routes.
+Source geometry is normalized to 768px: 11px text/12x21px padding/10px gap on desktop,
+9px/11x14px/7px below it, with 8/7px counters and 200ms/ease color transitions. Counts
+use opaque inherited ink: source .6 opacity can reduce contrast to about 4.07:1;
+opaque counts measure at least 14.30:1 in the tested themes/states. This is a
+readability adaptation, not a new material.
+
+The separate workbench section supplies eight server card nodes and archive category
+metadata (all 08, commerce 04, service 04), not public professional/pet records.
+kitCategory owns selection; unknown values mean all. Server searchParams initialize
+HTML for GET forms. The narrow client consumer uses a URL external-store snapshot,
+native pushState and popstate for refresh/Back/Forward without remounting the grid,
+moving focus or explicitly scrolling. Existing AnimatedItems owns enter/exit/reorder;
+its optional className changes consumer grid geometry while preserving legacy defaults.
+No moving filter indicator, page grid component, public routes or gallery are added.
 
 ## Group mapping
 

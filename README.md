@@ -184,7 +184,16 @@ The server-rendered portfolio/cards entry accepts ready readonly display data;
 consumers own grids, localized text, ordering, counts and links. New projects do
 not require card-specific branches; source palettes remain centralized. Cards use
 native links, CSS hover/focus feedback and prefetch=false by default. These fixtures
-do not publish catalogue entries or implement filters, case covers or galleries.
+do not publish catalogue entries or implement case covers or galleries.
+
+Project filters are demonstrated separately at
+`http://localhost:3000/ru/design-system#project-filters` (also EN). The controlled
+portfolio/filters entry renders source pill buttons with ready count labels;
+consumers own filtering, GET forms and destinations. Workbench-only archive categories
+all/commerce/service contain 08/04/04 cards and never change public professional/pet
+records. Selection lives in kitCategory, supports reload/Back/Forward and native GET
+submission without JS. Existing AnimatedItems animates stable server card nodes;
+its optional className leaves prior consumers and motion parameters unchanged.
 
 After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
 declarations in actual output. The prefix-first ordering has a scoped, explained

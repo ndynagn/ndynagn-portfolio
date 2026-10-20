@@ -10,6 +10,8 @@ import {
     useResetProjection,
 } from 'motion/react';
 
+import { cn } from '@/shared/ui/cn';
+
 import { useReducedMotion } from './use-reduced-motion';
 
 interface AnimatedItem {
@@ -19,6 +21,7 @@ interface AnimatedItem {
 
 interface AnimatedItemsProps {
     readonly items: readonly AnimatedItem[];
+    readonly className?: string;
 }
 
 interface PresenceItemProps {
@@ -86,7 +89,7 @@ function PresenceItem({ children, ref }: PresenceItemProps): JSX.Element {
 }
 
 /** Initial SSR content stays visible. Inputs are display nodes, never a content catalogue. */
-export function AnimatedItems({ items }: AnimatedItemsProps): JSX.Element {
+export function AnimatedItems({ items, className }: AnimatedItemsProps): JSX.Element {
     const reduced = useReducedMotion();
     const resetProjection = useResetProjection();
 
@@ -102,7 +105,7 @@ export function AnimatedItems({ items }: AnimatedItemsProps): JSX.Element {
         // Motion captures its preference and projection options at mount. This owner keeps
         // projection mounted and applies the live preference through controls and transitions.
         <MotionConfig reducedMotion="never">
-            <div className="relative grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className={cn('relative grid grid-cols-2 gap-4 md:grid-cols-4', className)}>
                 <AnimatePresence initial={false} mode="popLayout">
                     {items.map((item) => (
                         <PresenceItem key={item.id}>{item.content}</PresenceItem>

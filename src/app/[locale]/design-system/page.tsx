@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 export default async function DesignSystemPage({
     params,
+    searchParams,
 }: PageProps<'/[locale]/design-system'>): Promise<JSX.Element> {
     if (process.env.NODE_ENV !== 'development') {
         notFound();
@@ -23,5 +24,13 @@ export default async function DesignSystemPage({
         notFound();
     }
 
-    return <Workbench locale={locale} />;
+    const query = await searchParams;
+    const category = query.kitCategory;
+
+    return (
+        <Workbench
+            locale={locale}
+            filterCategory={Array.isArray(category) ? category[0] : category}
+        />
+    );
 }
