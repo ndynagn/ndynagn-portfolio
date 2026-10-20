@@ -17,7 +17,7 @@ routes, content records/models, SEO and analytics retain their existing owners.
 No Vite configuration, hash-router, history writes, source instructions, dependency
 versions or monolithic App.tsx are imported. The first UI-kit increment adds only
 buttons and links; subsequent increments add labels, navigation and project cards.
-Gallery, case covers and page composition remain later stages.
+Gallery and page composition remain later stages.
 No source gallery or manual dialog focus trap is copied.
 
 ### Buttons and links increment
@@ -185,6 +185,33 @@ native pushState and popstate for refresh/Back/Forward without remounting the gr
 moving focus or explicitly scrolling. Existing AnimatedItems owns enter/exit/reorder;
 its optional className changes consumer grid geometry while preserving legacy defaults.
 No moving filter indicator, page grid component, public routes or gallery are added.
+
+### Case-cover increment
+
+The server-only portfolio/covers entry exposes ProjectCover and readonly
+ProjectCoverData: title/optional titleLines, categoryLabel, periodLabel, eyebrow,
+tagline, counterLabel, platformLabel and palette. headingLevel defaults to 1; source
+workbench covers use 3 and the nested technical sample uses 4. Missing/empty lines
+fall back to title. Block lines retain separating whitespace for accessible text;
+only the final decorative period is aria-hidden and 70% opaque.
+
+The static header reuses PaletteSurface without changing card internals or colors.
+It has no link, tab stop, cursor target, image, arrow or hover/page-transition effect.
+Its local subpixel-antialiased utility restores source auto font smoothing for all
+cover text. The application's global antialiased setting and neighboring samples
+remain unchanged; matching stroke rendering does not require changing font weights.
+At the normalized 768px boundary it changes from minimum height 23.75rem/padding
+1.25rem/gap 1.75rem to clamp(25rem,43vw,37.5rem)/clamp(1.5rem,3vw,3rem)/2rem.
+Container-relative title size is measured against the header's inner content box:
+clamp(2.1875rem,12cqw,5.3125rem) mobile and clamp(3.125rem,10cqw,8.75rem) desktop,
+with source 550/1.02/-.065em. Tagline/metadata recipes follow the archive, using
+opaque palette ink and forced-color system colors. Long/enlarged text grows height;
+there is no fixed ratio or content clipping.
+
+The separate full-width workbench section renders all eight archive covers plus a
+long-label/empty-lines technical fixture. Fixture periods/taglines are not published
+profile/project claims. Existing card/filter fixture output, catalogue publication,
+theme, cursor, materials and other samples remain unchanged.
 
 ## Group mapping
 

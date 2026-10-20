@@ -30,6 +30,12 @@
   The client subscribes to popstate and its own history updates with cleanup, not
   duplicated React selection state. Keep stable item IDs and existing AnimatedItems
   timing/inert exits. Native history retains the mounted grid, focus and scroll.
+- Project-cover samples consume portfolio/covers as full-width static server nodes.
+  Archive periods/taglines belong to technical fixtures only. Pass headingLevel 3
+  for source covers, 4 below the technical-example heading; retain one page h1.
+  Cover metadata does not alter prior card/filter outputs or public content records.
+  Keep source title lines/final decorative period and include an empty-lines long
+  sample. Do not add card hover, links, gallery or case-page composition.
 - Verify intermediate and reverse motion frames, not only final hover positions.
   Gallery-size fixtures use Lucide chevrons; they do not implement a gallery.
 - Keep initial text and media visible without JS. Temporary production fixtures

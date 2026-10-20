@@ -199,6 +199,15 @@ After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
 declarations in actual output. The prefix-first ordering has a scoped, explained
 lint exception; the optimizer regression test checks that boundary independently.
 
+Case-cover fixtures are at `http://localhost:3000/ru/design-system#project-covers`
+(also EN): eight full-width archive covers and a long-text/empty-titleLines sample.
+The server-only portfolio/covers entry accepts readonly display text and a palette;
+the consumer owns localization, source periods, counters, title lines and heading
+hierarchy. headingLevel defaults to 1; workbench covers use 3 beneath the page h1.
+The static header has no links or card hover, grows for enlarged text and preserves
+source typography and the decorative final period. These fixtures publish no case
+records and do not implement page sections or a gallery.
+
 MotionSurface uses a CSS-only 2px hover lift over 200ms when motion is allowed.
 AnimatedItems subscribes to live reduced motion, including exiting items, and stops
 active layout projection without remounting content. The measured indicator animates

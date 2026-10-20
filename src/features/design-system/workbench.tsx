@@ -15,6 +15,7 @@ import { MotionDemo } from './motion-demo';
 import { NavigationSamples } from './navigation-samples';
 import { PhotoDemo } from './photo-demo';
 import { ProjectCardSamples } from './project-card-samples';
+import { ProjectCoverSamples } from './project-cover-samples';
 import { ProjectFilterSamples } from './project-filter-samples';
 import { ThemeDemo } from './theme-demo';
 
@@ -184,6 +185,7 @@ export function Workbench({ locale, filterCategory }: WorkbenchProps): JSX.Eleme
                 <NavigationSamples locale={locale} />
                 <ProjectCardSamples locale={locale} />
                 <ProjectFilterSamples locale={locale} initialCategory={filterCategory} />
+                <ProjectCoverSamples locale={locale} />
             </main>
         </CursorBoundary>
     );
