@@ -14,6 +14,7 @@ import { MaterialSamples } from './material-samples';
 import { MotionDemo } from './motion-demo';
 import { NavigationSamples } from './navigation-samples';
 import { PhotoDemo } from './photo-demo';
+import { ProjectCardSamples } from './project-card-samples';
 import { ThemeDemo } from './theme-demo';
 
 interface WorkbenchProps {
@@ -179,6 +180,7 @@ export function Workbench({ locale }: WorkbenchProps): JSX.Element {
                 <ButtonLinkSamples locale={locale} />
                 <LabelSamples locale={locale} />
                 <NavigationSamples locale={locale} />
+                <ProjectCardSamples locale={locale} />
             </main>
         </CursorBoundary>
     );

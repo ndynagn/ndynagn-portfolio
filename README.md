@@ -178,6 +178,14 @@ and desktop resizing close the menu with appropriate focus restoration. It adds
 no public pages or routing. Use localhost for this dev server: the default Next
 dev-origin protection rejects 127.0.0.1 runtime/HMR requests; cursor code is unchanged.
 
+Project-card fixtures are at `http://localhost:3000/ru/design-system#project-cards`
+(also EN): eight standard cards, three featured cards and long-text examples.
+The server-rendered portfolio/cards entry accepts ready readonly display data;
+consumers own grids, localized text, ordering, counts and links. New projects do
+not require card-specific branches; source palettes remain centralized. Cards use
+native links, CSS hover/focus feedback and prefetch=false by default. These fixtures
+do not publish catalogue entries or implement filters, case covers or galleries.
+
 After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
 declarations in actual output. The prefix-first ordering has a scoped, explained
 lint exception; the optimizer regression test checks that boundary independently.

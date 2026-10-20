@@ -16,7 +16,8 @@ Only visual mechanisms and technical examples are implemented. The home, case
 routes, content records/models, SEO and analytics retain their existing owners.
 No Vite configuration, hash-router, history writes, source instructions, dependency
 versions or monolithic App.tsx are imported. The first UI-kit increment adds only
-buttons and links; other components and page composition remain later stages.
+buttons and links; subsequent increments add labels, navigation and project cards.
+Filters, gallery, case covers and page composition remain later stages.
 No source gallery or manual dialog focus trap is copied.
 
 ### Buttons and links increment
@@ -122,6 +123,46 @@ The workbench's three fixtures use unique native anchor targets and own scroll s
 Use localhost for dev acceptance: default Next dev-origin protection rejects runtime
 requests from 127.0.0.1 (403 vs localhost 200), leaving client controls uninitialized.
 The cursor mechanism itself is unchanged.
+
+### Project-card increment
+
+The server-rendered portfolio/cards entry exposes ProjectCard and its readonly
+display contract. Standard/featured share private artwork/caption pieces, one anchor,
+ready href/title/lines/eyebrow/category/platform/counter/palette data and cursor label.
+Consumers own translation, catalogue access, ordering, counts, selection and grids.
+No project-ID branches or full catalogue are passed into a card. Missing/empty
+titleLines use title; headingLevel defaults to 3, variant to standard, prefetch to
+false. Case prefetch may be explicitly enabled by the consumer, not multiplied
+implicitly as the catalogue grows. Fragment-only hrefs use native anchors, preserving
+browser focus transfer to the consumer's target with tabIndex -1; other destinations
+retain Next Link. No client focus handlers are added. Palettes are independent from project IDs and
+remain owned by PaletteSurface; the existing content model is unchanged.
+
+Source standard artwork retains ratio 1.37/padding 24px above 768px; featured uses
+1.1/22px. Both use 1.25/20px below 768px. Ratios are preferred: long/enlarged text
+can increase height. Container-relative type retains clamp(1.75rem,9cqw,6.25rem),
+weight 550, line-height 1.02 and -.065em tracking. Standard caption is a row with
+15px gap; featured is a desktop column/mobile row with 5px gap. Caption title is
+14/15px, category 9/10px, padding-top 13/17px (mobile/desktop). Source 760px is
+normalized to 768px, including 7px mobile and 8px standard desktop metadata.
+
+CSS owns poster radius 0→10px over 500ms/ease, arrow rotation 45deg over 350ms/ease
+and title translation 2% over 500ms/cubic-bezier(.2,.65,.3,1), with explicit rotate/
+translate transition properties. Keyboard focus reproduces hover and retains the
+2px/7px outline; reduced motion removes geometric effects and forced colors uses
+system colors and a visible artwork edge. The 33px arrow/14px Lucide icon is
+decorative, as are the repeated poster title, kicker and counter. Meaningful source
+metadata is fully opaque rather than .6 (source light contrast can be 2.61:1;
+opaque palette ink is at least about 5.59:1 across the existing palettes). This is
+an explicit readability adaptation; decorative opacity is preserved.
+
+Workbench-only fixtures render the eight source projects and first three featured
+projects in simple 2/3-column layouts, collapsing to one below 768px. Local targets,
+long bilingual copy, a three-digit counter and an empty-titleLines example exercise
+reuse without publishing records. This increment supersedes deferred card artwork/
+caption selectors only, not source ProjectGrid filtering, hero artwork, source
+hash routing, scene navigation, page grids or gallery. Existing foundation, labels,
+buttons/links and navigation samples remain unchanged.
 
 ## Group mapping
 
