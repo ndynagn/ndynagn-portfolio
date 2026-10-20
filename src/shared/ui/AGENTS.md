@@ -8,6 +8,10 @@
   animation in shadcn without that benefit. The UI kit extends Button, native
   TextLink and static TechnologyTag/StatusLabel/CurrentLabel. Theme mechanics stay in
   shared/theme; the workbench consumer owns its demonstration action.
+- LanguageLinks renders the whole RU / EN area as one native anchor to the other
+  locale, including spacing and padding. Preserve one Tab stop, target hrefLang,
+  language-specific text spans and visual current-locale emphasis; the accessible
+  name identifies the destination. Consumers own translation availability and hrefs.
 - `components.json` maps UI and the class-merging helper here. Generate primitives
   with the pinned `pnpm exec shadcn add <component>`, then review imports and format.
 - Add primitives for actual consumers. Import components directly; avoid a global

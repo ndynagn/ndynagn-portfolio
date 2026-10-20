@@ -17,6 +17,12 @@
   after AnimatePresence's layout bookkeeping, while settling values before paint.
 - MeasuredTrack animates selection changes for 420 ms; geometry synchronization
   (resize, fonts, compaction, visibility and initialization) is immediate and deduplicated.
+- Its optional className and indicatorTone preserve legacy defaults (muted).
+  Foreground tracks support native direct links with aria-current=location and
+  data-track-key: their active background remains readable before JS measures the
+  indicator. The CSS owner removes that fallback only when its indicator is ready.
+  Native ancestor details toggle events resynchronize geometry immediately; a
+  revealed unchanged border box may not trigger ResizeObserver. Clean up that listener.
 - Wrappers clean up subscriptions and must not delay navigation or focus.
 - SceneTransition demonstrates 600/650 ms cover/reveal on technical scenes only;
   never await it for routing or focus. Theme/scene effects share transition-lock.

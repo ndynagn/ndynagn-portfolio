@@ -1,4 +1,15 @@
 @layer components {
+    /* Keep active native navigation links readable before hydration and without JS. */
+    .track:where([data-indicator-tone='foreground'])
+        > :where([data-track-key][aria-current='location']) {
+        background: var(--foreground);
+    }
+
+    .track:where([data-indicator-tone='foreground']):has(> .indicator[data-ready])
+        > :where([data-track-key][aria-current='location']) {
+        background: transparent;
+    }
+
     .indicator {
         position: absolute;
         top: 0;
@@ -11,6 +22,9 @@
         pointer-events: none;
         transform: translate(var(--track-x), var(--track-y));
         transition: none;
+        &[data-tone='foreground'] {
+            background: var(--foreground);
+        }
         &[data-ready] {
             visibility: visible;
         }
@@ -24,6 +38,17 @@
     @media (prefers-reduced-motion: reduce) {
         .indicator[data-animate] {
             transition: none;
+        }
+    }
+
+    @media (forced-colors: active) {
+        .indicator[data-tone='foreground'] {
+            background: Highlight;
+        }
+
+        .track:where([data-indicator-tone='foreground'])
+            > :where([data-track-key][aria-current='location']) {
+            background: Highlight;
         }
     }
 }

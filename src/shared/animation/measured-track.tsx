@@ -2,15 +2,24 @@
 
 import { useLayoutEffect, useRef, type JSX, type ReactNode } from 'react';
 
+import { cn } from '@/shared/ui/cn';
+
 import styles from './measured-track.module.css';
 
 interface MeasuredTrackProps {
     readonly children: ReactNode;
     readonly activeKey: string;
+    readonly className?: string;
+    readonly indicatorTone?: 'muted' | 'foreground';
 }
 
 /** Marks geometry only; the owner supplies direct children with data-track-key. */
-export function MeasuredTrack({ children, activeKey }: MeasuredTrackProps): JSX.Element {
+export function MeasuredTrack({
+    children,
+    activeKey,
+    className,
+    indicatorTone = 'muted',
+}: MeasuredTrackProps): JSX.Element {
     const rootRef = useRef<HTMLDivElement>(null);
     const indicatorRef = useRef<HTMLDivElement>(null);
     const previousGeometry = useRef<string | null>(null);
@@ -104,6 +113,9 @@ export function MeasuredTrack({ children, activeKey }: MeasuredTrackProps): JSX.
             schedule(true);
         });
         const restore = () => schedule(true);
+        // Native details can reveal an unchanged border box without a ResizeObserver
+        // delivery. Resynchronize the existing track after that visibility change.
+        const disclosure = root.closest('details');
 
         observer.observe(root);
         observeChildren();
@@ -111,6 +123,7 @@ export function MeasuredTrack({ children, activeKey }: MeasuredTrackProps): JSX.
         document.addEventListener('visibilitychange', restore);
         window.addEventListener('resize', restore);
         document.fonts.addEventListener('loadingdone', restore);
+        disclosure?.addEventListener('toggle', restore);
         measure.current = update;
         update();
 
@@ -121,6 +134,7 @@ export function MeasuredTrack({ children, activeKey }: MeasuredTrackProps): JSX.
             document.removeEventListener('visibilitychange', restore);
             window.removeEventListener('resize', restore);
             document.fonts.removeEventListener('loadingdone', restore);
+            disclosure?.removeEventListener('toggle', restore);
             if (frame !== undefined) {
                 cancelAnimationFrame(frame);
             }
@@ -136,9 +150,19 @@ export function MeasuredTrack({ children, activeKey }: MeasuredTrackProps): JSX.
     return (
         <div
             ref={rootRef}
-            className="relative flex w-fit max-w-full flex-wrap gap-1 rounded-3xl border p-1"
+            data-indicator-tone={indicatorTone}
+            className={cn(
+                styles.track,
+                'relative flex w-fit max-w-full flex-wrap gap-1 rounded-3xl border p-1',
+                className,
+            )}
         >
-            <div ref={indicatorRef} className={styles.indicator} aria-hidden="true" />
+            <div
+                ref={indicatorRef}
+                className={styles.indicator}
+                data-tone={indicatorTone}
+                aria-hidden="true"
+            />
             {children}
         </div>
     );

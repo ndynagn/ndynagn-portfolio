@@ -12,6 +12,7 @@ import { HoverDemo } from './hover-demo';
 import { LabelSamples } from './label-samples';
 import { MaterialSamples } from './material-samples';
 import { MotionDemo } from './motion-demo';
+import { NavigationSamples } from './navigation-samples';
 import { PhotoDemo } from './photo-demo';
 import { ThemeDemo } from './theme-demo';
 
@@ -177,6 +178,7 @@ export function Workbench({ locale }: WorkbenchProps): JSX.Element {
                 </section>
                 <ButtonLinkSamples locale={locale} />
                 <LabelSamples locale={locale} />
+                <NavigationSamples locale={locale} />
             </main>
         </CursorBoundary>
     );

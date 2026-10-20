@@ -73,6 +73,56 @@ they do not infer employment or availability. This increment supersedes deferred
 status only for `.skill-tags > span`, `.availability`/`.status-dot`, `.current-pill`
 and `.flutter-badge`; their surrounding pages and sections remain deferred.
 
+### Navigation increment
+
+PortfolioNavigation accepts readonly ready links, activeKey, labels, optional return
+link, control nodes and progress (default 0, clamped to 0..1). It never owns routes,
+publication policy or document scrolling. LanguageLinks makes the complete RU / EN
+area one native anchor to the other locale, with target hrefLang, language-specific
+text spans, one Tab stop and a destination-specific accessible name. Consumers still
+supply both hrefs; current-locale emphasis is visual, not aria-current on an outgoing
+link. ThemeToggle composes the existing 33/37px control and 15px glass, calling
+the existing theme owner. Desktop/mobile controls have separate responsive markup;
+native details remains usable without JS. Enhancement closes on Escape, outside
+pointerdown, anchor selection and desktop resize, restoring visible focus.
+
+The source header is adapted to a sticky local fixture instead of a document-fixed
+site header. Heights retain 114→84px desktop and 88→72px mobile over 240px scroll;
+source 760/1100px boundaries become 768/1024px. Desktop links retain 12px/500 and
+12→10px by 20→16px padding; tablet 11px and 11→10px by 14→12px; mobile 14px with
+15×20px padding. Panel padding is 6→4px desktop, 14px mobile, with 50/20px radii.
+The source has no rendered brand in this header; unused brand selectors stay deferred.
+
+As a requested adaptation below 768px, a full-width surface backdrop with square
+corners and a bottom border keeps the mobile header controls visible over content.
+It is a pointer-transparent sibling behind the controls, not a filtered ancestor
+of the dropdown. Existing 88→72px compaction, menu icons, disclosure behavior and
+the rounded dropdown geometry remain unchanged; desktop has no added backdrop.
+
+Existing surface blur 24px and control blur 15px remain unchanged. Navigation owns
+its archive light border (foreground 22%) and three light shadows (foreground 8%/5%,
+white inset 90%). Dark desktop retains the surface recipe; dark mobile has the
+0 15px 35px #0000000d shadow. Local colors use the existing theme-light-weight
+channel, with system colors in forced colors. Readable muted ink replaces decorative
+ink on meaningful inactive language links. Live source blur compilation differences
+do not replace the archive's native blur recipe.
+
+MeasuredTrack adds optional className/indicatorTone (muted by default) without
+changing measurement or 420ms selection timing. Foreground native active links have
+a CSS background fallback until the indicator is ready, preserving no-JS contrast.
+Resize, font loading, menu reveal and compaction settle geometry immediately. The
+track also listens to its native ancestor details toggle: reopening need not change
+the ResizeObserver border box even though hidden child geometry was different. The
+navigation resets compaction reactively for reduced motion. Enlarged text can wrap;
+header height grows, and the mobile menu scrolls within its available height.
+
+This increment implements header/nav/indicator/return/language/theme/menu presentation
+only; source hash routing, page layouts, gallery and card/filter behavior stay deferred.
+The workbench's three fixtures use unique native anchor targets and own scroll state.
+Use localhost for dev acceptance: default Next dev-origin protection rejects runtime
+requests from 127.0.0.1 (403 vs localhost 200), leaving client controls uninitialized.
+The cursor mechanism itself is unchanged.
+
 ## Group mapping
 
 | Source group / effect                               | Target mechanism and owner                                                               | States                                                              | Responsive adaptation                                   | Fallback                                    | Verification                                | Status                                        |

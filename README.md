@@ -170,6 +170,14 @@ circle dimensions support text enlargement. Other UI-kit components and page
 composition remain later stages. No dependency
 was added, and the CSS loader remains unchanged.
 
+The navigation increment is at `http://localhost:3000/ru/design-system#navigation`
+(also EN). It demonstrates home/catalogue/case link sets in independent local
+scrollers, 240px compaction, native mobile details, return links, RU/EN anchors and
+the existing theme transition through ThemeToggle. Escape/outside/link selection
+and desktop resizing close the menu with appropriate focus restoration. It adds
+no public pages or routing. Use localhost for this dev server: the default Next
+dev-origin protection rejects 127.0.0.1 runtime/HMR requests; cursor code is unchanged.
+
 After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
 declarations in actual output. The prefix-first ordering has a scoped, explained
 lint exception; the optimizer regression test checks that boundary independently.
