@@ -19,6 +19,12 @@
   families cohesive to make registry updates reviewable.
 - Components own presentation only, preserve focus indicators and accessible props,
   and do not load content, send analytics or impose feature behavior.
+- Dialog is generated from the pinned shadcn registry with its cn import corrected
+  to the existing helper (the registry preview incorrectly resolves it to a package).
+  Keep installed Radix and dependencies unchanged. The gallery's real full-screen
+  consumer uses overlayClassName; Radix owns modal focus/Escape/scroll containment.
+  The standard z-50 portal sits above scene 40/cursor 45. Feature styling stays with
+  the consumer; retain generated Dialog defaults for ordinary dialogs.
 - Pill/round and TextLink preserve the source ease curve and 2px focus outline
   with a 7px offset (system Highlight in forced colors). CSS transitions must
   include the individual rotate/translate properties they animate. Native disabled

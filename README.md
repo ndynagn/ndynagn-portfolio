@@ -217,6 +217,14 @@ remain their owners. Archive experience, education, course, contact and case tex
 is technical fixture data, not published records. Plain consumer markup supplies
 column widths/gaps and sibling separators; full page sections remain deferred.
 
+Gallery fixtures are at `http://localhost:3000/ru/design-system#gallery` (also EN).
+The portfolio/gallery entry accepts readonly localized image groups and control
+labels, without catalogue reads. It demonstrates all 40 source screenshots, native
+original-image links, .85-width rails and a Radix-backed shadcn modal with cyclic
+navigation, zoom, swipe, error/retry and opener focus restoration. OneTouch keeps
+GO/PRO groups; Potlucky keeps the OOMI association. Single/empty/long/failure examples
+are technical only. Existing assets, content records and public pages stay unchanged.
+
 MotionSurface uses a CSS-only 2px hover lift over 200ms when motion is allowed.
 AnimatedItems subscribes to live reduced motion, including exiting items, and stops
 active layout projection without remounting content. The measured indicator animates

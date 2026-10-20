@@ -17,8 +17,8 @@ routes, content records/models, SEO and analytics retain their existing owners.
 No Vite configuration, hash-router, history writes, source instructions, dependency
 versions or monolithic App.tsx are imported. The first UI-kit increment adds only
 buttons and links; subsequent increments add labels, navigation and project cards.
-Gallery and page composition remain later stages.
-No source gallery or manual dialog focus trap is copied.
+Subsequent increments add filters, covers, content elements and the gallery below.
+Page composition remains a later stage. No manual dialog focus trap is copied.
 
 ### Buttons and links increment
 
@@ -245,6 +245,51 @@ and separate technical long labels. These data do not publish profile/case recor
 No about section, editorial prose system, engineering story, footer or gallery is
 implemented. Earlier samples, routes, content records, materials and motion owners
 remain unchanged.
+
+### Gallery increment
+
+The portfolio/gallery public entry accepts readonly ready groups/images, name,
+localized control labels, optional className and group heading level (h3 default).
+The narrow client capability receives only its consumer's gallery, never the asset
+catalogue. All 40 archive images retain dimensions, thumbnail/original URLs and
+captions: OneTouch has GO/PRO groups (five each), Potlucky has five OOMI screenshots.
+The other six projects retain their original four/five-image groups. No project-ID
+branch exists in the component; fixture composition owns the prefixed captions.
+
+Source geometry becomes Tailwind at 768px: four columns with 20px gap, or 72% width
+with 16px gap on mobile; thumbnails retain .58 ratio, 20/18px padding and 6px radius.
+Images use pre-generated WebP directly through unoptimized Next Image. Hover/focus
+scales 1.025/400ms; the enlarge affordance fades/slides 5px/200ms (always visible on
+mobile). It owns a separate 12px blur with prefix-first and standard declarations,
+solid fallback, reduced transparency and forced colors. Shared materials stay intact.
+Meaningful captions/counters use readable ink; source decorative opacity is not
+copied onto essential text. Local subpixel-antialiased retains source smoothing.
+
+Rails step .85 viewport width and measure real disabled boundaries on scroll,
+resize and image load. Dynamic reduced motion cancels smooth scrolling. Thumbnails
+remain original-image anchors without JS and preserve modified clicks with JS.
+The installed pinned shadcn generator supplies Dialog; only its incorrect cn import
+is corrected and a real-consumer overlayClassName prop added, without dependencies.
+Radix owns portal/modality, focus containment, Escape and scroll locking; the feature
+restores the actual opener. The z-50 modal sits above scene 40 and cursor 45 and
+uses native cursors, source dark viewer colors and forced-color system ink.
+
+Viewing cycles across supplied groups. Selection resets zoom/status; keyed viewers
+and request generations reject stale image events. Button/double-click zoom, touch
+swipe outside zoom, original-size scrolling, blank-stage dismissal, caption/counter,
+loading and error/retry are local responsibilities. Empty galleries disappear;
+single-image fixtures omit rail/previous/next controls. Source outer editorial
+headings, case sections, public records and page routing remain deferred.
+The original negative rail gutters preserve focus outlines; they are intentional
+local bleed, not text clipping or document overflow. Real captions wrap; counters
+cannot shrink. Only duplicate decorative thumbnail fallback text is locally clipped.
+This increment supersedes gallery/rail/lightbox deferred inventory entries below;
+outer editorial gallery sections remain page-composition work.
+Zoomed images retain source block/left alignment. Long/enlarged modal labels use
+wrapping toolbar controls and independently scrollable toolbar/footer tracks around
+a stage minimum of min(8rem,25dvh). Single-image captions use the space freed by
+absent paging controls. Natural inner wrappers keep all text reachable; the modal
+does not overflow the viewport or clip labels to preserve a fixed panel height.
 
 ## Group mapping
 

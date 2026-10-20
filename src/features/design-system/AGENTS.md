@@ -5,7 +5,7 @@
 - Server composition owns static samples. Client demos receive localized labels,
   not profile/project records or the asset catalogue.
 - Demonstrate visual mechanisms and their failure modes using approved UI-kit
-  consumers and native markup. Gallery controls remain a later stage.
+  consumers and native markup. Gallery is a local fixture, not a public case page.
 - The buttons-and-links section consumes shared Button/TextLink and owns localized
   fixture labels, native destinations and the theme action. Keep foundation samples
   unchanged.
@@ -13,7 +13,7 @@
   portfolio visual entry's FlutterBadge. Labels are static source fixtures, not
   public records. The narrow photo demo owns network failure, opaque mode and
   source-relative placement; the component owns neither image state nor layout.
-  Preserve foundation and buttons/links examples; gallery stays deferred.
+  Preserve foundation and buttons/links examples.
 - Navigation samples use the portfolio navigation public entry, LanguageLinks and
   ThemeToggle. Each fixture owns its local scroll progress, active section and unique
   anchors. Do not subscribe to document scroll or install source hash routing.
@@ -49,3 +49,8 @@
 - Compare surface/control/badge over photo, page and contrasting backdrops using
   existing materials and static markup. Keep readable ink at the caller and provide
   a readable backing for the decorative photograph's network-failure path.
+- Gallery samples consume portfolio/gallery with only each fixture's ready image
+  groups and localized labels. Preserve all 40 source image/caption associations,
+  both OneTouch groups and Potlucky's OOMI provenance. Do not publish catalogue
+  records or add editorial case sections. Empty/single/long/error fixtures stay
+  explicitly technical; missing-image URLs exist only in the failure consumer.
