@@ -27,7 +27,7 @@ interface WorkbenchCopy {
 const dictionaries: Readonly<Record<Locale, WorkbenchCopy>> = {
     ru: {
         title: 'Визуальная основа',
-        note: 'Технический стенд визуальной основы, кнопок и ссылок. Остальные компоненты и страницы — следующие этапы.',
+        note: 'Технический стенд визуальной основы, кнопок, ссылок и меток. Остальные компоненты и страницы — следующие этапы.',
         typography: 'Типографика и токены',
         material: 'Материалы и тема',
         materialBackdrops: ['Фотография', 'Фон страницы', 'Контрастный фон'],
@@ -51,7 +51,7 @@ const dictionaries: Readonly<Record<Locale, WorkbenchCopy>> = {
     },
     en: {
         title: 'Visual foundation',
-        note: 'Technical workbench for the visual foundation, buttons and links. Other components and pages are later stages.',
+        note: 'Technical workbench for the visual foundation, buttons, links and labels. Other components and pages are later stages.',
         typography: 'Typography and tokens',
         material: 'Materials and theme',
         materialBackdrops: ['Photograph', 'Page background', 'Contrasting background'],

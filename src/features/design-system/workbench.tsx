@@ -9,6 +9,7 @@ import { GlassSurface } from '@/shared/styles/glass-surface';
 import { getWorkbenchCopy } from './copy';
 import { ButtonLinkSamples } from './button-link-samples';
 import { HoverDemo } from './hover-demo';
+import { LabelSamples } from './label-samples';
 import { MaterialSamples } from './material-samples';
 import { MotionDemo } from './motion-demo';
 import { PhotoDemo } from './photo-demo';
@@ -175,6 +176,7 @@ export function Workbench({ locale }: WorkbenchProps): JSX.Element {
                     </div>
                 </section>
                 <ButtonLinkSamples locale={locale} />
+                <LabelSamples locale={locale} />
             </main>
         </CursorBoundary>
     );

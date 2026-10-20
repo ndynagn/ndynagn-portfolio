@@ -48,6 +48,31 @@ Their surrounding sections and grids remain deferred. Readable semantic ink repl
 decorative muted ink on meaningful labels. Native anchors remain functional without
 JS; the demonstration theme action uses the existing shared theme owner.
 
+### Labels increment
+
+`shared/ui` owns TechnologyTag (10/11px, weight 450, 9×14/10×17px padding,
+30px radius), CurrentLabel (8px, 5×12px padding, 20px radius) and StatusLabel
+(10px, 8px gap, 5px dot with the original 3px halo). All use Manrope and 1.5
+line height. Below 768px, hero status uses 8/6/5px plus 1px top padding;
+portfolio uses 8/8/5px; contact uses 8/6/4px (font/gap/dot). Static labels
+have no tab stop, status role, hover or pulse; dots are decorative and never shrink.
+Long text can wrap rather than inherit the archive's nowrap constraint.
+
+`portfolio/visual` owns FlutterBadge, exported through the existing visual entry.
+It preserves the exact source SVG, two-line markup, 25/29px icon, 8px gap,
+12/13px semibold title and 8px regular caption. The existing GlassSurface badge
+recipe, filters and accessibility fallbacks are unchanged. Diameter is
+6.125/6.25/7.6875rem (98/100/123px at standard root size), allowing text scaling.
+Caption opacity is intentionally 1 instead of .7: white contrast on the existing
+#63655b solid fallback rises from approximately 3.86:1 to 5.93:1.
+
+The technical consumer owns photo/dimming/text-shadow layers, source positioning
+(mobile 29%/−23px; tablet 37%/−28px; desktop 37%/−40px), the failure message and
+opaque mode. The badge never loads images. Labels use ready localized fixture text;
+they do not infer employment or availability. This increment supersedes deferred
+status only for `.skill-tags > span`, `.availability`/`.status-dot`, `.current-pill`
+and `.flutter-badge`; their surrounding pages and sections remain deferred.
+
 ## Group mapping
 
 | Source group / effect                               | Target mechanism and owner                                                               | States                                                              | Responsive adaptation                                   | Fallback                                    | Verification                                | Status                                        |

@@ -161,7 +161,13 @@ the existing 15px control material are included. Theme actions belong to the dem
 Motion uses the source ease curve, including orb's 400ms rotation and the links'
 300ms movement. New controls use a 2px focus outline with a 7px offset; native
 disabled buttons retain hit testing without hover feedback or animation.
-Other UI-kit components and page composition remain later stages. No dependency
+The labels increment at `/ru/design-system#labels` (also in EN) adds static
+technology tags, contextual status dots, current-workplace labels and FlutterBadge.
+These are source fixtures, not published profile facts. FlutterBadge reuses the
+existing badge material; the photo demo owns placement, failure and opaque mode.
+Its two-line caption is fully opaque for readable fallback contrast, and rem-based
+circle dimensions support text enlargement. Other UI-kit components and page
+composition remain later stages. No dependency
 was added, and the CSS loader remains unchanged.
 
 After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
