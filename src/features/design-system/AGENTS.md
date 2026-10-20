@@ -37,6 +37,12 @@
   Keep source title lines/final decorative period and include an empty-lines long
   sample. Do not add card hover, links, gallery or case-page composition.
 - Verify intermediate and reverse motion frames, not only final hover positions.
+- Content-element samples consume portfolio/content-elements plus existing labels
+  and TextLink inline/contact. Archive prose is fixture data only, not profile or
+  catalogue publication. Consumer markup owns source column widths, list gaps and
+  education sibling separators; do not implement full home/case sections.
+  Record headings use h4 under sample h3 headings. Keep local project-link targets,
+  native contact destinations, technical long labels, one h1 and source smoothing.
   Gallery-size fixtures use Lucide chevrons; they do not implement a gallery.
 - Keep initial text and media visible without JS. Temporary production fixtures
   must be removed before the final build and final diff check.

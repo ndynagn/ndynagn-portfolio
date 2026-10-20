@@ -208,6 +208,15 @@ The static header has no links or card hover, grows for enlarged text and preser
 source typography and the decorative final period. These fixtures publish no case
 records and do not implement page sections or a gallery.
 
+Content-element fixtures are at `http://localhost:3000/ru/design-system#content-elements`
+(also EN). The server-only portfolio/content-elements entry exposes the section
+eyebrow row, experience/education entries, definition-list facts and ordered
+contributions. Consumers supply readonly display inputs, heading hierarchy and
+ready action/status nodes; the existing CurrentLabel, StatusLabel and TextLink
+remain their owners. Archive experience, education, course, contact and case text
+is technical fixture data, not published records. Plain consumer markup supplies
+column widths/gaps and sibling separators; full page sections remain deferred.
+
 MotionSurface uses a CSS-only 2px hover lift over 200ms when motion is allowed.
 AnimatedItems subscribes to live reduced motion, including exiting items, and stops
 active layout projection without remounting content. The measured indicator animates

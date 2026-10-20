@@ -213,6 +213,39 @@ long-label/empty-lines technical fixture. Fixture periods/taglines are not publi
 profile/project claims. Existing card/filter fixture output, catalogue publication,
 theme, cursor, materials and other samples remain unchanged.
 
+### Content-element increment
+
+The server-only portfolio/content-elements entry exposes SectionHeading (a source
+eyebrow row, not a semantic heading), ExperienceEntry, EducationEntry, ProjectFacts
+and ContributionList. Inputs are readonly ready text/IDs; the components do not
+read catalogues, route, parse dates or infer employment/availability. Experience
+and education headings default to h3; workbench records use h4 under group h3s.
+CurrentLabel, StatusLabel and TextLink inline/contact retain their existing owners.
+Text asides use the source small-note recipe; composed status nodes keep their own
+typography. Consumers own source inline-link mt-5, outer spacing, column geometry
+and education sibling separators. No new global UI primitives or animations appear.
+
+Source Manrope and local subpixel-antialiased retain auto font smoothing. Text uses
+rem, the 760px source boundary is normalized to 768px, and long/enlarged content
+wraps/grows without clipping. Experience preserves source 25/23px titles, 9/8px
+dates, 11px roles and 12px/1.95 descriptions; education uses 68/62px year columns,
+20/17px gaps and 14/13px titles. Fact labels remain 9px on both sides of the
+breakpoint (the source's .project-facts .eyebrow specificity wins on mobile).
+Facts retain 2fr/1fr columns, source borders and spacing; semantic dl/dt/dd replaces
+generic divs. Contributions use ol/li, explicit role=list for markerless VoiceOver
+lists, ready decorative counters and 16/14px text. Rem-based minimum counter columns
+can grow for enlarged or three-digit labels. Empty facts/lists render nothing.
+Meaningful dates, year notes, project lists and fact labels use readable semantic
+muted-foreground instead of the source decorative gray; decorative indices retain
+their original tone. Forced colors retain system ink/edges.
+
+The workbench demonstrates two archive employment entries, two education entries,
+one course, three contact links, OneTouch/Immergas facts and contribution lists,
+and separate technical long labels. These data do not publish profile/case records.
+No about section, editorial prose system, engineering story, footer or gallery is
+implemented. Earlier samples, routes, content records, materials and motion owners
+remain unchanged.
+
 ## Group mapping
 
 | Source group / effect                               | Target mechanism and owner                                                               | States                                                              | Responsive adaptation                                   | Fallback                                    | Verification                                | Status                                        |

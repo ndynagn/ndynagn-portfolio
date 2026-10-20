@@ -8,6 +8,7 @@ import { GlassSurface } from '@/shared/styles/glass-surface';
 
 import { getWorkbenchCopy } from './copy';
 import { ButtonLinkSamples } from './button-link-samples';
+import { ContentElementSamples } from './content-element-samples';
 import { HoverDemo } from './hover-demo';
 import { LabelSamples } from './label-samples';
 import { MaterialSamples } from './material-samples';
@@ -186,6 +187,7 @@ export function Workbench({ locale, filterCategory }: WorkbenchProps): JSX.Eleme
                 <ProjectCardSamples locale={locale} />
                 <ProjectFilterSamples locale={locale} initialCategory={filterCategory} />
                 <ProjectCoverSamples locale={locale} />
+                <ContentElementSamples locale={locale} />
             </main>
         </CursorBoundary>
     );
