@@ -14,6 +14,11 @@
 - Canonical/hreflang/OG URLs require a configured real `SITE_URL`. Technical home
   placeholders are always noindex; only published content enters the sitemap.
 - Global CSS owns Tailwind imports, semantic tokens and base styles, not feature UI.
+- Compose document theme initialization/observation once, including routes without
+  controls. The design-system workbench is development-only and returns HTTP 404
+  in production; never add it to public navigation or the sitemap.
+- The locale root layout imports global CSS once. Preserve stylesheet execution
+  order; route navigation must not depend on unloading a global stylesheet.
 - Server composition calls feature server entry points directly when data is already
   available on the server; do not force an internal HTTP round trip. Pass only safe
   React-serializable application values to client components, not DTOs or services.

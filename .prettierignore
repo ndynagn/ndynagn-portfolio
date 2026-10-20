@@ -6,3 +6,5 @@ coverage/
 .idea/
 pnpm-lock.yaml
 next-env.d.ts
+# Supplied resources retain original bytes, checked against the asset inventory.
+public/

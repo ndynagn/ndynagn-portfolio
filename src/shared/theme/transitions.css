@@ -1,0 +1,62 @@
+/* Capture final theme colors; ordinary transitions must not animate inside snapshots. */
+@layer base {
+    :root[data-theme-reveal],
+    :root[data-theme-reveal] *,
+    :root[data-theme-reveal]::before,
+    :root[data-theme-reveal]::after,
+    :root[data-theme-reveal] *::before,
+    :root[data-theme-reveal] *::after,
+    :root[data-theme-reveal] *::marker,
+    :root[data-theme-reveal] *::backdrop,
+    :root[data-theme-reveal] *::placeholder,
+    :root[data-theme-reveal] *::file-selector-button {
+        /* stylelint-disable-next-line declaration-no-important -- Document snapshot integration must override component and utility transitions; remove with the reveal owner. */
+        transition: none !important;
+    }
+}
+
+/* These pseudo-elements belong to the document snapshot, never a component Module. */
+:root[data-theme-reveal]::view-transition-group(root),
+:root[data-theme-reveal]::view-transition-old(root),
+:root[data-theme-reveal]::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+:root[data-theme-reveal]::view-transition-old(root) {
+    z-index: 1;
+}
+:root[data-theme-reveal]::view-transition-new(root) {
+    z-index: 2;
+}
+
+:root[data-theme-reveal='expand']::view-transition-new(root) {
+    animation: theme-expand 750ms var(--ease-out) both;
+}
+
+:root[data-theme-reveal='contract']::view-transition-old(root) {
+    z-index: 2;
+    animation: theme-contract 750ms var(--ease-cover) both;
+}
+
+:root[data-theme-reveal='contract']::view-transition-new(root) {
+    z-index: 1;
+}
+
+@keyframes theme-expand {
+    from {
+        clip-path: circle(0 at var(--theme-x) var(--theme-y));
+    }
+    to {
+        clip-path: circle(var(--theme-radius) at var(--theme-x) var(--theme-y));
+    }
+}
+
+@keyframes theme-contract {
+    from {
+        clip-path: circle(var(--theme-radius) at var(--theme-x) var(--theme-y));
+    }
+    to {
+        clip-path: circle(0 at var(--theme-x) var(--theme-y));
+    }
+}

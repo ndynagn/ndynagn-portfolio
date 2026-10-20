@@ -1,0 +1,104 @@
+@layer components {
+    .header {
+        --navigation-height: calc(88px - 16px * var(--navigation-progress));
+        --navigation-panel-top: calc(79px - 16px * var(--navigation-progress));
+        --navigation-link-px: 20px;
+        --navigation-link-py: 15px;
+        --navigation-gap: 6px;
+        --navigation-padding: 14px;
+        --navigation-shadow-y: 15px;
+        --navigation-shadow-blur: 35px;
+        --navigation-shadow-ink: #0000000d;
+        --navigation-dark-inset: transparent;
+    }
+
+    /* Source navigation has its own light edge/elevation, independent of the material. */
+    .surface[data-glass] {
+        border-color: color-mix(
+            in srgb,
+            color-mix(in srgb, var(--foreground) 22%, transparent) var(--theme-light-weight),
+            #ffffff6b
+        );
+        box-shadow:
+            0 6px 20px
+                color-mix(
+                    in srgb,
+                    color-mix(in srgb, var(--foreground) 8%, transparent) var(--theme-light-weight),
+                    transparent
+                ),
+            0 1px 3px
+                color-mix(
+                    in srgb,
+                    color-mix(in srgb, var(--foreground) 5%, transparent) var(--theme-light-weight),
+                    transparent
+                ),
+            inset 0 1px 0
+                color-mix(
+                    in srgb,
+                    #ffffffe6 var(--theme-light-weight),
+                    var(--navigation-dark-inset)
+                ),
+            0 var(--navigation-shadow-y) var(--navigation-shadow-blur)
+                color-mix(
+                    in srgb,
+                    transparent var(--theme-light-weight),
+                    var(--navigation-shadow-ink)
+                );
+    }
+
+    .panel {
+        max-height: calc(
+            var(--navigation-available-height, 100dvh) - var(--navigation-panel-top) - 16px
+        );
+    }
+
+    .link,
+    .summary {
+        outline-offset: 7px;
+
+        &:focus-visible {
+            outline: 2px solid var(--foreground);
+        }
+    }
+
+    .link:not([aria-current='location']):hover {
+        background: var(--card);
+    }
+
+    .summary::-webkit-details-marker {
+        display: none;
+    }
+
+    @media (width >= 48rem) {
+        .header {
+            --navigation-height: calc(114px - 30px * var(--navigation-progress));
+            --navigation-link-px: calc(14px - 2px * var(--navigation-progress));
+            --navigation-link-py: calc(11px - var(--navigation-progress) * 1px);
+            --navigation-gap: calc(3px - 3px * var(--navigation-progress));
+            --navigation-padding: calc(6px - 2px * var(--navigation-progress));
+            --navigation-shadow-y: 3px;
+            --navigation-shadow-blur: 14px;
+            --navigation-shadow-ink: #00000003;
+            --navigation-dark-inset: #ffffff30;
+        }
+    }
+
+    @media (width >= 64rem) {
+        .header {
+            --navigation-link-px: calc(20px - 4px * var(--navigation-progress));
+            --navigation-link-py: calc(12px - 2px * var(--navigation-progress));
+        }
+    }
+
+    @media (forced-colors: active) {
+        .surface[data-glass] {
+            border-color: CanvasText;
+            box-shadow: none;
+        }
+
+        .link:focus-visible,
+        .summary:focus-visible {
+            outline-color: Highlight;
+        }
+    }
+}

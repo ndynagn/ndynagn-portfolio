@@ -1,0 +1,85 @@
+@layer components {
+    .cursor {
+        position: fixed;
+        z-index: var(--layer-cursor);
+        top: 0;
+        left: 0;
+        width: 7px;
+        height: 7px;
+        font-family: var(--design-font);
+        font-size: 0.625rem;
+        color: var(--background);
+        border-radius: 50%;
+        background: var(--foreground);
+        visibility: hidden;
+        pointer-events: none;
+        /* Coordinates are absent only before first positioning, while hidden. */
+        transform: translate(var(--cursor-x, 0), var(--cursor-y, 0)) translate(-50%, -50%);
+        transition:
+            width 250ms,
+            height 250ms,
+            background 250ms;
+
+        &[data-visible] {
+            visibility: visible;
+        }
+        &[data-mode='link'] {
+            --cursor-blur: 1px;
+            width: 29px;
+            height: 29px;
+            border: 1px solid var(--cursor-link-border);
+            background: var(--cursor-link);
+        }
+        &[data-mode='page'] {
+            --cursor-blur: 18px;
+            width: 90px;
+            height: 90px;
+            text-align: center;
+            color: var(--foreground);
+            border: 1px solid var(--cursor-page-border);
+            background: var(--glass-solid);
+            box-shadow: var(--cursor-page-shadow);
+        }
+    }
+
+    .label-clip {
+        /* Clip only the text so the glass keeps its independent backdrop. */
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        border-radius: inherit;
+    }
+
+    .label {
+        /* Keep text centered without reflow while the circle changes size. */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        white-space: nowrap;
+        transform: translate(-50%, -50%);
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+        .cursor:is([data-mode='page'], [data-mode='link']) {
+            /* stylelint-disable-next-line property-no-vendor-prefix -- Prefix-first preserves native backdrop-filter through the installed optimizer; remove after a passing built-CSS regression without it. */
+            -webkit-backdrop-filter: blur(var(--cursor-blur));
+            backdrop-filter: blur(var(--cursor-blur));
+        }
+        .cursor[data-mode='page'] {
+            background: var(--glass);
+        }
+    }
+
+    @media (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+        .boundary[data-cursor-active],
+        .boundary[data-cursor-active] :where(*) {
+            cursor: none;
+        }
+    }
+
+    @media (pointer: coarse), (prefers-reduced-motion: reduce), (forced-colors: active) {
+        .cursor {
+            display: none;
+        }
+    }
+}

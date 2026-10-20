@@ -1,27 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import '../shared/styles/tokens.css';
+@import '../shared/theme/transitions.css';
 
 :root {
     color-scheme: light dark;
     --radius: 0.625rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
 }
 
 @theme inline {
@@ -49,29 +33,14 @@
     --radius-xl: calc(var(--radius) + 4px);
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: oklch(0.145 0 0);
-        --foreground: oklch(0.985 0 0);
-        --card: oklch(0.205 0 0);
-        --card-foreground: oklch(0.985 0 0);
-        --popover: oklch(0.205 0 0);
-        --popover-foreground: oklch(0.985 0 0);
-        --primary: oklch(0.922 0 0);
-        --primary-foreground: oklch(0.205 0 0);
-        --secondary: oklch(0.269 0 0);
-        --secondary-foreground: oklch(0.985 0 0);
-        --muted: oklch(0.269 0 0);
-        --muted-foreground: oklch(0.708 0 0);
-        --accent: oklch(0.269 0 0);
-        --accent-foreground: oklch(0.985 0 0);
-        --destructive: oklch(0.704 0.191 22.216);
-        --border: oklch(1 0 0 / 10%);
-        --input: oklch(1 0 0 / 15%);
-        --ring: oklch(0.556 0 0);
-    }
+    --font-design: var(--design-font);
+    --text-design-display: var(--design-display);
+    --text-design-page: var(--design-page);
+    --text-design-title: var(--design-title);
+    --text-design-lead: var(--design-lead);
+    --text-design-body: var(--design-body);
+    --text-design-caption: var(--design-caption);
+    --text-design-eyebrow: var(--design-eyebrow);
 }
 
 @layer base {
@@ -92,9 +61,11 @@
     *,
     *::before,
     *::after {
+        /* stylelint-disable declaration-no-important -- Override component motion, including inline values, for the OS accessibility preference. */
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+        /* stylelint-enable declaration-no-important */
     }
 }

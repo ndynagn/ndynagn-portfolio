@@ -1,0 +1,44 @@
+@layer components {
+    .glass {
+        --glass-fill: var(--glass);
+        --glass-backing: var(--glass-solid);
+        --glass-filter: blur(24px) saturate(1.3);
+        --glass-edge: #ffffff6b;
+        --glass-elevation: 0 3px 14px #00000003, inset 0 1px 0 #ffffff30;
+
+        border: 1px solid var(--glass-edge);
+        background: var(--glass-backing);
+        box-shadow: var(--glass-elevation);
+
+        &[data-glass='badge'] {
+            --glass-fill: var(--badge-glass);
+            --glass-backing: var(--badge-solid);
+            --glass-edge: var(--badge-border);
+            --glass-elevation: 0 8px 40px #00000010, inset 1px 1px 0 #ffffff4d;
+        }
+
+        &[data-glass='control'] {
+            --glass-filter: blur(15px);
+            --glass-edge: var(--border);
+            --glass-elevation: none;
+        }
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+        .glass:not([data-opaque]) {
+            background: var(--glass-fill);
+            /* stylelint-disable-next-line property-no-vendor-prefix -- Prefix-first preserves the standard declaration in the installed optimizer; remove only after the built-CSS regression passes without it. */
+            -webkit-backdrop-filter: var(--glass-filter);
+            backdrop-filter: var(--glass-filter);
+        }
+    }
+
+    @media (forced-colors: active), (prefers-reduced-transparency: reduce) {
+        .glass:not([data-opaque]) {
+            background: var(--glass-backing);
+            /* stylelint-disable-next-line property-no-vendor-prefix -- Reset both supported declarations for the OS accessibility preference. */
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+    }
+}

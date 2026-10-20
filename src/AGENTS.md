@@ -2,6 +2,10 @@
 
 Scope: all source code. Read root rules and the applicable descendant instructions.
 
+Before changing CSS, Tailwind classes, UI or animation, read
+[styling rules](styling-rules.md). That document owns styling decisions and their
+verification; local rules only add module-specific responsibilities.
+
 ## TypeScript and model construction
 
 - Keep TypeScript strict. Use type-only imports/exports and explicit public inputs

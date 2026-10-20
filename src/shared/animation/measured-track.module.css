@@ -1,0 +1,54 @@
+@layer components {
+    /* Keep active native navigation links readable before hydration and without JS. */
+    .track:where([data-indicator-tone='foreground'])
+        > :where([data-track-key][aria-current='location']) {
+        background: var(--foreground);
+    }
+
+    .track:where([data-indicator-tone='foreground']):has(> .indicator[data-ready])
+        > :where([data-track-key][aria-current='location']) {
+        background: transparent;
+    }
+
+    .indicator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--track-width);
+        height: var(--track-height);
+        border-radius: 2.5rem;
+        background: var(--muted);
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(var(--track-x), var(--track-y));
+        transition: none;
+        &[data-tone='foreground'] {
+            background: var(--foreground);
+        }
+        &[data-ready] {
+            visibility: visible;
+        }
+        &[data-animate] {
+            transition:
+                transform 420ms var(--ease-out),
+                width 420ms var(--ease-out),
+                height 420ms var(--ease-out);
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .indicator[data-animate] {
+            transition: none;
+        }
+    }
+
+    @media (forced-colors: active) {
+        .indicator[data-tone='foreground'] {
+            background: Highlight;
+        }
+
+        .track:where([data-indicator-tone='foreground'])
+            > :where([data-track-key][aria-current='location']) {
+            background: Highlight;
+        }
+    }
+}

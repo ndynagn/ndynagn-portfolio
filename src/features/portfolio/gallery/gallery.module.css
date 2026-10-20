@@ -1,0 +1,56 @@
+@layer components {
+    .enlarge {
+        background: var(--glass-solid);
+    }
+
+    @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+        .enlarge {
+            background: var(--glass);
+            /* stylelint-disable-next-line property-no-vendor-prefix -- Keep prefix-first with the installed optimizer, matching the material owner's compatibility contract. */
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+        }
+    }
+
+    .lightbox {
+        --gallery-bg: #131512;
+        --gallery-fg: #f7f7f2;
+        --gallery-line: #ffffff30;
+        --background: var(--gallery-bg);
+        --foreground: var(--gallery-fg);
+        --border: var(--gallery-line);
+
+        background: #131512f5;
+        color: var(--gallery-fg);
+        color-scheme: dark;
+        cursor: auto;
+
+        & button {
+            cursor: pointer;
+        }
+    }
+
+    @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+        .enlarge {
+            background: var(--glass-solid);
+            /* stylelint-disable-next-line property-no-vendor-prefix -- Reset both declarations for OS accessibility preferences. */
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+    }
+
+    @media (forced-colors: active) {
+        .enlarge {
+            background: Canvas;
+            color: CanvasText;
+        }
+
+        .lightbox {
+            --gallery-bg: Canvas;
+            --gallery-fg: CanvasText;
+            --gallery-line: CanvasText;
+
+            background: Canvas;
+        }
+    }
+}
