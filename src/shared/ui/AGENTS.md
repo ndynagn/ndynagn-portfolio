@@ -30,6 +30,8 @@
   include the individual rotate/translate properties they animate. Native disabled
   pill/round buttons never animate or receive hover styling, including under CursorBoundary's
   intentional hit-testing override; preserve legacy Button defaults.
+- Keep the fixed 3px pill lift and contact-arrow offset in local custom properties;
+  scaling text/spacing must not change these source motion amplitudes.
 - Primitives own internal spacing and expose intentional variants; composition owns
   their external placement. Keep class merging in the configured local `cn` helper.
 - Labels render consumer-supplied text, never profile facts. Status context variants

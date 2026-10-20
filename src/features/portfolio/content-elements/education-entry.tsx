@@ -25,15 +25,15 @@ export function EducationEntry({
     return (
         <article
             className={cn(
-                'grid min-w-0 grid-cols-[62px_minmax(0,1fr)] gap-[17px] pb-6 font-design leading-[1.5] wrap-anywhere text-foreground subpixel-antialiased md:grid-cols-[68px_minmax(0,1fr)] md:gap-5 forced-colors:text-[CanvasText]',
+                'grid min-w-0 grid-cols-[62px_minmax(0,1fr)] gap-4.25 pb-6 font-design leading-normal wrap-anywhere text-foreground subpixel-antialiased md:grid-cols-[68px_minmax(0,1fr)] md:gap-5 forced-colors:text-[CanvasText]',
                 className,
             )}
             data-content-education
         >
-            <span className="min-w-0 pt-[2px] text-xs leading-[1.5]" data-education-year>
+            <span className="min-w-0 pt-0.5 text-xs leading-normal" data-education-year>
                 {yearLabel}
                 {yearNote && (
-                    <small className="mt-[5px] block text-[0.5rem] text-muted-foreground">
+                    <small className="mt-1.25 block text-[0.5rem] text-muted-foreground">
                         {yearNote}
                     </small>
                 )}
@@ -42,7 +42,7 @@ export function EducationEntry({
                 <Heading className="text-[0.8125rem] leading-[1.6] font-medium md:text-sm">
                     {title}
                 </Heading>
-                <p className="mt-[6px] text-[0.625rem] leading-[1.8] text-muted-foreground md:text-[0.6875rem]">
+                <p className="mt-1.5 text-[0.625rem] leading-[1.8] text-muted-foreground md:text-[0.6875rem]">
                     {description}
                 </p>
             </div>

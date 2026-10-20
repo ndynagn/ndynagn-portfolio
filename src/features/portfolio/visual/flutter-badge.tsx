@@ -20,15 +20,11 @@ export function FlutterBadge({
             material="badge"
             opaque={opaque}
             className={cn(
-                'flex size-[6.125rem] shrink-0 flex-col items-center justify-center gap-2 rounded-full font-design text-(--on-image) md:size-[6.25rem] lg:size-[7.6875rem] forced-colors:text-[CanvasText]',
+                'flex size-24.5 shrink-0 flex-col items-center justify-center gap-2 rounded-full font-design text-(--on-image) md:size-25 lg:size-30.75 forced-colors:text-[CanvasText]',
                 className,
             )}
         >
-            <svg
-                viewBox="0 0 40 40"
-                aria-hidden="true"
-                className="size-[25px] shrink-0 md:size-[29px]"
-            >
+            <svg viewBox="0 0 40 40" aria-hidden="true" className="size-6.25 shrink-0 md:size-7.25">
                 <path
                     d="m24 4-20 20 7 7L38 4Zm0 18L13 33l7 7 11-11Zm-4 18h18L27 29Z"
                     fill="currentColor"

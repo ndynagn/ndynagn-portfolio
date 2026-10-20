@@ -63,7 +63,7 @@ export function ProjectFilterDemo({
     }
 
     return (
-        <div className="grid min-w-0 gap-[25px] md:gap-[30px]" data-project-filter-demo>
+        <div className="grid min-w-0 gap-6.25 md:gap-7.5" data-project-filter-demo>
             <form action={action} method="get">
                 <ProjectFilters
                     options={options}
@@ -74,7 +74,7 @@ export function ProjectFilterDemo({
                 />
             </form>
             <AnimatedItems
-                className="grid-cols-1 gap-x-7 gap-y-[30px] md:grid-cols-2 md:gap-y-[43px]"
+                className="grid-cols-1 gap-x-7 gap-y-7.5 md:grid-cols-2 md:gap-y-10.75"
                 items={items.filter((item) => category === 'all' || item.category === category)}
             />
         </div>

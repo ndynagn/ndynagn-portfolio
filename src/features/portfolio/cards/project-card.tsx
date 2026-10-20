@@ -33,7 +33,7 @@ const artworkVariants = cva(
         variants: {
             variant: {
                 standard: 'md:p-6',
-                featured: 'md:p-[22px]',
+                featured: 'md:p-5.5',
             },
         },
         defaultVariants: { variant: 'standard' },
@@ -50,11 +50,11 @@ const proportionVariants = cva(
     },
 );
 
-const captionVariants = cva('flex min-w-0 items-center justify-between pt-[13px] md:pt-[17px]', {
+const captionVariants = cva('flex min-w-0 items-center justify-between pt-3.25 md:pt-4.25', {
     variants: {
         variant: {
-            standard: 'gap-[15px]',
-            featured: 'gap-[5px] md:flex-col md:items-start',
+            standard: 'gap-3.75',
+            featured: 'gap-1.25 md:flex-col md:items-start',
         },
     },
     defaultVariants: { variant: 'standard' },
@@ -77,10 +77,10 @@ function ProjectCardArtwork({
                 <div className={artworkVariants({ variant })} data-project-artwork-content>
                     <div
                         className={cn(
-                            'relative z-1 flex shrink-0 flex-wrap items-start justify-between gap-x-3 gap-y-1 text-[0.4375rem] leading-[1.5]',
+                            'relative z-1 flex shrink-0 flex-wrap items-start justify-between gap-x-3 gap-y-1 text-[0.4375rem] leading-normal',
                             variant === 'featured'
-                                ? 'tracking-[0.03125rem]'
-                                : 'tracking-[0.0625rem] md:text-[0.5rem]',
+                                ? 'tracking-[0.0714285714em]'
+                                : 'tracking-[0.1428571429em] md:text-[0.5rem] md:tracking-[0.125em]',
                         )}
                         data-project-meta
                     >
@@ -94,7 +94,7 @@ function ProjectCardArtwork({
                         className="min-w-0 shrink-0 py-[8%] transition-[translate] duration-500 ease-[cubic-bezier(.2,.65,.3,1)] motion-safe:group-hover/card:translate-x-[2%] motion-safe:group-focus-visible/card:translate-x-[2%] motion-reduce:transition-none"
                         data-project-type
                     >
-                        <span className="mb-[18px] block text-[0.5rem] leading-[1.5] tracking-[0.125rem] opacity-65">
+                        <span className="mb-4.5 block text-[0.5rem] leading-normal tracking-[0.25em] opacity-65">
                             {data.eyebrow}
                         </span>
                         <div
@@ -108,16 +108,16 @@ function ProjectCardArtwork({
                             ))}
                         </div>
                     </div>
-                    <div className="relative z-1 flex shrink-0 items-center justify-between gap-3 text-[0.5rem] leading-[1.5] tracking-[0.0125rem] md:text-[0.5625rem]">
+                    <div className="relative z-1 flex shrink-0 items-center justify-between gap-3 text-[0.5rem] leading-normal tracking-wide md:text-[0.5625rem] md:tracking-[0.0222222222em]">
                         <span aria-hidden="true" className="min-w-0 wrap-anywhere">
                             {data.categoryLabel}
                         </span>
                         <span
                             aria-hidden="true"
                             data-project-arrow
-                            className="grid size-[33px] shrink-0 place-items-center rounded-full border border-current opacity-60 transition-[rotate] duration-350 ease-[ease] motion-safe:group-hover/card:rotate-45 motion-safe:group-focus-visible/card:rotate-45 motion-reduce:transition-none"
+                            className="grid size-8.25 shrink-0 place-items-center rounded-full border border-current opacity-60 transition-[rotate] duration-350 ease-[ease] motion-safe:group-hover/card:rotate-45 motion-safe:group-focus-visible/card:rotate-45 motion-reduce:transition-none"
                         >
-                            <ArrowUpRight className="size-[14px] stroke-[1.5]" />
+                            <ArrowUpRight className="size-3.5 stroke-[1.5]" />
                         </span>
                     </div>
                 </div>
@@ -136,10 +136,10 @@ function ProjectCardCaption({ data, variant, headingLevel }: ProjectCardCaptionP
 
     return (
         <div className={captionVariants({ variant })} data-project-caption>
-            <Heading className="min-w-0 text-[0.875rem] leading-[1.5] font-[550] tracking-[-0.025rem] wrap-anywhere md:text-[0.9375rem]">
+            <Heading className="min-w-0 text-[0.875rem] leading-normal font-[550] tracking-[-0.0285714286em] wrap-anywhere md:text-[0.9375rem] md:tracking-[-0.0266666667em]">
                 {data.title}
             </Heading>
-            <span className="min-w-0 text-[0.5625rem] leading-[1.5] text-muted-foreground wrap-anywhere md:text-[0.625rem]">
+            <span className="min-w-0 text-[0.5625rem] leading-normal text-muted-foreground wrap-anywhere md:text-[0.625rem]">
                 {data.categoryLabel}
             </span>
         </div>
@@ -165,7 +165,7 @@ export function ProjectCard({
         'data-cursor': 'page',
         'data-cursor-label': cursorLabel,
         className: cn(
-            'group/card block min-w-0 font-design outline-offset-[7px] focus-visible:outline-2 focus-visible:outline-foreground forced-colors:focus-visible:[outline-color:Highlight]',
+            'group/card block min-w-0 font-design subpixel-antialiased outline-offset-[7px] focus-visible:outline-2 focus-visible:outline-foreground forced-colors:focus-visible:outline-[Highlight]',
             className,
         ),
     };

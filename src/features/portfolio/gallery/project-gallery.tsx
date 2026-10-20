@@ -38,7 +38,7 @@ export function ProjectGallery({
             ref={root}
             tabIndex={-1}
             className={cn(
-                'grid min-w-0 gap-10 font-design leading-[1.5] text-foreground subpixel-antialiased focus-visible:outline-2 focus-visible:outline-offset-4',
+                'grid min-w-0 gap-10 font-design leading-normal text-foreground subpixel-antialiased focus-visible:outline-2 focus-visible:outline-offset-4',
                 className,
             )}
             data-project-gallery

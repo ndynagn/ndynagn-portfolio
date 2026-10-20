@@ -12,7 +12,7 @@ export function MotionSurface({ children, className }: MotionSurfaceProps): JSX.
     return (
         <div
             className={cn(
-                'transition-transform duration-200 motion-safe:hover:-translate-y-[2px]',
+                '[--motion-surface-lift:2px] transition-transform duration-200 motion-safe:hover:-translate-y-(--motion-surface-lift)',
                 className,
             )}
         >

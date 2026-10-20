@@ -16,6 +16,8 @@
   arrow are decorative. Source metadata is fully opaque for readable contrast.
 - Source ratios are preferred, not fixed heights. Enlarged/long text must grow the
   artwork instead of clipping; preserve container-relative type and rem bounds.
+- Keep subpixel-antialiased on the card root to inherit source auto font smoothing
+  locally; never change the application root to correct card text.
 - CSS owns radius 500ms/ease, arrow rotate 350ms/ease and title translate 500ms/
   cubic-bezier(.2,.65,.3,1). Include rotate/translate in transition-property.
   Keyboard focus mirrors hover, reduced motion removes geometry and forced colors

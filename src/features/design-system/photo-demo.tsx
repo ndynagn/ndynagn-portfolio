@@ -24,7 +24,7 @@ export function PhotoDemo({
     return (
         <div className="grid min-w-0 gap-4">
             <div className="relative min-w-0">
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                <div className="relative aspect-4/3 overflow-hidden bg-muted">
                     {failed ? (
                         <div
                             role="img"
@@ -54,10 +54,10 @@ export function PhotoDemo({
                 {!failed && (
                     <GlassSurface
                         material="badge"
-                        className="absolute top-1/3 left-[-1rem] grid size-24 place-items-center rounded-full p-3 text-center text-sm text-(--on-image) sm:size-32"
+                        className="absolute top-1/3 -left-4 grid size-24 place-items-center rounded-full p-3 text-center text-sm text-(--on-image) sm:size-32"
                         data-glass-proof
                     >
-                        <span className="[text-shadow:0_0_1px_var(--image-dim),0_1px_2px_var(--image-dim)] forced-colors:[text-shadow:none]">
+                        <span className="[text-shadow:0_0_1px_var(--image-dim),0_1px_2px_var(--image-dim)] forced-colors:text-shadow-none">
                             Glass
                             <br />
                             24 px

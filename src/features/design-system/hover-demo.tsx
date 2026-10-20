@@ -15,7 +15,7 @@ export function HoverDemo({ label, sample }: HoverDemoProps): JSX.Element {
         <div className={`${styles.sample} grid min-w-0 gap-6 border p-6`}>
             <p className={`${styles.title} text-xl`}>{sample}</p>
             <div className="flex flex-wrap items-center gap-6">
-                <Button className="max-w-full whitespace-normal transition-transform duration-300 hover:-translate-y-[3px] motion-reduce:hover:translate-y-0">
+                <Button className="[--demo-lift:3px] max-w-full whitespace-normal transition-transform duration-300 hover:-translate-y-(--demo-lift) motion-reduce:hover:translate-y-0">
                     {label}
                     <ArrowUpRight className={styles.arrow} />
                 </Button>

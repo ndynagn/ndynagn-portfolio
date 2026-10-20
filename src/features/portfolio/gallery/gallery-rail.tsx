@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 
 import { Button } from '@/shared/ui/button';
+import { cn } from '@/shared/ui/cn';
 
 import type { GalleryGroup, GalleryImage, GalleryLabels } from './model';
 import styles from './gallery.module.css';
@@ -16,15 +17,13 @@ interface GalleryRailProps {
     readonly onOpen: (image: GalleryImage, opener: HTMLAnchorElement) => void;
 }
 
-function Thumbnail({
-    image,
-    labels,
-    onOpen,
-}: {
+interface ThumbnailProps {
     readonly image: GalleryImage;
     readonly labels: GalleryLabels;
     readonly onOpen: GalleryRailProps['onOpen'];
-}): JSX.Element {
+}
+
+function Thumbnail({ image, labels, onOpen }: ThumbnailProps): JSX.Element {
     const [failed, setFailed] = useState(false);
     const open = (event: MouseEvent<HTMLAnchorElement>) => {
         if (
@@ -46,7 +45,7 @@ function Thumbnail({
             onClick={open}
             aria-label={`${labels.enlarge}: ${image.caption}`}
             aria-haspopup="dialog"
-            className="group/thumbnail relative grid aspect-[.58] w-full place-items-center overflow-hidden rounded-[6px] border bg-card p-[18px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground md:p-5 forced-colors:border-[CanvasText]"
+            className="group/thumbnail relative grid aspect-[.58] w-full place-items-center overflow-hidden rounded-[6px] border bg-card p-4.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground md:p-5 forced-colors:border-[CanvasText]"
             data-gallery-thumbnail
         >
             <span
@@ -63,13 +62,16 @@ function Thumbnail({
                 alt={image.alt}
                 loading="lazy"
                 onError={() => setFailed(true)}
-                className={`relative z-1 block h-full min-h-0 w-full object-contain transition-transform duration-400 ease-[ease] motion-safe:group-hover/thumbnail:scale-[1.025] motion-safe:group-focus-visible/thumbnail:scale-[1.025] ${failed ? 'invisible' : ''}`}
+                className={cn(
+                    'relative z-1 block h-full min-h-0 w-full object-contain transition-transform duration-400 ease-[ease] motion-safe:group-hover/thumbnail:scale-[1.025] motion-safe:group-focus-visible/thumbnail:scale-[1.025]',
+                    failed && 'invisible',
+                )}
             />
             <span
                 aria-hidden="true"
-                className={`${styles.enlarge} absolute right-[10px] bottom-[10px] z-2 grid size-[30px] translate-y-0 place-items-center rounded-full border opacity-100 transition-[opacity,transform] duration-200 ease-[ease] md:translate-y-[5px] md:opacity-0 group-hover/thumbnail:translate-y-0 group-hover/thumbnail:opacity-100 group-focus-visible/thumbnail:translate-y-0 group-focus-visible/thumbnail:opacity-100 motion-reduce:translate-y-0`}
+                className={`${styles.enlarge} [--enlarge-offset:5px] absolute right-2.5 bottom-2.5 z-2 grid size-7.5 translate-y-0 place-items-center rounded-full border opacity-100 transition-[opacity,translate] duration-200 ease-[ease] md:translate-y-(--enlarge-offset) md:opacity-0 group-hover/thumbnail:translate-y-0 group-hover/thumbnail:opacity-100 group-focus-visible/thumbnail:translate-y-0 group-focus-visible/thumbnail:opacity-100 motion-reduce:translate-y-0`}
             >
-                <ZoomIn className="size-[15px]" strokeWidth={1.5} />
+                <ZoomIn className="size-3.75" strokeWidth={1.5} />
             </span>
         </a>
     );
@@ -139,7 +141,7 @@ export function GalleryRail({
     return (
         <div className="min-w-0" data-gallery-group={group.id}>
             <div className="mb-5 flex min-w-0 items-center justify-between gap-5">
-                <Heading className="flex min-w-0 flex-wrap items-center gap-5 text-[0.8125rem] leading-[1.5] font-medium wrap-anywhere">
+                <Heading className="flex min-w-0 flex-wrap items-center gap-5 text-[0.8125rem] leading-normal font-medium wrap-anywhere">
                     {group.title}
                     <span className="text-[0.5625rem] text-muted-foreground">
                         {String(group.images.length).padStart(2, '0')}
@@ -176,7 +178,7 @@ export function GalleryRail({
                 ref={rail}
                 id={id}
                 data-gallery-rail
-                className="-m-2 grid auto-cols-[72%] grid-flow-col gap-4 overflow-x-auto p-2 pb-5 [scroll-padding-inline:8px] [scroll-snap-type:x_proximity] [scrollbar-color:var(--muted-foreground)_transparent] [scrollbar-width:thin] md:auto-cols-[calc((100%-60px)/4)] md:gap-5"
+                className="-m-2 grid auto-cols-[72%] grid-flow-col gap-4 overflow-x-auto p-2 pb-5 scroll-px-2 [scroll-snap-type:x_proximity] [scrollbar-color:var(--muted-foreground)_transparent] scrollbar-thin md:auto-cols-[calc((100%-60px)/4)] md:gap-5"
             >
                 {group.images.map((image, index) => (
                     <figure key={image.id} className="min-w-0 snap-start">
@@ -186,8 +188,8 @@ export function GalleryRail({
                             labels={labels}
                             onOpen={onOpen}
                         />
-                        <figcaption className="mt-[15px] flex gap-3 text-[0.625rem] leading-[1.6] wrap-anywhere text-muted-foreground">
-                            <span aria-hidden="true" className="shrink-0 pt-[2px] text-[0.5rem]">
+                        <figcaption className="mt-3.75 flex gap-3 text-[0.625rem] leading-[1.6] wrap-anywhere text-muted-foreground">
+                            <span aria-hidden="true" className="shrink-0 pt-0.5 text-[0.5rem]">
                                 {String(index + 1).padStart(2, '0')}
                             </span>
                             {image.caption}

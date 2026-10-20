@@ -11,7 +11,7 @@ export function CurrentLabel({ children, className, ...props }: CurrentLabelProp
         <span
             {...props}
             className={cn(
-                'inline-block min-w-0 max-w-full rounded-[20px] border px-3 py-[5px] font-design text-[0.5rem] leading-[1.5] font-normal wrap-anywhere text-foreground',
+                'inline-block min-w-0 max-w-full rounded-[20px] border px-3 py-1.25 font-design text-[0.5rem] leading-normal font-normal wrap-anywhere text-foreground',
                 className,
             )}
         >

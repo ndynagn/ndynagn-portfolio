@@ -32,24 +32,24 @@ export function ExperienceEntry({
     return (
         <article
             className={cn(
-                'min-w-0 border-b pb-[35px] font-design leading-[1.5] wrap-anywhere text-foreground subpixel-antialiased forced-colors:border-[CanvasText] forced-colors:text-[CanvasText]',
+                'min-w-0 border-b pb-8.75 font-design leading-normal wrap-anywhere text-foreground subpixel-antialiased forced-colors:border-[CanvasText] forced-colors:text-[CanvasText]',
                 className,
             )}
             data-content-experience
         >
             <span
                 data-experience-period
-                className="mb-4 block text-[0.5rem] leading-[1.6] font-semibold tracking-[0.08125rem] text-muted-foreground md:text-[0.5625rem]"
+                className="mb-4 block text-[0.5rem] leading-[1.6] font-semibold tracking-[0.1625em] text-muted-foreground md:text-[0.5625rem] md:tracking-[0.1444444444em]"
             >
                 {periodLabel}
             </span>
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                <Heading className="min-w-0 text-[1.4375rem] leading-[1.5] font-medium tracking-[-0.04375rem] md:text-[1.5625rem]">
+                <Heading className="min-w-0 text-[1.4375rem] leading-normal font-medium tracking-[-0.0304347826em] md:text-[1.5625rem] md:tracking-[-0.028em]">
                     {organization}
                 </Heading>
                 {currentLabel && <CurrentLabel className="shrink-0">{currentLabel}</CurrentLabel>}
             </div>
-            <span data-experience-role className="mt-[7px] block text-[0.6875rem]">
+            <span data-experience-role className="mt-1.75 block text-[0.6875rem]">
                 {role}
             </span>
             <p
@@ -61,7 +61,7 @@ export function ExperienceEntry({
             {!!projectLines?.length && (
                 <div
                     data-experience-projects
-                    className="mt-[17px] text-[0.5625rem] leading-[1.9] text-muted-foreground"
+                    className="mt-4.25 text-[0.5625rem] leading-[1.9] text-muted-foreground"
                 >
                     {projectLines.map((line, index) => (
                         <span key={index} className="block">

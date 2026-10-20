@@ -36,7 +36,7 @@ export function MotionDemo({
     return (
         <div className="grid min-w-0 gap-8">
             <ScrollProgress label={scrollLabel}>
-                <div className="sticky top-0 z-10 flex min-h-[calc(7.125rem_-_1.875rem*var(--scroll-progress,0))] items-center bg-background px-3">
+                <div className="sticky top-0 z-10 flex min-h-[calc(7.125rem-1.875rem*var(--scroll-progress,0))] items-center bg-background px-3">
                     <MeasuredTrack activeKey={String(selected)}>
                         {selections.map((label, index) => (
                             <button
@@ -45,7 +45,7 @@ export function MotionDemo({
                                 data-track-key={index}
                                 aria-pressed={selected === index}
                                 onClick={() => setSelected(index)}
-                                className="relative min-w-0 rounded-3xl px-[calc(1.25rem_-_0.25rem*var(--scroll-progress,0))] py-3 text-sm focus-visible:outline-2 focus-visible:outline-ring"
+                                className="relative min-w-0 rounded-3xl px-[calc(1.25rem-0.25rem*var(--scroll-progress,0))] py-3 text-sm focus-visible:outline-2 focus-visible:outline-ring"
                             >
                                 {label}
                             </button>

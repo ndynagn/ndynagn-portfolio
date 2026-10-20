@@ -11,7 +11,7 @@ export function TechnologyTag({ children, className, ...props }: TechnologyTagPr
         <span
             {...props}
             className={cn(
-                'inline-block min-w-0 max-w-full rounded-[30px] border px-[14px] py-[9px] font-design text-[0.625rem] leading-[1.5] font-[450] wrap-anywhere text-foreground md:px-[17px] md:py-[10px] md:text-[0.6875rem]',
+                'inline-block min-w-0 max-w-full rounded-[30px] border px-3.5 py-2.25 font-design text-[0.625rem] leading-normal font-[450] wrap-anywhere text-foreground md:px-4.25 md:py-2.5 md:text-[0.6875rem]',
                 className,
             )}
         >

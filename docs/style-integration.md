@@ -145,6 +145,9 @@ weight 550, line-height 1.02 and -.065em tracking. Standard caption is a row wit
 15px gap; featured is a desktop column/mobile row with 5px gap. Caption title is
 14/15px, category 9/10px, padding-top 13/17px (mobile/desktop). Source 760px is
 normalized to 768px, including 7px mobile and 8px standard desktop metadata.
+The card root locally restores source auto font smoothing with subpixel-antialiased.
+Metadata tracking uses em ratios for each local font size, preserving nominal
+spacing across breakpoints without changing the application root.
 
 CSS owns poster radius 0→10px over 500ms/ease, arrow rotation 45deg over 350ms/ease
 and title translation 2% over 500ms/cubic-bezier(.2,.65,.3,1), with explicit rotate/
@@ -176,6 +179,9 @@ Source geometry is normalized to 768px: 11px text/12x21px padding/10px gap on de
 use opaque inherited ink: source .6 opacity can reduce contrast to about 4.07:1;
 opaque counts measure at least 14.30:1 in the tested themes/states. This is a
 readability adaptation, not a new material.
+
+The filter group locally restores source auto font smoothing with
+subpixel-antialiased; application-wide smoothing is unchanged.
 
 The separate workbench section supplies eight server card nodes and archive category
 metadata (all 08, commerce 04, service 04), not public professional/pet records.

@@ -58,9 +58,9 @@ export function ContentElementSamples({ locale }: ContentElementSamplesProps): J
                     }
                 />
             </div>
-            <div className="grid min-w-0 gap-6 md:grid-cols-2 md:gap-[55px]">
+            <div className="grid min-w-0 gap-6 md:grid-cols-2 md:gap-13.75">
                 <h3 className="text-base">{ru ? 'Опыт' : 'Experience'}</h3>
-                <div className="grid min-w-0 gap-[35px]" data-content-experience-fixtures>
+                <div className="grid min-w-0 gap-8.75" data-content-experience-fixtures>
                     {copy.experience.map((fixture) => (
                         <ExperienceEntry
                             key={fixture.id}
@@ -84,7 +84,7 @@ export function ContentElementSamples({ locale }: ContentElementSamplesProps): J
                     ))}
                 </div>
             </div>
-            <div className="grid min-w-0 gap-6 md:grid-cols-2 md:gap-[55px]">
+            <div className="grid min-w-0 gap-6 md:grid-cols-2 md:gap-13.75">
                 <h3 className="text-base">{ru ? 'Образование' : 'Education'}</h3>
                 <div className="min-w-0" data-content-education-fixtures>
                     {copy.education.map((fixture, index) => (
@@ -94,14 +94,14 @@ export function ContentElementSamples({ locale }: ContentElementSamplesProps): J
                             headingLevel={4}
                             className={
                                 index > 0
-                                    ? 'border-t pt-[25px] forced-colors:border-[CanvasText]'
+                                    ? 'border-t pt-6.25 forced-colors:border-[CanvasText]'
                                     : undefined
                             }
                         />
                     ))}
                 </div>
             </div>
-            <div className="grid min-w-0 gap-6 md:grid-cols-2 md:gap-[55px]">
+            <div className="grid min-w-0 gap-6 md:grid-cols-2 md:gap-13.75">
                 <h3 className="text-base">
                     {ru ? 'Курсы и сертификаты' : 'Courses & certificates'}
                 </h3>
@@ -114,7 +114,7 @@ export function ContentElementSamples({ locale }: ContentElementSamplesProps): J
             <div className="grid min-w-0 gap-6">
                 <h3 className="text-base">{ru ? 'Контактные ссылки' : 'Contact links'}</h3>
                 <div
-                    className="grid min-w-0 gap-[22px] subpixel-antialiased md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] md:gap-10"
+                    className="grid min-w-0 gap-5.5 subpixel-antialiased md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] md:gap-10"
                     data-content-contact-fixtures
                 >
                     {copy.contacts.map((contact) => (
@@ -135,7 +135,7 @@ export function ContentElementSamples({ locale }: ContentElementSamplesProps): J
             {copy.projectCases.map((project) => (
                 <div
                     key={project.id}
-                    className="grid min-w-0 gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)] md:gap-[60px]"
+                    className="grid min-w-0 gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.8fr)] md:gap-15"
                     data-content-project={project.id}
                 >
                     <h3 className="text-base">

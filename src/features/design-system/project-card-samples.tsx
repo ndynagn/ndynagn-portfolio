@@ -52,7 +52,7 @@ export function ProjectCardSamples({ locale }: ProjectCardSamplesProps): JSX.Ele
             <div className="grid min-w-0 gap-6">
                 <h3 className="text-base">{copy.standard}</h3>
                 <ul
-                    className="grid min-w-0 grid-cols-1 gap-x-7 gap-y-[30px] md:grid-cols-2 md:gap-y-[43px]"
+                    className="grid min-w-0 grid-cols-1 gap-x-7 gap-y-7.5 md:grid-cols-2 md:gap-y-10.75"
                     data-card-grid="standard"
                 >
                     {cards.map((data) => (
@@ -65,7 +65,7 @@ export function ProjectCardSamples({ locale }: ProjectCardSamplesProps): JSX.Ele
             <div className="grid min-w-0 gap-6">
                 <h3 className="text-base">{copy.featured}</h3>
                 <ul
-                    className="grid min-w-0 grid-cols-1 gap-[30px] md:grid-cols-3 md:gap-6"
+                    className="grid min-w-0 grid-cols-1 gap-7.5 md:grid-cols-3 md:gap-6"
                     data-card-grid="featured"
                 >
                     {cards.slice(0, 3).map((data) => (

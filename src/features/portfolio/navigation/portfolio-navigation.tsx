@@ -204,15 +204,15 @@ export function PortfolioNavigation({
                 data-cursor-label={backLink.cursorLabel}
                 className={cn(
                     styles.link,
-                    'inline-flex min-w-0 max-w-full items-center gap-[9px] rounded-[40px] font-design leading-[1.5] font-medium wrap-anywhere transition-[color] duration-250 ease-[ease]',
+                    'inline-flex min-w-0 max-w-full items-center gap-2.25 rounded-[40px] font-design leading-normal font-medium wrap-anywhere transition-[color] duration-250 ease-[ease]',
                     mobile
-                        ? 'px-4 py-[11px] text-[0.6875rem]'
+                        ? 'px-4 py-2.75 text-[0.6875rem]'
                         : 'px-(--navigation-link-px) py-(--navigation-link-py) text-[0.6875rem] lg:text-[0.75rem]',
                 )}
             >
                 <ArrowUpRight
                     aria-hidden="true"
-                    className="size-[14px] shrink-0 rotate-[-135deg] stroke-[1.5]"
+                    className="size-3.5 shrink-0 rotate-[-135deg] stroke-[1.5]"
                 />
                 <span className="min-w-0">{backLink.label}</span>
             </a>
@@ -226,7 +226,7 @@ export function PortfolioNavigation({
             aria-current={link.key === activeKey ? 'location' : undefined}
             className={cn(
                 styles.link,
-                'relative z-1 min-w-0 max-w-full rounded-[40px] px-(--navigation-link-px) py-(--navigation-link-py) font-design text-[0.875rem] leading-[1.5] font-medium wrap-anywhere transition-[color] duration-250 ease-[ease] aria-[current=location]:text-background md:text-[0.6875rem] lg:text-[0.75rem] forced-colors:aria-[current=location]:text-[HighlightText]',
+                'relative z-1 min-w-0 max-w-full rounded-[40px] px-(--navigation-link-px) py-(--navigation-link-py) font-design text-[0.875rem] leading-normal font-medium wrap-anywhere transition-[color] duration-250 ease-[ease] aria-[current=location]:text-background md:text-[0.6875rem] lg:text-[0.75rem] forced-colors:aria-[current=location]:text-[HighlightText]',
             )}
         >
             {link.label}
@@ -242,7 +242,7 @@ export function PortfolioNavigation({
             )}
         >
             {!mobile && backLink && (
-                <div className="relative z-1 mr-[5px] border-r pr-2">{back(false)}</div>
+                <div className="relative z-1 mr-1.25 border-r pr-2">{back(false)}</div>
             )}
             {items}
             <div
@@ -250,8 +250,8 @@ export function PortfolioNavigation({
                 className={cn(
                     'relative z-1 flex items-center',
                     mobile
-                        ? 'mt-[6px] w-full justify-between gap-[18px] border-t px-[6px] pt-4 pb-1'
-                        : 'ml-2 gap-[13px] border-l pr-2 pl-[18px] lg:gap-4',
+                        ? 'mt-1.5 w-full justify-between gap-4.5 border-t px-1.5 pt-4 pb-1'
+                        : 'ml-2 gap-3.25 border-l pr-2 pl-4.5 lg:gap-4',
                 )}
             >
                 {controls}
@@ -295,15 +295,15 @@ export function PortfolioNavigation({
                 <summary
                     aria-label={menuLabel}
                     aria-controls={menuId}
-                    className={cn(styles.summary, 'cursor-pointer list-none py-[5px] pl-[2px]')}
+                    className={cn(styles.summary, 'cursor-pointer list-none py-1.25 pl-0.5')}
                 >
                     <Menu
                         aria-hidden="true"
-                        className="size-[23px] stroke-[1.5] group-open/navigation:hidden"
+                        className="size-5.75 stroke-[1.5] group-open/navigation:hidden"
                     />
                     <X
                         aria-hidden="true"
-                        className="hidden size-[23px] stroke-[1.5] group-open/navigation:block"
+                        className="hidden size-5.75 stroke-[1.5] group-open/navigation:block"
                     />
                 </summary>
                 <nav

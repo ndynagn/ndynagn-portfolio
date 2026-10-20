@@ -25,11 +25,8 @@ export function FlutterBadgeDemo({
 
     return (
         <div className="grid min-w-0 gap-6">
-            <div className="ml-[23px] md:ml-7 lg:ml-10">
-                <div
-                    className="relative h-[340px] bg-(--badge-solid) md:h-[430px]"
-                    data-flutter-photo
-                >
+            <div className="ml-5.75 md:ml-7 lg:ml-10">
+                <div className="relative h-85 bg-(--badge-solid) md:h-107.5" data-flutter-photo>
                     {failed ? (
                         <p className="absolute right-4 bottom-4 left-4 text-right text-sm text-(--on-image)">
                             {failureLabel}
@@ -53,7 +50,7 @@ export function FlutterBadgeDemo({
                     <FlutterBadge
                         caption={caption}
                         opaque={failed}
-                        className="absolute top-[29%] -left-[23px] [text-shadow:0_0_1px_var(--image-dim),0_1px_2px_var(--image-dim)] md:top-[37%] md:-left-7 lg:-left-10 forced-colors:[text-shadow:none]"
+                        className="absolute top-[29%] -left-5.75 [text-shadow:0_0_1px_var(--image-dim),0_1px_2px_var(--image-dim)] md:top-[37%] md:-left-7 lg:-left-10 forced-colors:text-shadow-none"
                     />
                 </div>
             </div>

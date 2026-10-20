@@ -114,7 +114,7 @@ export function NavigationDemo({
                     id={link.href.slice(1)}
                     tabIndex={-1}
                     data-navigation-section={link.key}
-                    className="grid min-h-[30rem] scroll-mt-32 content-start gap-6 border-b p-6 pt-40 odd:bg-card/40 md:p-12 md:pt-40"
+                    className="grid min-h-120 scroll-mt-32 content-start gap-6 border-b p-6 pt-40 odd:bg-card/40 md:p-12 md:pt-40"
                 >
                     <span aria-hidden="true" className="text-sm text-muted-foreground">
                         {String(index + 1).padStart(2, '0')}

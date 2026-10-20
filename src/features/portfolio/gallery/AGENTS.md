@@ -21,6 +21,8 @@
   1.025/400ms, affordance 5px/200ms and .85 rail step. Give focus the same effects.
   Disable geometric motion with reduced motion. Meaningful counters/captions use
   readable colors instead of decorative source opacity.
+  The local enlarge-offset property keeps the 5px motion amplitude fixed when text
+  grows; its transition explicitly includes the individual translate property.
   The rail's negative padding compensation intentionally bleeds into consumer
   gutters to preserve focus outlines. Validate viewport overflow separately from
   the containing block's scrollWidth. Caption counters cannot shrink; only the

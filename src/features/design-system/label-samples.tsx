@@ -68,7 +68,7 @@ export function LabelSamples({ locale }: LabelSamplesProps): JSX.Element {
             <p className="max-w-[75ch] text-sm text-muted-foreground">{copy.hint}</p>
             <div className="grid min-w-0 gap-4">
                 <h3 className="text-base">{copy.technologies}</h3>
-                <div className="flex min-w-0 flex-wrap gap-[7px] md:gap-[9px]" data-tag-group>
+                <div className="flex min-w-0 flex-wrap gap-1.75 md:gap-2.25" data-tag-group>
                     {['Flutter', 'Dart', 'TypeScript', copy.longTag].map((tag) => (
                         <TechnologyTag key={tag}>{tag}</TechnologyTag>
                     ))}

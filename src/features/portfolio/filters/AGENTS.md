@@ -10,3 +10,5 @@
 - Preserve source geometry at the normalized 768px boundary and 200ms/ease color
   transitions. Count labels are opaque for readable small text. Wrap enlarged text,
   retain visible focus and system forced colors. Do not add a moving indicator.
+- Keep subpixel-antialiased local to the group so its labels match source auto
+  smoothing without changing the application's global antialiasing.

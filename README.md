@@ -40,6 +40,8 @@ project. Formatting is separate from build. Native Node tests cover analytics
 initialization, navigation deduplication, events, provider failures and SEO origin
 validation, plus CSS lint policy boundaries. Server-only tests use the `react-server`
 export condition.
+The package declares ES modules for native Node tests and tooling; linting rejects
+warnings as well as errors.
 `next/font` downloads the existing Geist fonts at build time; network access is
 required for the first uncached production build. There is no CI/CD or hosting setup.
 

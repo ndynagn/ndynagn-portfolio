@@ -21,17 +21,14 @@ interface GalleryLightboxProps {
     readonly onClose: () => void;
 }
 
-function ViewerImage({
-    image,
-    zoomed,
-    labels,
-    onZoom,
-}: {
+interface ViewerImageProps {
     readonly image: GalleryImage;
     readonly zoomed: boolean;
     readonly labels: GalleryLabels;
     readonly onZoom: () => void;
-}): JSX.Element {
+}
+
+function ViewerImage({ image, zoomed, labels, onZoom }: ViewerImageProps): JSX.Element {
     const active = useRef(true);
     const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
     const [attempt, setAttempt] = useState(0);
@@ -50,7 +47,7 @@ function ViewerImage({
                 <p>{labels.error}</p>
                 <button
                     type="button"
-                    className="mt-[10px] border-b p-[10px] focus-visible:outline-2 focus-visible:outline-offset-4"
+                    className="mt-2.5 border-b p-2.5 focus-visible:outline-2 focus-visible:outline-offset-4"
                     onClick={() => {
                         request.current += 1;
                         setAttempt(request.current);
@@ -148,7 +145,7 @@ export function GalleryLightbox({
                 overlayClassName="bg-[#131512] data-[state=open]:animate-none data-[state=closed]:animate-none"
                 className={cn(
                     styles.lightbox,
-                    'inset-0 top-0 left-0 grid h-dvh w-full max-w-none translate-x-0 translate-y-0 grid-rows-[minmax(0,auto)_minmax(min(8rem,25dvh),1fr)_minmax(0,auto)] gap-0 rounded-none border-0 p-0 font-design leading-[1.5] shadow-none subpixel-antialiased sm:max-w-none data-[state=open]:animate-none data-[state=closed]:animate-none',
+                    'inset-0 grid h-dvh w-full max-w-none translate-x-0 translate-y-0 grid-rows-[minmax(0,auto)_minmax(min(8rem,25dvh),1fr)_minmax(0,auto)] gap-0 rounded-none border-0 p-0 font-design leading-normal shadow-none subpixel-antialiased sm:max-w-none data-[state=open]:animate-none data-[state=closed]:animate-none',
                 )}
                 data-cursor="native"
                 onCloseAutoFocus={(event) => {
@@ -168,11 +165,11 @@ export function GalleryLightbox({
             >
                 <div className="min-h-0 overflow-auto" data-gallery-toolbar>
                     <div className="flex min-w-0 flex-wrap items-center justify-end gap-3 px-[5%] py-4 md:px-[4%] md:py-5">
-                        <div className="min-w-0 flex-1 basis-[10rem]">
-                            <DialogTitle className="text-sm leading-[1.5] font-normal tracking-[-0.01875rem] wrap-anywhere">
+                        <div className="min-w-0 flex-1 basis-40">
+                            <DialogTitle className="text-sm leading-normal font-normal tracking-[-0.0214285714em] wrap-anywhere">
                                 {name}
                             </DialogTitle>
-                            <DialogDescription className="mt-1 text-[0.5625rem] tracking-[0.0125rem] text-inherit">
+                            <DialogDescription className="mt-1 text-[0.5625rem] tracking-[0.0222222222em] text-inherit">
                                 {labels.description}
                             </DialogDescription>
                         </div>
@@ -252,7 +249,7 @@ export function GalleryLightbox({
                     )}
                 </div>
                 <div className="min-h-0 overflow-auto" data-gallery-footer>
-                    <div className="flex min-w-0 items-center justify-center gap-[14px] px-[5%] pt-[18px] pb-[max(18px,env(safe-area-inset-bottom))] md:gap-[35px] md:px-[4%] md:py-5">
+                    <div className="flex min-w-0 items-center justify-center gap-3.5 px-[5%] pt-4.5 pb-[max(18px,env(safe-area-inset-bottom))] md:gap-8.75 md:px-[4%] md:py-5">
                         {images.length > 1 && (
                             <Button
                                 type="button"
@@ -276,7 +273,7 @@ export function GalleryLightbox({
                                 {image?.lightboxCaption}
                             </p>
                             <span
-                                className="mt-[7px] block text-[0.5625rem] tracking-[0.0625rem]"
+                                className="mt-1.75 block text-[0.5625rem] tracking-[0.1111111111em]"
                                 data-gallery-counter
                             >
                                 {String(index + 1).padStart(2, '0')} /{' '}

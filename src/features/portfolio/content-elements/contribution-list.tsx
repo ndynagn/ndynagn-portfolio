@@ -30,15 +30,15 @@ export function ContributionList({ items, className }: ContributionListProps): J
             {items.map((item) => (
                 <li
                     key={item.id}
-                    className="grid min-w-0 grid-cols-[minmax(1.375rem,max-content)_minmax(0,1fr)] gap-[15px] border-t py-[18px] md:grid-cols-[minmax(1.875rem,max-content)_minmax(0,1fr)] md:gap-[22px] md:py-[22px] forced-colors:border-[CanvasText]"
+                    className="grid min-w-0 grid-cols-[minmax(1.375rem,max-content)_minmax(0,1fr)] gap-3.75 border-t py-4.5 md:grid-cols-[minmax(1.875rem,max-content)_minmax(0,1fr)] md:gap-5.5 md:py-5.5 forced-colors:border-[CanvasText]"
                 >
                     <span
                         aria-hidden="true"
-                        className="pt-[5px] text-[0.625rem] leading-[1.5] text-(--decorative-muted)"
+                        className="pt-1.25 text-[0.625rem] leading-normal text-(--decorative-muted)"
                     >
                         {item.numberLabel}
                     </span>
-                    <p className="min-w-0 text-sm leading-[1.75] tracking-[-0.01875rem] wrap-anywhere md:text-base">
+                    <p className="min-w-0 text-sm leading-[1.75] tracking-[-0.0214285714em] wrap-anywhere md:text-base md:tracking-[-0.01875em]">
                         {item.text}
                     </p>
                 </li>

@@ -24,6 +24,8 @@
   Native ancestor details toggle events resynchronize geometry immediately; a
   revealed unchanged border box may not trigger ResizeObserver. Clean up that listener.
 - Wrappers clean up subscriptions and must not delay navigation or focus.
+- MotionSurface's local lift property preserves its fixed 2px source amplitude
+  independently of the root font size; reduced motion still removes the lift.
 - AnimatedItems accepts an optional className for consumer-owned grid geometry;
   omitted values preserve the original two/four-column defaults and all timings.
 - SceneTransition demonstrates 600/650 ms cover/reveal on technical scenes only;

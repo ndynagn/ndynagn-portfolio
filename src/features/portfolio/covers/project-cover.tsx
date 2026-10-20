@@ -37,13 +37,13 @@ export function ProjectCover({
             <header
                 data-project-cover
                 className={cn(
-                    '@container relative flex min-h-[23.75rem] min-w-0 flex-col justify-between gap-7 bg-(--palette-surface) p-5 font-design text-(--palette-foreground) subpixel-antialiased md:min-h-[clamp(25rem,43vw,37.5rem)] md:gap-8 md:p-[clamp(1.5rem,3vw,3rem)] forced-colors:border forced-colors:border-[CanvasText] forced-colors:bg-[Canvas] forced-colors:text-[CanvasText]',
+                    '@container relative flex min-h-95 min-w-0 flex-col justify-between gap-7 bg-(--palette-surface) p-5 font-design text-(--palette-foreground) subpixel-antialiased md:min-h-[clamp(25rem,43vw,37.5rem)] md:gap-8 md:p-[clamp(1.5rem,3vw,3rem)] forced-colors:border forced-colors:border-[CanvasText] forced-colors:bg-[Canvas] forced-colors:text-[CanvasText]',
                     className,
                 )}
             >
                 <div
                     data-cover-meta
-                    className="flex min-w-0 shrink-0 flex-col flex-wrap items-baseline justify-between gap-x-6 gap-y-[10px] text-[0.625rem] leading-[1.5] tracking-[0.0625rem] uppercase md:flex-row"
+                    className="flex min-w-0 shrink-0 flex-col flex-wrap items-baseline justify-between gap-x-6 gap-y-2.5 text-[0.625rem] leading-normal tracking-widest uppercase md:flex-row"
                 >
                     <span className="min-w-0 wrap-anywhere">{data.categoryLabel}</span>
                     <span className="min-w-0 wrap-anywhere">{data.periodLabel}</span>
@@ -51,7 +51,7 @@ export function ProjectCover({
                 <div className="min-w-0 shrink-0 wrap-anywhere" data-cover-copy>
                     <span
                         data-cover-eyebrow
-                        className="mb-[1.125rem] block text-[0.625rem] leading-[1.5] tracking-[0.125rem]"
+                        className="mb-4.5 block text-[0.625rem] leading-normal tracking-[0.2em]"
                     >
                         {data.eyebrow}
                     </span>
@@ -77,14 +77,14 @@ export function ProjectCover({
                     </Heading>
                     <p
                         data-cover-tagline
-                        className="mt-4 max-w-[48ch] text-[0.9375rem] leading-[1.6] tracking-[-0.025em] wrap-anywhere md:mt-5 md:text-[clamp(1rem,1.6vw,1.375rem)] md:leading-[1.5]"
+                        className="mt-4 max-w-[48ch] text-[0.9375rem] leading-[1.6] tracking-tight wrap-anywhere md:mt-5 md:text-[clamp(1rem,1.6vw,1.375rem)] md:leading-normal"
                     >
                         {data.tagline}
                     </p>
                 </div>
                 <div
                     data-cover-footer
-                    className="flex min-w-0 shrink-0 flex-wrap items-baseline justify-between gap-x-5 gap-y-[10px] text-[0.625rem] leading-[1.5] tracking-[0.0625rem] uppercase md:gap-x-6"
+                    className="flex min-w-0 shrink-0 flex-wrap items-baseline justify-between gap-x-5 gap-y-2.5 text-[0.625rem] leading-normal tracking-widest uppercase md:gap-x-6"
                 >
                     <span className="min-w-0 wrap-anywhere">{data.counterLabel}</span>
                     <span className="min-w-0 wrap-anywhere">{data.platformLabel}</span>
