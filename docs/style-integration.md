@@ -920,6 +920,19 @@ visibility changes settle navigation immediately. Back/Forward cancels stale wor
 Native modified clicks, external links, downloads and no-JS navigation are preserved.
 Route palette colors are read from the card's existing palette boundary. The
 technical SceneTransition wrapper retains its own API and fixture behavior.
+The public circle follows the latest pointer position throughout cover, route
+arrival and reveal. One pending animation frame updates CSS geometry; phase changes
+retain the position and animation progress. Resize clamps the center and updates
+the viewport diagonal, and completion/cancellation removes tracking subscriptions.
+
+Public route links/cards carry the large labeled cursor; service actions, anchors,
+filters, theme and language use the small translucent cursor. Case pages have their
+own CursorBoundary. Native cursor/accessibility exclusions remain unchanged.
+Same-document anchors use a cancellable cubic ease-in-out scroll lasting
+min(1200, 600 + distance * 0.15) milliseconds, honoring scroll-margin and document
+bounds. Manual scrolling, Escape, resize, history, replacement anchors and routes
+stop it without a jump. Reduced motion settles the target immediately; native href,
+hash, focus and no-JS navigation remain available.
 
 The catalogue return link opts into the route effect through backLink.animateRoute.
 The hero's native #work CTA scrolls/focuses the selected-work section without a

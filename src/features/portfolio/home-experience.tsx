@@ -70,6 +70,8 @@ export function HomeExperience({ locale }: HomeExperienceProps): JSX.Element {
                                             <TextLink
                                                 href={projectPath(locale, record.projectSlug)}
                                                 data-portfolio-route
+                                                data-cursor="page"
+                                                data-cursor-label={copy.view}
                                                 icon={<ArrowUpRight />}
                                                 className="mt-5"
                                             >

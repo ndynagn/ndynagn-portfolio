@@ -8,6 +8,8 @@ import { runSceneSequence, type ScenePhase } from '@/shared/animation/scene-sequ
 import { acquireTransition } from '@/shared/animation/transition-lock';
 import { isLocale } from '@/shared/i18n/locales';
 
+import { scrollToAnchor } from './anchor-scroll';
+
 import styles from './page-runtime.module.css';
 
 interface RouteEffect {
@@ -39,7 +41,51 @@ export function PageRuntime(): JSX.Element | null {
     const active = useRef<RouteEffect | null>(null);
     const arrival = useRef<RouteArrival | null>(null);
     const overlay = useRef<HTMLDivElement>(null);
+    const position = useRef({ x: 0, y: 0 });
     const [scene, setScene] = useState<SceneState | null>(null);
+    const moving = scene !== null;
+
+    useEffect(() => {
+        if (!moving) {
+            return;
+        }
+
+        let frame: number | undefined;
+        const update = () => {
+            frame = undefined;
+            position.current = {
+                x: Math.min(innerWidth, Math.max(0, position.current.x)),
+                y: Math.min(innerHeight, Math.max(0, position.current.y)),
+            };
+            overlay.current?.style.setProperty('--route-x', `${position.current.x}px`);
+            overlay.current?.style.setProperty('--route-y', `${position.current.y}px`);
+            overlay.current?.style.setProperty(
+                '--route-radius',
+                `${Math.ceil(Math.hypot(innerWidth, innerHeight))}px`,
+            );
+        };
+        const schedule = () => {
+            if (frame === undefined && !document.hidden) {
+                frame = requestAnimationFrame(update);
+            }
+        };
+        const move = (event: PointerEvent) => {
+            position.current = { x: event.clientX, y: event.clientY };
+            schedule();
+        };
+
+        // One subscription spans cover, route arrival and reveal without resetting the origin.
+        update();
+        window.addEventListener('pointermove', move, { passive: true });
+        window.addEventListener('resize', schedule);
+        return () => {
+            window.removeEventListener('pointermove', move);
+            window.removeEventListener('resize', schedule);
+            if (frame !== undefined) {
+                cancelAnimationFrame(frame);
+            }
+        };
+    }, [moving]);
 
     useEffect(() => {
         if (arrival.current?.pathname === pathname) {
@@ -49,28 +95,21 @@ export function PageRuntime(): JSX.Element | null {
 
     useEffect(() => {
         let mounted = true;
+        let anchorScroll: AbortController | undefined;
         const reduced = matchMedia('(prefers-reduced-motion: reduce)');
         const settle = () => {
             active.current?.navigate();
             active.current?.controller.abort();
         };
-        const historyChanged = () => active.current?.controller.abort();
+        const historyChanged = () => {
+            anchorScroll?.abort();
+            active.current?.controller.abort();
+        };
         const visibility = () => {
             if (document.hidden) {
+                anchorScroll?.abort();
                 settle();
             }
-        };
-        const resize = () => {
-            setScene((current) =>
-                current
-                    ? {
-                          ...current,
-                          x: Math.min(innerWidth, current.x),
-                          y: Math.min(innerHeight, current.y),
-                          radius: Math.ceil(Math.hypot(innerWidth, innerHeight)),
-                      }
-                    : current,
-            );
         };
         const click = (event: MouseEvent) => {
             if (!(event.target instanceof Element)) {
@@ -130,10 +169,15 @@ export function PageRuntime(): JSX.Element | null {
                     return;
                 }
                 event.preventDefault();
+                anchorScroll?.abort();
+                anchorScroll = new AbortController();
                 history.pushState(null, '', target.href);
                 section.focus({ preventScroll: true });
-                section.scrollIntoView({ behavior: reduced.matches ? 'instant' : 'smooth' });
+                scrollToAnchor(section, reduced, anchorScroll.signal);
                 return;
+            }
+            if (target.pathname !== location.pathname || target.search !== location.search) {
+                anchorScroll?.abort();
             }
             if (
                 !anchor.matches('[data-portfolio-route],[data-project-card]') ||
@@ -180,6 +224,7 @@ export function PageRuntime(): JSX.Element | null {
                     style.getPropertyValue('--palette-transition-ink').trim() ||
                     getComputedStyle(document.body).backgroundColor,
             };
+            position.current = { x: initial.x, y: initial.y };
             const replace = () =>
                 new Promise<void>((resolve, reject) => {
                     const cleanup = () => {
@@ -230,15 +275,14 @@ export function PageRuntime(): JSX.Element | null {
 
         document.addEventListener('click', click, true);
         document.addEventListener('visibilitychange', visibility);
-        window.addEventListener('resize', resize);
         window.addEventListener('popstate', historyChanged);
         reduced.addEventListener('change', settle);
         return () => {
             mounted = false;
+            anchorScroll?.abort();
             active.current?.controller.abort();
             document.removeEventListener('click', click, true);
             document.removeEventListener('visibilitychange', visibility);
-            window.removeEventListener('resize', resize);
             window.removeEventListener('popstate', historyChanged);
             reduced.removeEventListener('change', settle);
         };

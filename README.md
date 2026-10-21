@@ -160,6 +160,11 @@ and shares the theme transition lock. Mouse, keyboard and touch use the effect;
 reduced motion uses ordinary navigation. Preference changes, hidden documents, history and unmount clean up the
 effect; modified clicks, downloads and external links retain native behavior.
 The adapter delegates the declared analytics actions without sending contact values.
+Large labeled cursors identify links with the circular page transition; local and
+service actions, including language switching, use the small translucent cursor.
+Activated same-document anchors ease over 600–1200ms, account for the header offset
+and yield to manual scrolling, history or another navigation. Reduced motion jumps
+to the section immediately; native href/hash and keyboard focus remain available.
 
 With `pnpm dev`, open `/ru/design-system` or `/en/design-system` for the technical
 workbench. It demonstrates glass/photo/theme combinations, opaque fallback, actual

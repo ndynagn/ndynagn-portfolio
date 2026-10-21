@@ -4,6 +4,8 @@
   publication policy or window scroll here. The embedding consumer owns them.
 - Return links opt into public route effects through backLink.animateRoute; the
   primitive only emits the runtime marker and keeps its native href.
+- animateRoute also selects the large page cursor; its caption is cursorLabel or
+  the link label. Explicit cursorLabel still supports standalone kit demonstrations.
 - Preserve native anchors and a nonmodal details/summary mobile menu. JS only adds
   Escape/outside/link/desktop closing and focus restoration. No document scroll lock.
 - Keep separate desktop/mobile markup; hidden controls must not enter the Tab order.

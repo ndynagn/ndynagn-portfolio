@@ -125,7 +125,7 @@ const en: PortfolioDictionary = {
     service: 'Services',
     empty: 'No published projects in this category yet.',
     results: 'Projects',
-    back: 'Back to home',
+    back: 'Home',
     backCatalogue: 'All projects',
     unavailable: 'Content has not been published yet.',
 };

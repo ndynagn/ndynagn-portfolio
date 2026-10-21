@@ -203,8 +203,10 @@ export function PortfolioNavigation({
                 href={backLink.href}
                 data-portfolio-route={backLink.animateRoute || undefined}
                 data-navigation-focus="back"
-                data-cursor={backLink.cursorLabel ? 'page' : undefined}
-                data-cursor-label={backLink.cursorLabel}
+                data-cursor={backLink.animateRoute || backLink.cursorLabel ? 'page' : undefined}
+                data-cursor-label={
+                    backLink.cursorLabel ?? (backLink.animateRoute ? backLink.label : undefined)
+                }
                 className={cn(
                     styles.link,
                     'inline-flex min-w-0 max-w-full items-center gap-2.25 rounded-[40px] font-design leading-normal font-medium wrap-anywhere transition-[color] duration-250 ease-[ease]',
