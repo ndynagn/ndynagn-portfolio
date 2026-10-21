@@ -78,12 +78,12 @@ export function PortfolioCatalogue({ locale, category }: PortfolioCatalogueProps
                         {copy.catalogueOne}
                         <br />
                         <span className="text-muted-foreground">{copy.catalogueTwo}</span>
-                        <sup className="mt-2.5 ml-2.5 inline-block align-top text-[0.8125rem] tracking-tighter md:mt-5 md:ml-5 md:text-xl">
+                        <sup className="mt-2.5 ml-2.5 inline-block align-top text-[0.8125rem]/0 tracking-tighter md:mt-5 md:ml-5 md:text-xl/0">
                             ({String(projects.length).padStart(2, '0')})
                         </sup>
                     </h1>
                     <div className="mt-6 flex items-end justify-between gap-5 md:mt-7.5">
-                        <p className="max-w-70 text-[0.6875rem] leading-[1.9] whitespace-pre-line text-muted-foreground md:max-w-none md:text-[0.8125rem]">
+                        <p className="max-w-70 text-[0.6875rem] leading-[1.9] whitespace-normal text-muted-foreground md:max-w-none md:text-[0.8125rem] md:whitespace-pre-line">
                             {copy.catalogueIntro}
                         </p>
                         <span className="hidden text-[0.625rem] font-semibold tracking-[0.13em] text-muted-foreground md:block">

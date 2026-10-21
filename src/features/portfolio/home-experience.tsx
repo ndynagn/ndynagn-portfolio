@@ -8,7 +8,7 @@ import { cn } from '@/shared/ui/cn';
 import { TextLink } from '@/shared/ui/text-link';
 
 import { EducationEntry, ExperienceEntry, SectionHeading } from './content-elements';
-import { pageContainer, sectionTarget, sectionTitle } from './page-shell';
+import { pageContainer, sectionTarget } from './page-shell';
 
 interface HomeExperienceProps {
     readonly locale: Locale;
@@ -35,8 +35,18 @@ export function HomeExperience({
 }: HomeExperienceProps): JSX.Element {
     const copy = getPortfolioDictionary(locale);
     const educationGroups = [
-        { label: copy.education, records: education },
-        { label: copy.courses, records: courses },
+        {
+            label: copy.education,
+            records: education,
+            padding: 'pt-8.75 md:pt-15',
+            labelPadding: 'md:pt-1',
+        },
+        {
+            label: copy.courses,
+            records: courses,
+            padding: 'pt-3.75 md:pt-5.75',
+            labelPadding: 'pt-1',
+        },
     ];
 
     return (
@@ -58,7 +68,10 @@ export function HomeExperience({
                         className="mb-6.5 md:mb-9.5"
                     />
                     <div className="grid grid-cols-1 gap-7.5 md:grid-cols-2 md:gap-8.75 md:pt-3.75 lg:gap-13.75">
-                        <h2 id="experience-title" className={sectionTitle}>
+                        <h2
+                            id="experience-title"
+                            className="min-w-0 text-[clamp(2rem,3.3vw,3.4375rem)] leading-[1.22] font-medium tracking-[-0.055em] wrap-anywhere"
+                        >
                             {copy.journey}
                             <span aria-hidden="true" className="text-(--decorative-muted)">
                                 .
@@ -101,9 +114,17 @@ export function HomeExperience({
                             entries.length > 0 && (
                                 <div
                                     key={group.label}
-                                    className="grid grid-cols-1 gap-5.75 pt-8.75 md:grid-cols-2 md:gap-8.75 md:pt-15 lg:gap-13.75"
+                                    className={cn(
+                                        'grid grid-cols-1 gap-5.75 md:grid-cols-2 md:gap-8.75 lg:gap-13.75',
+                                        group.padding,
+                                    )}
                                 >
-                                    <h3 className="text-[0.5rem] leading-[1.6] font-semibold tracking-[0.13em] md:pt-1 md:text-[0.625rem]">
+                                    <h3
+                                        className={cn(
+                                            'text-[0.5rem] leading-[1.6] font-semibold tracking-[0.13em] md:text-[0.625rem]',
+                                            group.labelPadding,
+                                        )}
+                                    >
                                         {group.label}
                                     </h3>
                                     <div>
