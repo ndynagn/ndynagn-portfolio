@@ -2,8 +2,9 @@
 
 A bilingual personal portfolio built with Next.js App Router, React Compiler,
 strict TypeScript, Tailwind CSS v4, shadcn/ui (new-york/Radix) and Motion.
-The initial home is an explicit technical placeholder; real CV and case studies
-are intentionally absent. Visual design and editorial content are a later phase.
+The public home and project catalogue compose the migrated UI kit in Russian and
+English. Eight published projects link to server-rendered text case studies;
+the full visual case-page and gallery composition remains a later phase.
 
 ## Getting started
 
@@ -55,10 +56,13 @@ required for the first uncached production build. There is no CI/CD or hosting s
 Read the root and applicable local `AGENTS.md` files before changing an area.
 Rules and documentation live in Git; no ignored local standards are required.
 
-Edit `src/features/content/records.ts` to add approved public material. Contracts
-are in `models.ts`. Profile is initially `null`; experience, links and projects are
-empty. Do not add fictional examples. Keep UI copy in the typed RU/EN dictionaries
-under `src/shared/i18n`; content translations stay in the content feature.
+Edit `src/features/content/portfolio.json` to add approved public material, including
+through GitHub's file editor. Rebuild to publish changes; visitors never request
+GitHub. `records.ts` validates JSON server-side with Zod. Invalid fields, duplicate
+IDs/slugs and missing featured references fail the build with a field path.
+Application contracts are in `models.ts`. Keep UI copy in typed RU/EN dictionaries
+under `src/shared/i18n`; editorial translations stay in JSON. A null profile and
+empty collections remain valid and never synthesize public facts.
 
 - Profile translations contain the public name, headline, summary and an optional
   local CV download path. Put approved downloadable files under `public/`.
@@ -67,18 +71,34 @@ under `src/shared/i18n`; content translations stay in the content feature.
 - Projects have a stable, unique lower-kebab-case slug, kind (`professional` or
   `pet`), technologies and optional website/source links. Each translation has
   a title, summary, text sections and an explicit `published` flag.
-- A published project appears on the localized home and at
-  `/{locale}/projects/{slug}`. Missing/unpublished translations are not available.
+- A published project appears in the localized catalogue and at
+  `/{locale}/projects/{slug}`; the home uses the explicit featured selection. Missing/unpublished translations are not available.
   Text is rendered as escaped React content, not executable MDX or raw HTML.
 - Rebuild to publish repository content. Only approved public material belongs
   here, including any unpublished translations: do not commit private drafts.
 
+The catalogue is at `/{locale}/projects`. Its native GET form uses
+`?category=all|commerce|service`; unknown or repeated values select all projects.
+Filtering renders on the server and works without JavaScript. App Router owns
+enhanced history and server requests; existing Motion components animate cards.
+Categories are independent of professional/pet. Counts include only published
+translations. `featuredSlugs` explicitly owns the home selection and order.
+
+The supplied CV updated on 20 October 2026 replaces the previous PDF at
+`/documents/gennady-nagibin-resume.pdf` byte-for-byte. It is Russian in both site
+locales. SMD employment ended in October 2026; there is no current-workplace badge.
+University graduation is expected in 2028. Public roles use Middle positioning
+and conservative CV contribution claims. The architectural photo keeps its credit;
+project screenshots and their OOMI/Potlucky provenance remain unchanged.
+
 No CMS, database, authentication, network data client or global-state library is installed.
+Zod validates repository JSON; no browser form or backend transport is introduced.
 
 ## Selected integration standards
 
-Technology selection does not mean a package is installed. The following libraries
-are selected for future consumers; none is installed by this documentation update.
+Technology selection does not mean a package is installed. Zod has its first real
+consumer in repository JSON validation; the other libraries remain selected for
+future consumers.
 Install the relevant dependency with the first real implementation and confirmed
 contract rather than adding providers, adapters or empty layers in advance.
 
@@ -130,7 +150,16 @@ affected files. The generator may import the npm `cn` package; use the local
 The visual foundation provides local Manrope, semantic light/dark design tokens,
 native frosted materials, one document theme owner and scoped animation mechanisms.
 The OS is the default. A saved explicit choice is applied before paint; denied
-storage keeps the current document usable. No production theme picker is added.
+storage keeps the current document usable. Public navigation reuses ThemeToggle.
+
+The page header owns document scroll observation and active sections; the kit's
+local scrollers remain independent. Native anchors retain focus and no-JS behavior.
+PageRuntime enhances explicit route links and cards with the existing 600/650ms
+cover/reveal sequence. It waits for route commit before reveal, bounds that wait,
+and shares the theme transition lock. Reduced motion/coarse pointers use ordinary
+navigation. Preference changes, hidden documents, history and unmount clean up the
+effect; modified clicks, downloads and external links retain native behavior.
+The adapter delegates the declared analytics actions without sending contact values.
 
 With `pnpm dev`, open `/ru/design-system` or `/en/design-system` for the technical
 workbench. It demonstrates glass/photo/theme combinations, opaque fallback, actual
@@ -264,7 +293,7 @@ tag does not break the page or block links. Ad-blocked visits may not be measure
 `trackEvent` in `src/shared/analytics/browser.ts` is the typed API for future client
 handlers: `cv_download`, `project_open`, `contact_click`. It accepts only the
 declared locale/slug/link-ID fields; never add contact data or arbitrary query values.
-The current scaffold has no real CV/contact targets and does not fabricate goals.
+Public CV, contact and project links now dispatch these declared goals.
 Create the corresponding goals in the real counter when these handlers are added.
 
 For integration acceptance, run a production build with the counter ID, check

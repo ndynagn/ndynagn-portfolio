@@ -7,6 +7,10 @@
   outside route files. Metadata and rendered content resolve the same project.
 - Prerender supported locales and published projects with `generateStaticParams`
   and `dynamicParams = false`. Unknown records must return an actual HTTP 404.
+- The public projects index intentionally renders per request from searchParams
+  for correct native GET filtering without JS. Home and case prerendering remains.
+  Its canonical excludes filter queries; sitemap lists only base locale catalogues
+  with published projects. PageRuntime is mounted once under locale layout Suspense.
 - Cache Components and Partial Prefetching are deliberately disabled: Next.js 16.4
   does not support `dynamicParams = false` with Cache Components, and streaming a
   missing case produced an HTTP 200 during acceptance. Do not re-enable them without

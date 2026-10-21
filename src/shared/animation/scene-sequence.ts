@@ -26,9 +26,11 @@ function wait(milliseconds: number, signal: AbortSignal): Promise<void> {
     });
 }
 
-/** Technical scenes only: never await this to navigate or move focus. */
+/** Cover/replacement/reveal timing. Async replacement may wait for a committed route;
+ * its owner must bound that wait and handle abort. Technical consumers stay synchronous.
+ */
 export async function runSceneSequence(
-    replaceScene: () => void,
+    replaceScene: () => void | Promise<void>,
     options: SceneSequenceOptions,
 ): Promise<void> {
     const { signal, animated, phase } = options;
@@ -42,7 +44,7 @@ export async function runSceneSequence(
             await wait(600, signal);
         }
         if (!signal.aborted) {
-            replaceScene();
+            await replaceScene();
         }
         if (animated && !signal.aborted) {
             phase('reveal');

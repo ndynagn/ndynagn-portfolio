@@ -18,7 +18,9 @@ No Vite configuration, hash-router, history writes, source instructions, depende
 versions or monolithic App.tsx are imported. The first UI-kit increment adds only
 buttons and links; subsequent increments add labels, navigation and project cards.
 Subsequent increments add filters, covers, content elements and the gallery below.
-Page composition remains a later stage. No manual dialog focus trap is copied.
+The public home/catalogue increment below supersedes their page-composition
+deferrals; full visual case composition remains a later stage. No manual dialog
+focus trap is copied.
 
 ### Buttons and links increment
 
@@ -892,3 +894,37 @@ owners, states, fallback and verification; deferred selectors are not copied.
 | 506  | `html`                                                                                                     | Document/reset     | Adapted to existing base; unsafe globals excluded          |
 | 507  | `main > section`                                                                                           | Document/reset     | Adapted to existing base; unsafe globals excluded          |
 | 510  | `body, a, button`                                                                                          | UI/presentation    | Deferred; shared effect parameters demonstrated separately |
+
+## Public home and catalogue composition
+
+The public home now composes the migrated UI kit: HomeHero/HomePhoto, selected
+ProjectCards, about/toolkit, experience/education/courses and ContactSection/footer.
+The page shell reuses PortfolioNavigation, LanguageLinks, ThemeToggle and
+CursorBoundary. Document scrolling belongs to PageHeader; technical samples keep
+local scrollers. Source grids, section rhythm and typography retain the normalized
+768/1024/1536px breakpoints. Long text can grow instead of clipping. TextLink's
+optional start icon position reproduces the home scroll cue without changing its
+existing consumers.
+
+The catalogue at `/{locale}/projects` renders query-filtered HTML on the server.
+Its GET form uses all/commerce/service; App Router enhances navigation and history,
+AnimatedItems receives stable IDs and ready server card nodes. Public counters and
+featured ordering come from published localized JSON, not workbench fixtures.
+The source hash-router and manual history restoration are not imported.
+
+PageRuntime adapts the existing scene sequence to explicit page links/cards using
+the shared transition lock. The 600ms cover is followed by route dispatch; reveal
+waits for the pathname to commit, with an 8s bound. The overlay cannot retain a lock
+after cancellation. Reduced motion/coarse input bypass the effect; preference and
+visibility changes settle navigation immediately. Back/Forward cancels stale work.
+Native modified clicks, external links, downloads and no-JS navigation are preserved.
+Route palette colors are read from the card's existing palette boundary. The
+technical SceneTransition wrapper retains its own API and fixture behavior.
+
+Editorial facts are validated server-side from portfolio.json. The newly supplied
+CV (updated 20 October 2026) supersedes the archive PDF at its existing URL and has
+an updated inventory hash. Middle positioning, SMD's October 2026 end date and
+expected 2028 graduation intentionally supersede outdated source copy. The source
+photo, fonts, project images and provenance retain their original bytes. OOMI
+screenshots are not relabeled as Potlucky. Full visual case/gallery composition
+remains deferred; published cards open the existing text case routes.

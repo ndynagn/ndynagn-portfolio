@@ -1,9 +1,15 @@
 import 'server-only';
 
-import type { Experience, Profile, Project, SocialLink } from './models';
+import content from './portfolio.json';
+import { parseContent } from './content-schema';
 
-// Add approved public material here. Missing content must not become fictional data.
-export const profile: Profile | null = null;
-export const experience: readonly Experience[] = [];
-export const socialLinks: readonly SocialLink[] = [];
-export const projects: readonly Project[] = [];
+export const {
+    profile,
+    experience,
+    education,
+    courses,
+    socialLinks,
+    projects,
+    skills,
+    featuredSlugs,
+} = parseContent(content);

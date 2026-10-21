@@ -30,6 +30,7 @@ interface TextLinkProps extends Omit<Readonly<ComponentProps<'a'>>, 'children' |
     readonly count?: number;
     readonly description?: string;
     readonly eyebrow?: string;
+    readonly iconPosition?: 'start' | 'end';
 }
 
 /** Native anchor: the consumer owns destination, download and external-link policy. */
@@ -40,6 +41,7 @@ export function TextLink({
     count,
     description,
     eyebrow,
+    iconPosition = 'end',
     className,
     ...props
 }: TextLinkProps): JSX.Element {
@@ -57,7 +59,12 @@ export function TextLink({
         <a
             {...props}
             data-text-link={variant}
-            className={cn(linkVariants({ variant }), 'leading-normal', className)}
+            className={cn(
+                linkVariants({ variant }),
+                'leading-normal',
+                iconPosition === 'start' && 'flex-row-reverse',
+                className,
+            )}
         >
             <span className="min-w-0">
                 {eyebrow && (

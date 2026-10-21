@@ -4,7 +4,8 @@ import Link from 'next/link';
 import type { LocalizedProject } from '@/features/content/models';
 import { getProjectAlternatives } from '@/features/content/server';
 import { getDictionary } from '@/shared/i18n/dictionaries';
-import { homePath, locales, type Locale } from '@/shared/i18n/locales';
+import { cataloguePath, homePath, locales, type Locale } from '@/shared/i18n/locales';
+import { getPortfolioDictionary } from '@/shared/i18n/portfolio';
 import { LanguageSwitcher } from '@/shared/i18n/language-switcher';
 
 interface ProjectDetailProps {
@@ -14,15 +15,29 @@ interface ProjectDetailProps {
 
 export function ProjectDetail({ locale, record }: ProjectDetailProps): JSX.Element {
     const dictionary = getDictionary(locale);
+    const copy = getPortfolioDictionary(locale);
     const { project, translation } = record;
     const alternatives = getProjectAlternatives(project.slug);
 
     return (
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8">
             <header className="flex flex-wrap items-center justify-between gap-4 border-b py-5">
-                <Link className="text-sm underline underline-offset-4" href={homePath(locale)}>
-                    {dictionary.backToHome}
-                </Link>
+                <div className="flex flex-wrap gap-5">
+                    <Link
+                        className="text-sm underline underline-offset-4"
+                        href={cataloguePath(locale)}
+                        data-portfolio-route
+                    >
+                        {copy.backCatalogue}
+                    </Link>
+                    <Link
+                        className="text-sm underline underline-offset-4"
+                        href={homePath(locale)}
+                        data-portfolio-route
+                    >
+                        {dictionary.backToHome}
+                    </Link>
+                </div>
                 <LanguageSwitcher
                     locale={locale}
                     label={dictionary.languageNavigation}

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
 import { YandexMetrica } from '@/shared/analytics/yandex-metrica';
+import { PageRuntime } from '@/features/portfolio/client';
 import { getDictionary } from '@/shared/i18n/dictionaries';
 import { isLocale, locales, type Locale } from '@/shared/i18n/locales';
 import { themeBootstrap } from '@/shared/theme/preference';
@@ -52,6 +53,9 @@ export default async function LocaleLayout({
                     {dictionary.skipToContent}
                 </a>
                 {children}
+                <Suspense fallback={null}>
+                    <PageRuntime />
+                </Suspense>
                 <Suspense fallback={null}>
                     <YandexMetrica />
                 </Suspense>

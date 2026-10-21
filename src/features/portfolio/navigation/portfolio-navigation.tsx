@@ -250,7 +250,7 @@ export function PortfolioNavigation({
                 className={cn(
                     'relative z-1 flex items-center',
                     mobile
-                        ? 'mt-1.5 w-full justify-between gap-4.5 border-t px-1.5 pt-4 pb-1'
+                        ? 'mt-1.5 w-full flex-wrap justify-between gap-4.5 border-t px-1.5 pt-4 pb-1'
                         : 'ml-2 gap-3.25 border-l pr-2 pl-4.5 lg:gap-4',
                 )}
             >

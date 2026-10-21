@@ -1,0 +1,801 @@
+{
+  "profile": {
+    "translations": {
+      "ru": {
+        "published": true,
+        "name": "Геннадий Нагибин",
+        "nameLines": ["Геннадий", "Нагибин"],
+        "headline": "Flutter-разработчик · Middle",
+        "summary": "Превращаю сложные задачи в понятные мобильные решения.",
+        "cvPath": "/documents/gennady-nagibin-resume.pdf",
+        "about": [
+          "Я Геннадий — Flutter-разработчик. Создаю приложения, которыми удобно пользоваться и которые удобно развивать.",
+          "С 2023 года работаю над мобильными продуктами: от e-commerce и программ лояльности до сервисных приложений. Есть опыт самостоятельной разработки приложения с нуля и работы в команде.",
+          "Для меня качество — это понятные состояния интерфейса, устойчивая обработка ошибок и тесты критичных сценариев. Участвовал в code review, наставничестве junior-разработчиков и технических собеседованиях.",
+          "Использую Claude Code и Codex, настраиваю AI-агентов под задачи проекта и проверяю предлагаемые изменения и результат."
+        ],
+        "location": "Омск, Россия",
+        "workFormat": "Удалённая работа",
+        "languages": ["Русский · родной", "Английский · B2"],
+        "availability": "Открыт к предложениям"
+      },
+      "en": {
+        "published": true,
+        "name": "Gennady Nagibin",
+        "nameLines": ["Gennady", "Nagibin"],
+        "headline": "Flutter Developer · Middle",
+        "summary": "Turning complex challenges into intuitive mobile experiences.",
+        "cvPath": "/documents/gennady-nagibin-resume.pdf",
+        "about": [
+          "I’m Gennady, a Flutter developer. I build apps that are easy to use and a pleasure to maintain.",
+          "Since 2023, I’ve worked on mobile products ranging from e-commerce and loyalty programmes to service applications. I have experience building an app independently from scratch and working in a team.",
+          "To me, quality means clear interface states, resilient error handling and tests for critical flows. I contributed to code reviews, junior developer mentoring and technical interviews.",
+          "I use Claude Code and Codex, configure AI agents for project tasks and review their proposed changes and results."
+        ],
+        "location": "Omsk, Russia",
+        "workFormat": "Remote work",
+        "languages": ["Russian · native", "English · B2"],
+        "availability": "Open to opportunities"
+      }
+    }
+  },
+  "experience": [
+    {
+      "id": "smd",
+      "organization": "СМД-Агентство",
+      "period": "2024-11/2026-10",
+      "translations": {
+        "ru": {
+          "role": "Flutter-разработчик",
+          "periodLabel": "НОЯБРЬ 2024 — ОКТЯБРЬ 2026",
+          "description": "Разрабатывал приложения для Android и iOS: архитектуру, интерфейсы, бизнес-логику, API, тесты и релизы. Работал самостоятельно и в команде. Дополнительно разрабатывал и поддерживал нативные Android-приложения на Android View и Jetpack Compose.",
+          "projectLines": [
+            "OneTouch / Potlucky / OOMI / Immergas / KlimatProf",
+            "Galleria Minsk / Золотая Плата / Авентин"
+          ],
+          "organizationLabel": "СМД-Агентство"
+        },
+        "en": {
+          "role": "Flutter Developer",
+          "periodLabel": "NOV 2024 — OCT 2026",
+          "description": "Built Android and iOS apps: architecture, UI, business logic, APIs, testing and releases, both independently and in a team. Also developed and maintained native Android apps using Android View and Jetpack Compose.",
+          "projectLines": [
+            "OneTouch / Potlucky / OOMI / Immergas / KlimatProf",
+            "Galleria Minsk / Golden Plate / Aventin"
+          ],
+          "organizationLabel": "SMD Agency"
+        }
+      }
+    },
+    {
+      "id": "xenous",
+      "organization": "Xenous",
+      "period": "2023-05/2024-11",
+      "translations": {
+        "ru": {
+          "role": "Flutter-разработчик",
+          "periodLabel": "МАЙ 2023 — НОЯБРЬ 2024",
+          "description": "Разрабатывал «Чекай» — сервис кешбэка за покупки — в команде из трёх человек. Отвечал за интерфейсы, бизнес-логику, интеграцию API, навигацию и внедрение зависимостей.",
+          "projectLines": [],
+          "organizationLabel": "Xenous",
+          "actionLabel": "О проекте «Чекай»"
+        },
+        "en": {
+          "role": "Flutter Developer",
+          "periodLabel": "MAY 2023 — NOV 2024",
+          "description": "Developed Chekai, a cashback service, in a team of three. Responsible for UI, business logic, API integration, navigation and dependency injection.",
+          "projectLines": [],
+          "organizationLabel": "Xenous",
+          "actionLabel": "Explore Chekai"
+        }
+      },
+      "projectSlug": "checkai"
+    }
+  ],
+  "education": [
+    {
+      "id": "omstu",
+      "year": "2028",
+      "translations": {
+        "ru": {
+          "title": "Омский государственный технический университет",
+          "description": "Информатика и вычислительная техника",
+          "yearNote": "ожидается"
+        },
+        "en": {
+          "title": "Omsk State Technical University",
+          "description": "Computer Science and Engineering",
+          "yearNote": "expected"
+        }
+      }
+    },
+    {
+      "id": "aviation-college",
+      "year": "2025",
+      "translations": {
+        "ru": {
+          "title": "Омский авиационный колледж им. Н. Е. Жуковского",
+          "description": "Информационные системы и программирование"
+        },
+        "en": {
+          "title": "Omsk Aviation College named after N. E. Zhukovsky",
+          "description": "Information Systems and Programming"
+        }
+      }
+    }
+  ],
+  "courses": [
+    {
+      "id": "effective",
+      "year": "2024",
+      "translations": {
+        "ru": {
+          "title": "Effective // ЦК ОмГТУ",
+          "description": "Курс повышения квалификации · Effective"
+        },
+        "en": {
+          "title": "Effective // Digital Department, OmSTU",
+          "description": "Professional development course · Effective"
+        }
+      }
+    }
+  ],
+  "socialLinks": [
+    {
+      "id": "email",
+      "href": "mailto:ndynagn05@gmail.com",
+      "labels": {
+        "ru": "Email",
+        "en": "Email"
+      }
+    },
+    {
+      "id": "telegram",
+      "href": "https://t.me/gen_aa",
+      "labels": {
+        "ru": "Telegram",
+        "en": "Telegram"
+      }
+    },
+    {
+      "id": "linkedin",
+      "href": "https://www.linkedin.com/in/ndynagn",
+      "labels": {
+        "ru": "LinkedIn",
+        "en": "LinkedIn"
+      }
+    },
+    {
+      "id": "hh",
+      "href": "https://omsk.hh.ru/resume/e7f30520ff09378ec20039ed1f494d4a4c6631",
+      "labels": {
+        "ru": "Резюме на HH",
+        "en": "CV on HH"
+      }
+    }
+  ],
+  "skills": [
+    "Flutter",
+    "Dart",
+    "BLoC",
+    "Clean Architecture",
+    "REST API",
+    "WebSocket",
+    "Firebase",
+    "Dio / Retrofit",
+    "Unit & Widget tests",
+    "Git"
+  ],
+  "featuredSlugs": ["onetouch", "potlucky", "immergas"],
+  "projects": [
+    {
+      "id": "onetouch",
+      "slug": "onetouch",
+      "kind": "professional",
+      "category": "service",
+      "palette": "onetouch",
+      "titleLines": {
+        "ru": [],
+        "en": []
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "Сервисное приложение",
+        "en": "Service application"
+      },
+      "technologies": ["Flutter", "Dart", "BLoC", "REST API", "WebSocket"],
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "OneTouch",
+          "summary": "Мобильное приложение, созданное с нуля: от переиспользуемого UI kit до чатов и управления заказами.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Самостоятельная Flutter-разработка"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Создал приложение с нуля: реализовал интерфейсы и бизнес-логику.",
+                "Разработал переиспользуемый UI kit для единообразных интерфейсов.",
+                "Реализовал модуль чатов и управление состояниями заказа."
+              ]
+            },
+            {
+              "heading": "От UI kit до состояний заказа",
+              "paragraphs": [
+                "Создание приложения с нуля объединяло интерфейсы, чаты и управление заказами.",
+                "Самостоятельно реализовал UI и бизнес-логику, выделил переиспользуемый UI kit. Разработал модуль чатов и управление состояниями заказа.",
+                "Приложение получило общую основу интерфейсов и реализованные сценарии общения и работы с заказами."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "OneTouch",
+          "summary": "A mobile app built from scratch, from a reusable UI kit to messaging and order management.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Solo Flutter development"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Built the application from scratch, including UI and business logic.",
+                "Developed a reusable UI kit for a consistent interface.",
+                "Implemented messaging and order state management."
+              ]
+            },
+            {
+              "heading": "From UI kit to order states",
+              "paragraphs": [
+                "Building the app from scratch involved interfaces, messaging and order management.",
+                "Independently implemented the UI and business logic, extracting a reusable UI kit. Developed messaging and order state management.",
+                "The app gained a shared UI foundation and implemented messaging and order workflows."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "GO / PRO"
+    },
+    {
+      "id": "potlucky",
+      "slug": "potlucky",
+      "kind": "professional",
+      "category": "commerce",
+      "palette": "potlucky",
+      "titleLines": {
+        "ru": ["Potlucky", "OOMI"],
+        "en": ["Potlucky", "OOMI"]
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "Модульная платформа",
+        "en": "Modular platform"
+      },
+      "technologies": ["Flutter", "Dart", "Clean Architecture", "BLoC"],
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "Potlucky / OOMI",
+          "summary": "Переход от монолитной реализации к общей модульной основе для приложений разных заказчиков.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик в команде из двух человек"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Совместно с напарником развивал приложения Potlucky и OOMI.",
+                "Участвовал в преобразовании монолитной реализации в модульную основу.",
+                "Выделял общие компоненты и бизнес-логику для адаптации под разных заказчиков."
+              ]
+            },
+            {
+              "heading": "Из монолита — в модульную основу",
+              "paragraphs": [
+                "Приложения разных заказчиков требовали общей основы без смешивания продуктовых различий.",
+                "Вместе с напарником участвовал в преобразовании монолитной реализации: выделяли переиспользуемые компоненты и бизнес-логику для адаптации приложений.",
+                "Общая модульная основа для развития Potlucky и OOMI."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "Potlucky / OOMI",
+          "summary": "Evolving a monolith into a shared, modular foundation for multiple client applications.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer in a team of two"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Developed Potlucky and OOMI together with another developer.",
+                "Helped transform a monolithic implementation into a modular foundation.",
+                "Extracted shared components and business logic for different clients."
+              ]
+            },
+            {
+              "heading": "From monolith to modular foundation",
+              "paragraphs": [
+                "Apps for different clients needed a shared foundation without conflating product-specific differences.",
+                "Worked with another developer to evolve the monolith, extracting reusable components and business logic for adapting the apps.",
+                "A shared modular foundation for developing Potlucky and OOMI."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    },
+    {
+      "id": "immergas",
+      "slug": "immergas",
+      "kind": "professional",
+      "category": "service",
+      "palette": "immergas",
+      "titleLines": {
+        "ru": [],
+        "en": []
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "Сервисная экосистема",
+        "en": "Service ecosystem"
+      },
+      "technologies": ["Flutter", "Dart", "BLoC", "Unit tests", "Widget tests"],
+      "websiteUrl": "https://apps.apple.com/ru/app/id6472884747",
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "Immergas",
+          "summary": "Развитие сервисного приложения: надёжная обработка ошибок, проверка оборудования и тестирование.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Развивал обработку ошибок авторизации и сети, проверку QR-кодов и серийных номеров.",
+                "Рефакторил работу с фотографиями установок.",
+                "Выделял типизированные ошибки, BLoC-состояния и общие UI-компоненты.",
+                "Добавлял unit- и widget-тесты для критичных сценариев."
+              ]
+            },
+            {
+              "heading": "Явные ошибки. Проверяемые сценарии.",
+              "paragraphs": [
+                "В сервисном приложении требовалось развивать обработку ошибок авторизации и сети, проверку оборудования и работу с фотографиями установок.",
+                "Выделял типизированные ошибки, BLoC-состояния и общие UI-компоненты. Развивал проверку QR-кодов и серийных номеров, рефакторил обработку фотографий.",
+                "Критичные сценарии дополнял unit- и widget-тестами. Работа охватывала как обработку сбоев, так и состояния интерфейса, которые видит пользователь."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "Immergas",
+          "summary": "Developing a service app with resilient error handling, equipment verification and testing.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Improved authentication and network error handling, QR and serial number verification.",
+                "Refactored installation photo workflows.",
+                "Introduced typed errors, BLoC states and shared UI components.",
+                "Added unit and widget tests for critical flows."
+              ]
+            },
+            {
+              "heading": "Explicit errors. Testable flows.",
+              "paragraphs": [
+                "The service app needed improvements to authentication and network error handling, equipment verification and installation photos.",
+                "Introduced typed errors, BLoC states and shared UI components. Improved QR and serial number verification and refactored photo handling.",
+                "Added unit and widget tests for critical flows, addressing both failures and the interface states users see."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    },
+    {
+      "id": "klimatprof",
+      "slug": "klimatprof",
+      "kind": "professional",
+      "category": "commerce",
+      "palette": "klimatprof",
+      "titleLines": {
+        "ru": [],
+        "en": []
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "E-commerce",
+        "en": "E-commerce"
+      },
+      "technologies": ["Flutter", "Dart", "BLoC", "REST API", "Deep links"],
+      "websiteUrl": "https://apps.apple.com/ru/app/klimatprof-online/id6748463689",
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "KlimatProf",
+          "summary": "Интернет-магазин климатической техники: полный путь от каталога до оплаты и оформления заказа.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Проектировал архитектуру мобильного интернет-магазина.",
+                "Реализовывал каталог, корзину и оформление заказа.",
+                "Работал с оплатой, картами и deep links; участвовал в code review и публикации приложения."
+              ]
+            },
+            {
+              "heading": "Целостный сценарий покупки",
+              "paragraphs": [
+                "Интернет-магазин климатической техники объединяет каталог, корзину, оформление и внешние интеграции.",
+                "Проектировал архитектуру и реализовывал путь от каталога до оформления заказа. Работал с оплатой, картами и deep links.",
+                "Реализованные торговые сценарии — от выбора техники до оформления заказа. Участвовал в code review и публикации приложения."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "KlimatProf",
+          "summary": "Climate equipment e-commerce, covering the full journey from catalogue to checkout and payment.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Designed the architecture of the mobile store.",
+                "Implemented catalogue, cart and checkout flows.",
+                "Integrated payments, maps and deep links; contributed to code reviews and app publishing."
+              ]
+            },
+            {
+              "heading": "A complete purchase journey",
+              "paragraphs": [
+                "A climate equipment store connects its catalogue, cart and checkout with external integrations.",
+                "Designed the architecture and implemented the journey from catalogue to checkout. Worked with payments, maps and deep links.",
+                "Implemented commerce flows from equipment selection to checkout. Contributed to code reviews and app publishing."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    },
+    {
+      "id": "checkai",
+      "slug": "checkai",
+      "kind": "professional",
+      "category": "commerce",
+      "palette": "checkai",
+      "titleLines": {
+        "ru": [],
+        "en": []
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "Кешбэк-сервис",
+        "en": "Cashback service"
+      },
+      "technologies": [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Dio / Retrofit",
+        "GoRouter",
+        "get_it / injectable"
+      ],
+      "websiteUrl": "https://checkai.ru",
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "Чекай",
+          "summary": "Мобильный сервис кешбэка за покупки. Интерфейсы и бизнес-логика в команде из трёх человек.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик · Xenous"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Реализовывал экраны и пользовательские сценарии с управлением состоянием через BLoC.",
+                "Интегрировал REST API и работал с моделями данных.",
+                "Организовывал навигацию и внедрение зависимостей.",
+                "Работал с локальными настройками и защищённым хранением данных."
+              ]
+            },
+            {
+              "heading": "Интерфейсы и бизнес-логика в команде",
+              "paragraphs": [
+                "Разработка мобильного кешбэк-сервиса в команде из трёх человек в Xenous.",
+                "Реализовывал экраны и сценарии с BLoC, интеграцию REST API и модели данных. Организовывал навигацию и внедрение зависимостей; работал с локальными настройками и защищённым хранением.",
+                "Вклад в интерфейсы и бизнес-логику Flutter-приложения, включая работу с локальными настройками и защищённым хранением данных."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "Chekai",
+          "summary": "A mobile cashback service. UI and business logic development in a team of three.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer · Xenous"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Built screens and user flows with BLoC state management.",
+                "Integrated REST APIs and data models.",
+                "Set up navigation and dependency injection.",
+                "Worked with local preferences and secure storage."
+              ]
+            },
+            {
+              "heading": "UI and business logic within a team",
+              "paragraphs": [
+                "Developing a mobile cashback service at Xenous in a team of three.",
+                "Implemented screens and flows with BLoC, REST API integration and data models. Set up navigation and dependency injection, working with local preferences and secure storage.",
+                "Contributed to the Flutter app’s UI and business logic, including local preferences and secure data storage."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    },
+    {
+      "id": "galleria-minsk",
+      "slug": "galleria-minsk",
+      "kind": "professional",
+      "category": "service",
+      "palette": "galleria-minsk",
+      "titleLines": {
+        "ru": ["Galleria", "Minsk"],
+        "en": ["Galleria", "Minsk"]
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "Программа лояльности",
+        "en": "Loyalty programme"
+      },
+      "technologies": ["Flutter", "Dart", "BLoC", "REST API", "WebSocket", "QR / OCR"],
+      "websiteUrl": "https://apps.apple.com/us/app/galleria-minsk/id6753970442",
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "Galleria Minsk",
+          "summary": "Приложение торгового центра с программой лояльности: сканирование чеков, бонусы, комплименты и чат поддержки.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик · участие в создании приложения"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Участвовал в создании приложения с программой лояльности.",
+                "Работал над сценариями сканирования чеков с QR/OCR.",
+                "Участвовал в реализации чата поддержки и пользовательских сценариев."
+              ]
+            },
+            {
+              "heading": "Лояльность, QR/OCR и поддержка",
+              "paragraphs": [
+                "Программа лояльности объединяет обработку чеков, бонусы и общение с поддержкой.",
+                "Участвовал в создании приложения, работал над сценариями QR/OCR и чатом поддержки. Инженерный контекст — согласованная работа камеры, распознавания и асинхронных состояний интерфейса.",
+                "Участие в создании приложения, в котором программа лояльности, обработка чеков и поддержка объединены в одном пользовательском опыте."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "Galleria Minsk",
+          "summary": "A shopping centre app with a loyalty programme: receipt scanning, points, rewards and support chat.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer · contributed to building the app"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Contributed to building the loyalty programme app.",
+                "Worked on receipt scanning flows using QR/OCR.",
+                "Contributed to support chat and user-facing flows."
+              ]
+            },
+            {
+              "heading": "Loyalty, QR/OCR and support",
+              "paragraphs": [
+                "The loyalty programme combines receipt processing, points and support communication.",
+                "Contributed to building the app, working on QR/OCR flows and support chat. The engineering context involves coordinating camera input, recognition and asynchronous interface states.",
+                "Contributed to an app combining loyalty, receipt processing and support within a single user experience."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    },
+    {
+      "id": "golden-plate",
+      "slug": "golden-plate",
+      "kind": "professional",
+      "category": "commerce",
+      "palette": "golden-plate",
+      "titleLines": {
+        "ru": ["Золотая", "Плата"],
+        "en": ["Golden", "Plate"]
+      },
+      "platforms": "iOS",
+      "labels": {
+        "ru": "Инвестиционные монеты",
+        "en": "Investment coins"
+      },
+      "technologies": ["Flutter", "Dart", "BLoC", "Dio / Retrofit", "ObjectBox"],
+      "websiteUrl": "https://apps.apple.com/ru/app/id6748077626",
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "Золотая Плата",
+          "summary": "Мобильный каталог инвестиционных монет: выбор товаров, корзина и оформление заказа. В составе команды проектировал модульную структуру приложения.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик в команде"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Проектировал модульную структуру приложения в составе команды.",
+                "Определял границы функциональных модулей и пакетов репозиториев.",
+                "Разделял доступ к данным и функциональность приложения для дальнейшего развития кодовой базы."
+              ]
+            },
+            {
+              "heading": "Границы модулей и репозиториев",
+              "paragraphs": [
+                "Каталог инвестиционных монет объединяет товары, заказы, аккаунт и обращения клиентов.",
+                "В составе команды проектировал модульную структуру: границы функциональных модулей и пакетов репозиториев, разделение функциональности и доступа к данным.",
+                "Модульная структура с разделением функциональности и доступа к данным — основа для дальнейшей командной разработки."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "Golden Plate",
+          "summary": "A mobile investment coin catalogue with product selection, cart and checkout. Designed the app’s modular structure as part of the team.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer within a team"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Designed the app’s modular structure as part of the team.",
+                "Defined boundaries for feature modules and repository packages.",
+                "Separated data access from app features to support further development."
+              ]
+            },
+            {
+              "heading": "Module and repository boundaries",
+              "paragraphs": [
+                "The investment coin catalogue brings together products, orders, accounts and customer enquiries.",
+                "Designed the modular structure within a team: feature module and repository package boundaries, separating functionality from data access.",
+                "A modular structure separating functionality from data access, providing a foundation for continued team development."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    },
+    {
+      "id": "aventin",
+      "slug": "aventin",
+      "kind": "professional",
+      "category": "service",
+      "palette": "aventin",
+      "titleLines": {
+        "ru": [],
+        "en": []
+      },
+      "platforms": "iOS & Android",
+      "labels": {
+        "ru": "Безопасный дом",
+        "en": "Home security"
+      },
+      "technologies": ["Flutter", "Dart", "BLoC", "Dio / Retrofit", "AutoRoute", "Video Player"],
+      "websiteUrl": "https://apps.apple.com/ru/app/id6756958253",
+      "translations": {
+        "ru": {
+          "published": true,
+          "title": "Авентин",
+          "summary": "«Авентин Безопасный Дом» — приложение для жителей: лицевые счета, камеры, прямой эфир и архив видеонаблюдения.",
+          "sections": [
+            {
+              "heading": "Моя роль",
+              "paragraphs": ["Flutter-разработчик в команде"]
+            },
+            {
+              "heading": "Мой вклад",
+              "paragraphs": [
+                "Реализовывал сценарии работы с аккаунтами и камерами.",
+                "Разрабатывал прямой эфир и просмотр архива видео.",
+                "Учитывал жизненный цикл видеоплеера при навигации и смене контекста приложения."
+              ]
+            },
+            {
+              "heading": "Видео с учётом жизненного цикла",
+              "paragraphs": [
+                "Прямой эфир и архив должны работать в контексте выбранного аккаунта и камеры.",
+                "Реализовывал сценарии аккаунтов и камер, прямой эфир и архив. Учитывал жизненный цикл видеоплеера при навигации и смене контекста приложения.",
+                "Реализованные сценарии работы с аккаунтами, камерами и видео с явным управлением жизненным циклом плеера."
+              ]
+            }
+          ]
+        },
+        "en": {
+          "published": true,
+          "title": "Aventin",
+          "summary": "Aventin Safe Home is a residents’ app with accounts, cameras, live video and surveillance archives.",
+          "sections": [
+            {
+              "heading": "My role",
+              "paragraphs": ["Flutter developer within a team"]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Implemented account and camera workflows.",
+                "Developed live streaming and video archive playback.",
+                "Handled the video player lifecycle during navigation and app context changes."
+              ]
+            },
+            {
+              "heading": "Lifecycle-aware video playback",
+              "paragraphs": [
+                "Live and archived video need to operate in the context of the selected account and camera.",
+                "Implemented account and camera flows, live video and archives. Accounted for the player lifecycle during navigation and app context changes.",
+                "Implemented account, camera and video workflows with explicit player lifecycle management."
+              ]
+            }
+          ]
+        }
+      },
+      "eyebrow": "MOBILE APPLICATION"
+    }
+  ]
+}

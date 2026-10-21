@@ -1,0 +1,38 @@
+@layer components {
+    .overlay {
+        position: fixed;
+        z-index: var(--layer-scene);
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--route-ink);
+        background: var(--route-background);
+        pointer-events: none;
+
+        &[data-phase='cover'] {
+            animation: route-cover 600ms var(--ease-cover) both;
+        }
+
+        &[data-phase='reveal'] {
+            animation: route-reveal 650ms var(--ease-cover) both;
+        }
+    }
+
+    @keyframes route-cover {
+        from {
+            clip-path: circle(45px at var(--route-x) var(--route-y));
+        }
+        to {
+            clip-path: circle(var(--route-radius) at var(--route-x) var(--route-y));
+        }
+    }
+
+    @keyframes route-reveal {
+        from {
+            clip-path: circle(var(--route-radius) at var(--route-x) var(--route-y));
+        }
+        to {
+            clip-path: circle(0 at var(--route-x) var(--route-y));
+        }
+    }
+}

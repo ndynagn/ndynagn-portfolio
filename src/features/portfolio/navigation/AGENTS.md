@@ -19,6 +19,8 @@
   the mobile header readable. This pointer-transparent sibling sits behind return
   and menu controls; never wrap the dropdown in another backdrop-filter ancestor.
   Preserve the existing menu icons, disclosure behavior and rounded dropdown.
+- Mobile controls may wrap to a second line at enlarged text sizes; keep both
+  language navigation and theme controls inside the panel from 320px upward.
 - Private CSS variables coordinate compaction. A local scroller may supply
   --navigation-available-height; its documented fallback is the viewport.
 - Reduced motion resets progress to zero reactively. MeasuredTrack owns selection

@@ -8,8 +8,8 @@ export interface DesignAsset {
 export const designAssets: readonly DesignAsset[] = [
     {
         path: '/documents/gennady-nagibin-resume.pdf',
-        bytes: 514094,
-        sha256: '53ad5b02e6fafd50fd80451f6ca9b758a5eb99b3222b91e37a4d8fd63f7e00bf',
+        bytes: 513887,
+        sha256: 'b4171829bbfecdcc59f31c39e6ac862c2a2071564405ad0249d44c71433832c7',
     },
     {
         path: '/favicon.svg',

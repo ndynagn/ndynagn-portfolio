@@ -8,10 +8,16 @@
   share the same model and detail route. Each translation owns its publication flag.
 - Missing/unpublished translations are unavailable, not silently replaced by another
   language. Cards, case pages, metadata, language links and sitemap use the same lookup.
-- Local records follow the source model conventions and are checked by TypeScript.
-  Do not duplicate them with runtime schemas without a concrete external-data or
-  runtime-validation requirement. Imported external content uses the feature's Zod
-  boundary and explicit DTO mapping under the parent feature rules.
+- portfolio.json is the public editorial source, editable through GitHub. records.ts
+  validates it server-side with content-schema.ts before exposing readonly models.
+  This is the implemented runtime-validation consumer: malformed fields, duplicate
+  IDs/slugs and missing featured references fail explicitly with field paths.
+  JSON shares the application contract; no transport DTO or HTTP adapter exists.
+- featuredSlugs owns explicit selection/order; categories commerce/service are
+  independent from professional/pet. Palette, title lines and labels are data.
+- The CV supplied on 21 October 2026 supersedes the source archive PDF. Preserve
+  its bytes and updated inventory hash. SMD ended in October 2026; no current badge
+  or inferred ongoing project dates. OmSTU graduation is expected in 2028.
 - Load records server-side and pass only necessary display values across client
   boundaries. Changes are published by rebuilding; no Query cache or HTTP adapter
   is needed for the current repository content.
