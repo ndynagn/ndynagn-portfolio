@@ -16,9 +16,14 @@ import { pageContainer, sectionTarget } from './page-shell';
 interface HomeHeroProps {
     readonly locale: Locale;
     readonly profile: ProfileTranslation;
+    readonly projectsAction?: {
+        readonly href: string;
+        readonly label: string;
+        readonly animateRoute: boolean;
+    };
 }
 
-export function HomeHero({ locale, profile }: HomeHeroProps): JSX.Element {
+export function HomeHero({ locale, profile, projectsAction }: HomeHeroProps): JSX.Element {
     const copy = getPortfolioDictionary(locale);
     const hh = socialLinks.find((link) => link.id === 'hh');
 
@@ -66,12 +71,25 @@ export function HomeHero({ locale, profile }: HomeHeroProps): JSX.Element {
                         </p>
                     </div>
                     <div className="mt-6.25 flex flex-wrap items-center gap-7 md:mt-6.75 md:gap-5 lg:mt-8.25 lg:gap-7 2xl:mt-10">
-                        <Button variant="pill" size="action" asChild>
-                            <a href="#work">
-                                {copy.explore}
-                                <ArrowDown aria-hidden="true" />
-                            </a>
-                        </Button>
+                        {projectsAction && (
+                            <Button variant="pill" size="action" asChild>
+                                <a
+                                    href={projectsAction.href}
+                                    data-portfolio-route={projectsAction.animateRoute || undefined}
+                                    data-cursor={projectsAction.animateRoute ? 'page' : undefined}
+                                    data-cursor-label={
+                                        projectsAction.animateRoute ? copy.projects : undefined
+                                    }
+                                >
+                                    {projectsAction.label}
+                                    {projectsAction.animateRoute ? (
+                                        <ArrowUpRight aria-hidden="true" />
+                                    ) : (
+                                        <ArrowDown aria-hidden="true" />
+                                    )}
+                                </a>
+                            </Button>
+                        )}
                         {hh && (
                             <TextLink
                                 variant="underlined"

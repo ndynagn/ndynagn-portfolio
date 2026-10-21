@@ -21,8 +21,10 @@
 - Compose document theme initialization/observation once, including routes without
   controls. The design-system workbench is development-only and returns HTTP 404
   in production; never add it to public navigation or the sitemap.
-- The locale root layout imports global CSS once. Preserve stylesheet execution
-  order; route navigation must not depend on unloading a global stylesheet.
+- The locale root layout imports global CSS once, before component imports that
+  register CSS Modules. Global CSS declares properties/theme/base/components/utilities
+  precedence before its imports. Preserve that order in production output; route
+  navigation must not depend on unloading a global stylesheet.
 - Server composition calls feature server entry points directly when data is already
   available on the server; do not force an internal HTTP round trip. Pass only safe
   React-serializable application values to client components, not DTOs or services.

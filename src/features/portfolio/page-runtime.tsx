@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties, type JSX } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type JSX } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { trackEvent } from '@/shared/analytics/browser';
@@ -39,6 +39,7 @@ export function PageRuntime(): JSX.Element | null {
     const router = useRouter();
     const pathname = usePathname();
     const active = useRef<RouteEffect | null>(null);
+    const anchorScroll = useRef<AbortController | null>(null);
     const arrival = useRef<RouteArrival | null>(null);
     const overlay = useRef<HTMLDivElement>(null);
     const position = useRef({ x: 0, y: 0 });
@@ -87,6 +88,12 @@ export function PageRuntime(): JSX.Element | null {
         };
     }, [moving]);
 
+    useLayoutEffect(() => {
+        // Cancel at commit, before an old-document frame can run against the new page.
+        anchorScroll.current?.abort();
+        anchorScroll.current = null;
+    }, [pathname]);
+
     useEffect(() => {
         if (arrival.current?.pathname === pathname) {
             arrival.current.resolve();
@@ -95,19 +102,18 @@ export function PageRuntime(): JSX.Element | null {
 
     useEffect(() => {
         let mounted = true;
-        let anchorScroll: AbortController | undefined;
         const reduced = matchMedia('(prefers-reduced-motion: reduce)');
         const settle = () => {
             active.current?.navigate();
             active.current?.controller.abort();
         };
         const historyChanged = () => {
-            anchorScroll?.abort();
+            anchorScroll.current?.abort();
             active.current?.controller.abort();
         };
         const visibility = () => {
             if (document.hidden) {
-                anchorScroll?.abort();
+                anchorScroll.current?.abort();
                 settle();
             }
         };
@@ -164,20 +170,24 @@ export function PageRuntime(): JSX.Element | null {
                 target.search === location.search &&
                 target.hash
             ) {
+                if (active.current) {
+                    event.preventDefault();
+                    return;
+                }
                 const section = document.getElementById(decodeURIComponent(target.hash.slice(1)));
                 if (!section) {
                     return;
                 }
                 event.preventDefault();
-                anchorScroll?.abort();
-                anchorScroll = new AbortController();
+                anchorScroll.current?.abort();
+                anchorScroll.current = new AbortController();
                 history.pushState(null, '', target.href);
                 section.focus({ preventScroll: true });
-                scrollToAnchor(section, reduced, anchorScroll.signal);
+                scrollToAnchor(section, reduced, anchorScroll.current.signal);
                 return;
             }
             if (target.pathname !== location.pathname || target.search !== location.search) {
-                anchorScroll?.abort();
+                anchorScroll.current?.abort();
             }
             if (
                 !anchor.matches('[data-portfolio-route],[data-project-card]') ||
@@ -279,7 +289,8 @@ export function PageRuntime(): JSX.Element | null {
         reduced.addEventListener('change', settle);
         return () => {
             mounted = false;
-            anchorScroll?.abort();
+            anchorScroll.current?.abort();
+            anchorScroll.current = null;
             active.current?.controller.abort();
             document.removeEventListener('click', click, true);
             document.removeEventListener('visibilitychange', visibility);

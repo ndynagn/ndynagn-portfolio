@@ -1,7 +1,14 @@
 import type { JSX } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-import { getFeaturedProjects, getProfile, getProjects } from '@/features/content/server';
+import {
+    courses,
+    education,
+    experience,
+    getFeaturedProjects,
+    getProfile,
+    getProjects,
+} from '@/features/content/server';
 import { cataloguePath, type Locale } from '@/shared/i18n/locales';
 import { getPortfolioDictionary } from '@/shared/i18n/portfolio';
 import { cn } from '@/shared/ui/cn';
@@ -15,6 +22,7 @@ import { HomeAbout } from './home-about';
 import { HomeExperience } from './home-experience';
 import { PageShell, pageContainer, sectionTarget, sectionTitle } from './page-shell';
 import { projectCardData } from './project-display';
+import type { NavigationLink } from './navigation';
 
 interface PortfolioHomeProps {
     readonly locale: Locale;
@@ -33,10 +41,49 @@ export function PortfolioHome({ locale }: PortfolioHomeProps): JSX.Element {
         );
     }
 
+    // Localize once so section rendering and navigation share the same availability.
+    const work = experience.flatMap((record) => {
+        const translation = record.translations[locale];
+        return translation ? [{ record, translation }] : [];
+    });
+    const localizedEducation = education.flatMap((record) => {
+        const translation = record.translations[locale];
+        return translation ? [{ record, translation }] : [];
+    });
+    const localizedCourses = courses.flatMap((record) => {
+        const translation = record.translations[locale];
+        return translation ? [{ record, translation }] : [];
+    });
+    const hasExperience = work.length + localizedEducation.length + localizedCourses.length > 0;
+    const projectsAction =
+        featured.length > 0
+            ? { href: '#work', label: copy.explore, animateRoute: false }
+            : projects.length > 0
+              ? { href: cataloguePath(locale), label: copy.all, animateRoute: true }
+              : undefined;
+    const homeLinks: readonly NavigationLink[] = [
+        { key: 'home', label: copy.home, href: '#home' },
+        ...(projectsAction
+            ? [
+                  {
+                      key: 'work',
+                      label: copy.projects,
+                      href: projectsAction.href,
+                      animateRoute: projectsAction.animateRoute,
+                  },
+              ]
+            : []),
+        { key: 'about', label: copy.about, href: '#about' },
+        ...(hasExperience
+            ? [{ key: 'experience', label: copy.experience, href: '#experience' }]
+            : []),
+        { key: 'contact', label: copy.contact, href: '#contact' },
+    ];
+
     return (
-        <PageShell locale={locale}>
+        <PageShell locale={locale} homeLinks={homeLinks}>
             <main id="main" tabIndex={-1} className={sectionTarget}>
-                <HomeHero locale={locale} profile={profile} />
+                <HomeHero locale={locale} profile={profile} projectsAction={projectsAction} />
                 {featured.length > 0 && (
                     <section
                         id="work"
@@ -89,7 +136,13 @@ export function PortfolioHome({ locale }: PortfolioHomeProps): JSX.Element {
                     </section>
                 )}
                 <HomeAbout locale={locale} profile={profile} />
-                <HomeExperience locale={locale} />
+                <HomeExperience
+                    locale={locale}
+                    work={work}
+                    education={localizedEducation}
+                    courses={localizedCourses}
+                    projects={projects}
+                />
                 <ContactSection locale={locale} />
             </main>
         </PageShell>

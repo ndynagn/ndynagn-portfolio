@@ -7,6 +7,7 @@ import { ThemeToggle } from '@/shared/theme/theme-toggle';
 import { LanguageLinks } from '@/shared/ui/language-links';
 
 import { PageHeader } from './page-header';
+import type { NavigationLink } from './navigation';
 
 export const pageContainer = 'mx-auto w-full max-w-450 px-[6%] md:px-[5%]';
 export const sectionTarget = 'scroll-mt-32 outline-none';
@@ -17,6 +18,7 @@ interface PageShellProps {
     readonly locale: Locale;
     readonly catalogue?: boolean;
     readonly category?: string;
+    readonly homeLinks?: readonly NavigationLink[];
     readonly children: ReactNode;
 }
 
@@ -24,6 +26,7 @@ export function PageShell({
     locale,
     catalogue = false,
     category = 'all',
+    homeLinks = [],
     children,
 }: PageShellProps): JSX.Element {
     const copy = getPortfolioDictionary(locale);
@@ -32,13 +35,7 @@ export function PageShell({
               { key: 'projects', label: copy.projects, href: '#projects' },
               { key: 'contact', label: copy.contact, href: '#contact' },
           ]
-        : [
-              { key: 'home', label: copy.home, href: '#home' },
-              { key: 'work', label: copy.projects, href: '#work' },
-              { key: 'about', label: copy.about, href: '#about' },
-              { key: 'experience', label: copy.experience, href: '#experience' },
-              { key: 'contact', label: copy.contact, href: '#contact' },
-          ];
+        : homeLinks;
     const localeHref = (target: Locale) =>
         catalogue
             ? `${cataloguePath(target)}${category === 'all' ? '' : `?category=${category}`}`

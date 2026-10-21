@@ -2,7 +2,7 @@
 
 - Render ready links, activeKey and normalized progress; never read routes, catalogue,
   publication policy or window scroll here. The embedding consumer owns them.
-- Return links opt into public route effects through backLink.animateRoute; the
+- Navigation and return links opt into public route effects through animateRoute; the
   primitive only emits the runtime marker and keeps its native href.
 - animateRoute also selects the large page cursor; its caption is cursorLabel or
   the link label. Explicit cursorLabel still supports standalone kit demonstrations.

@@ -2,14 +2,15 @@ import { Suspense, type JSX } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
+// Register the global layer order before any component CSS Module is evaluated.
+import '../globals.css';
+
 import { YandexMetrica } from '@/shared/analytics/yandex-metrica';
 import { PageRuntime } from '@/features/portfolio/client';
 import { getDictionary } from '@/shared/i18n/dictionaries';
 import { isLocale, locales, type Locale } from '@/shared/i18n/locales';
 import { themeBootstrap } from '@/shared/theme/preference';
 import { ThemeObserver } from '@/shared/theme/theme-observer';
-
-import '../globals.css';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });

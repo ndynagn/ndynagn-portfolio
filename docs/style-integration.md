@@ -936,7 +936,15 @@ hash, focus and no-JS navigation remain available.
 
 The catalogue return link opts into the route effect through backLink.animateRoute.
 The hero's native #work CTA scrolls/focuses the selected-work section without a
-route effect, including without JavaScript. HomePhoto uses the owner's original
+route effect, including without JavaScript. If no featured translation is available,
+both its CTA and the project navigation link instead open the localized catalogue
+with route effects; if no projects are published, both links are omitted. Localized
+work/education/course lists own experience visibility and its navigation link.
+Pending route effects suppress same-document anchor activation before hash/focus
+changes, and pathname commits cancel any old anchor frames. Global CSS is imported
+before component Modules and registers properties/theme/base/components/utilities
+in that order; the built-material check validates delivered stylesheet precedence.
+HomePhoto uses the owner's original
 JPEG portrait with CSS-only cropping/monochrome and localized alt text; stock-photo
 credit and architectural captions are absent. The architecture asset stays in the kit.
 

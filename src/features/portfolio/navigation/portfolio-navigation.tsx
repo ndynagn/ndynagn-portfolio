@@ -21,6 +21,8 @@ export interface NavigationLink {
     readonly key: string;
     readonly label: string;
     readonly href: string;
+    /** Opt into page effects for a route destination; fragment links remain native. */
+    readonly animateRoute?: boolean;
 }
 
 export interface NavigationBackLink {
@@ -226,6 +228,9 @@ export function PortfolioNavigation({
         <a
             key={link.key}
             href={link.href}
+            data-portfolio-route={link.animateRoute || undefined}
+            data-cursor={link.animateRoute ? 'page' : undefined}
+            data-cursor-label={link.animateRoute ? link.label : undefined}
             data-track-key={link.key}
             data-navigation-focus={link.key}
             aria-current={link.key === activeKey ? 'location' : undefined}

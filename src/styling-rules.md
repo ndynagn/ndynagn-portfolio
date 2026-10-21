@@ -61,6 +61,10 @@ when adding an approved tool and update the lockfile only through pnpm.
 - The locale root layout imports global CSS once. Global CSS may import focused
   theme/base files if splitting a real responsibility becomes useful; do not
   reimport Tailwind from each component or route.
+- Import globals before component modules and declare the complete layer order
+  before CSS imports: properties, theme, base, components, utilities. This layer
+  statement is permitted before imports; verify actual route stylesheet order with
+  the production check so a Module cannot register components ahead of base.
 - Import required third-party global CSS once from the application composition
   boundary. Review its reset, layers and persistent effects across navigation.
 

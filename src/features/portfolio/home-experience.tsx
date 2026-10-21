@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
-import { courses, education, experience, getProjects } from '@/features/content/server';
+import type { Education, Experience, LocalizedProject } from '@/features/content/models';
 import { projectPath, type Locale } from '@/shared/i18n/locales';
 import { getPortfolioDictionary } from '@/shared/i18n/portfolio';
 import { cn } from '@/shared/ui/cn';
@@ -12,16 +12,28 @@ import { pageContainer, sectionTarget, sectionTitle } from './page-shell';
 
 interface HomeExperienceProps {
     readonly locale: Locale;
+    readonly work: readonly {
+        readonly record: Experience;
+        readonly translation: NonNullable<Experience['translations'][Locale]>;
+    }[];
+    readonly education: readonly LocalizedEducation[];
+    readonly courses: readonly LocalizedEducation[];
+    readonly projects: readonly LocalizedProject[];
 }
 
-export function HomeExperience({ locale }: HomeExperienceProps): JSX.Element {
-    const copy = getPortfolioDictionary(locale);
-    const projects = getProjects(locale);
-    const work = experience.flatMap((record) => {
-        const translation = record.translations[locale];
+interface LocalizedEducation {
+    readonly record: Education;
+    readonly translation: NonNullable<Education['translations'][Locale]>;
+}
 
-        return translation ? [{ record, translation }] : [];
-    });
+export function HomeExperience({
+    locale,
+    work,
+    education,
+    courses,
+    projects,
+}: HomeExperienceProps): JSX.Element {
+    const copy = getPortfolioDictionary(locale);
     const educationGroups = [
         { label: copy.education, records: education },
         { label: copy.courses, records: courses },
@@ -84,10 +96,7 @@ export function HomeExperience({ locale }: HomeExperienceProps): JSX.Element {
                         </div>
                     </div>
                     {educationGroups.map((group) => {
-                        const entries = group.records.flatMap((record) => {
-                            const translation = record.translations[locale];
-                            return translation ? [{ record, translation }] : [];
-                        });
+                        const entries = group.records;
                         return (
                             entries.length > 0 && (
                                 <div

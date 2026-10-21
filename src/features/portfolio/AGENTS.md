@@ -23,8 +23,13 @@
   finish pending navigation immediately; Back/Forward cancels stale navigation.
   Technical workbench links are excluded. No global state or source hash-router.
 - Route effects support mouse, keyboard and touch. Reduced motion bypasses them;
-  pointer capabilities do not. The hero CTA is a native #work anchor and shares
-  the document scroll/focus handling without entering the route sequence.
+  pointer capabilities do not. While a route effect is active, same-document anchor
+  activation must not change hash/focus or start scrolling. Pathname changes cancel
+  previous-document anchor work even when navigation originated outside this adapter.
+- Home composition localizes work/education/courses once for both section rendering
+  and navigation. Omit empty localized sections and their links. The hero CTA uses
+  native #work when featured projects exist, otherwise the localized catalogue when
+  projects are published, and is absent when there are no published projects.
 - During a route effect, one pointer/resize subscription spans cover, route arrival
   and reveal. A ref owns the latest position; one pending animation frame updates
   overlay CSS geometry without React renders or phase-boundary resets. Resize

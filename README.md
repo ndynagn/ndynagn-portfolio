@@ -165,6 +165,12 @@ service actions, including language switching, use the small translucent cursor.
 Activated same-document anchors ease over 600–1200ms, account for the header offset
 and yield to manual scrolling, history or another navigation. Reduced motion jumps
 to the section immediately; native href/hash and keyboard focus remain available.
+During a route effect, same-document anchors cannot start another scroll or change
+hash/focus; pathname commits cancel previous-document scrolling. Home links follow
+localized section availability. Without featured projects, the hero and project
+navigation open the catalogue if published projects exist, otherwise they are
+omitted. Experience disappears when no work, education or courses exist in that
+language, even when records are available in the other language.
 
 With `pnpm dev`, open `/ru/design-system` or `/en/design-system` for the technical
 workbench. It demonstrates glass/photo/theme combinations, opaque fallback, actual
@@ -234,7 +240,10 @@ submission without JS. Existing AnimatedItems animates stable server card nodes;
 its optional className leaves prior consumers and motion parameters unchanged.
 
 After building, `node scripts/check-built-glass.mjs` checks both backdrop-filter
-declarations in actual output. The prefix-first ordering has a scoped, explained
+declarations in actual output and starts a temporary loopback production server to
+verify layer precedence in the stylesheet order delivered to both home/catalogue
+locales. It closes the server afterward. Global CSS registers the complete layer
+order before component imports. The prefix-first ordering has a scoped, explained
 lint exception; the optimizer regression test checks that boundary independently.
 
 Case-cover fixtures are at `http://localhost:3000/ru/design-system#project-covers`
