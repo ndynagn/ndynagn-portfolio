@@ -50,7 +50,6 @@ export function PageRuntime(): JSX.Element | null {
     useEffect(() => {
         let mounted = true;
         const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-        const pointer = matchMedia('(pointer: coarse)');
         const settle = () => {
             active.current?.navigate();
             active.current?.controller.abort();
@@ -146,7 +145,7 @@ export function PageRuntime(): JSX.Element | null {
                 event.preventDefault();
                 return;
             }
-            if (reduced.matches || pointer.matches || document.hidden) {
+            if (reduced.matches || document.hidden) {
                 return;
             }
             const release = acquireTransition();

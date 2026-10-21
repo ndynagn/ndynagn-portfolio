@@ -317,7 +317,7 @@ does not overflow the viewport or clip labels to preserve a fixed panel height.
 | Eight project palettes                              | Portfolio-owned scoped PaletteSurface data                                               | Light/dark; source Potlucky accent override                         | No route or catalogue dependency                        | Source colors and readable foreground       | All palette samples                         | Adapted                                       |
 | Lift/radius/title/icon/thumbnail effects            | Isolated HoverDemo with a colocated Module                                               | Hover/focus, reduced motion                                         | Automatic text heights                                  | Static content                              | Keyboard and motion                         | Adapted as effects; cards/controls deferred   |
 | Smooth scroll / snap                                | Explicit local technical scroller                                                        | Normal/reduced motion                                               | Desktop snap from md; mobile free flow                  | Native scroll                               | Keyboard/wheel; document unaffected         | Adapted; gallery rail deferred                |
-| Public resources                                    | Byte/hash inventory in content feature, originals in public                              | Resource availability                                               | Original full-size/thumb pairs                          | No fabricated images                        | 88 files / all hashes                       | Transferred                                   |
+| Public resources                                    | Byte/hash inventory in content feature, originals in public                              | Resource availability                                               | Original full-size/thumb pairs                          | No fabricated images                        | 89 files / all hashes                       | Transferred                                   |
 | Buttons/links/chips/brand/navigation/menu           | Future UI-kit consumers; existing Button used now                                        | Focus/hover/active/disabled as applicable                           | Source measurements retained in inventory               | Native HTML                                 | Next stage                                  | Deferred to UI kit                            |
 | Cards/covers/timeline/education/contact/case layout | Future portfolio presentation                                                            | Content-dependent                                                   | Source grids and long-text adaptation                   | No fictional records                        | Later UI/page acceptance                    | Deferred to UI kit/pages                      |
 | Gallery/rail/lightbox/zoom/swipe/retry              | Future gallery with reviewed shadcn/Radix interaction                                    | Focus/Escape/restore/loading/error/recovery                         | Touch and local scroll contracts                        | Accessible images/links                     | Later gallery acceptance                    | Deferred to UI kit                            |
@@ -915,11 +915,17 @@ The source hash-router and manual history restoration are not imported.
 PageRuntime adapts the existing scene sequence to explicit page links/cards using
 the shared transition lock. The 600ms cover is followed by route dispatch; reveal
 waits for the pathname to commit, with an 8s bound. The overlay cannot retain a lock
-after cancellation. Reduced motion/coarse input bypass the effect; preference and
+after cancellation. Reduced motion bypasses the effect on all input types; preference and
 visibility changes settle navigation immediately. Back/Forward cancels stale work.
 Native modified clicks, external links, downloads and no-JS navigation are preserved.
 Route palette colors are read from the card's existing palette boundary. The
 technical SceneTransition wrapper retains its own API and fixture behavior.
+
+The catalogue return link opts into the route effect through backLink.animateRoute.
+The hero's native #work CTA scrolls/focuses the selected-work section without a
+route effect, including without JavaScript. HomePhoto uses the owner's original
+JPEG portrait with CSS-only cropping/monochrome and localized alt text; stock-photo
+credit and architectural captions are absent. The architecture asset stays in the kit.
 
 Editorial facts are validated server-side from portfolio.json. The newly supplied
 CV (updated 20 October 2026) supersedes the archive PDF at its existing URL and has

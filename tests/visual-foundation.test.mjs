@@ -122,13 +122,13 @@ const options = () => ({
     signal: new AbortController().signal,
 });
 
-test('all supplied public resources match the approved inventory including the updated CV', () => {
-    assert.equal(designAssets.length, 88);
+test('all supplied public resources match the approved inventory including the CV and portrait', () => {
+    assert.equal(designAssets.length, 89);
     assert.equal(
         designAssets.reduce((sum, file) => sum + file.bytes, 0),
-        6437668,
+        6657366,
     );
-    assert.equal(new Set(designAssets.map((file) => file.path)).size, 88);
+    assert.equal(new Set(designAssets.map((file) => file.path)).size, 89);
 
     for (const file of designAssets) {
         assert.match(file.path, /^\/[a-zA-Z0-9/_.-]+$/);

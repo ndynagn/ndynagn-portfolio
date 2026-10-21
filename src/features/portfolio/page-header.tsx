@@ -89,7 +89,11 @@ export function PageHeader({
                     label={label}
                     menuLabel={menuLabel}
                     controls={controls}
-                    backLink={backLabel ? { label: backLabel, href: homeHref } : undefined}
+                    backLink={
+                        backLabel
+                            ? { label: backLabel, href: homeHref, animateRoute: true }
+                            : undefined
+                    }
                 />
             </div>
         </header>

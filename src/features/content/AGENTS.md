@@ -24,3 +24,5 @@
 - design-assets.ts is a byte/hash inventory of supplied public resources, not
   published records. Preserve original bytes, the font license and provenance;
   OOMI screenshots must not be presented as Potlucky screenshots.
+- The supplied portrait at /images/gennady-nagibin.jpeg retains the JPEG bytes from
+  the owner's ZIP attachment. Presentation cropping and monochrome are CSS-only.

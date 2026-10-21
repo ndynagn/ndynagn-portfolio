@@ -156,8 +156,8 @@ The page header owns document scroll observation and active sections; the kit's
 local scrollers remain independent. Native anchors retain focus and no-JS behavior.
 PageRuntime enhances explicit route links and cards with the existing 600/650ms
 cover/reveal sequence. It waits for route commit before reveal, bounds that wait,
-and shares the theme transition lock. Reduced motion/coarse pointers use ordinary
-navigation. Preference changes, hidden documents, history and unmount clean up the
+and shares the theme transition lock. Mouse, keyboard and touch use the effect;
+reduced motion uses ordinary navigation. Preference changes, hidden documents, history and unmount clean up the
 effect; modified clicks, downloads and external links retain native behavior.
 The adapter delegates the declared analytics actions without sending contact values.
 
@@ -177,10 +177,12 @@ photo/page/contrasting backdrops; background text makes blur visible. A failed
 decorative matrix photo reveals a readable solid backing. No universal blur radius,
 new material API or animation mechanism is introduced.
 
-The supplied 88 resources are byte-identical in `public`, inventoried separately in
-`src/features/content/design-assets.ts` with size/SHA-256. They do not publish
-profile/project records. Preserve Manrope OFL and image provenance, including the
-OOMI/Potlucky distinction. Public originals are excluded from formatting.
+The 89 public resources are inventoried in `src/features/content/design-assets.ts`
+with size/SHA-256, including the owner's replacement CV and original JPEG portrait.
+The home uses the portrait; the architectural photo remains available to kit demos.
+Resources do not publish profile/project records. Preserve Manrope OFL and image
+provenance, including the OOMI/Potlucky distinction. Public originals are excluded
+from formatting.
 
 shadcn/Radix is used for complex real controls needing focus, Escape, portals or
 keyboard contracts, and other primitives with a demonstrated benefit. Styling,

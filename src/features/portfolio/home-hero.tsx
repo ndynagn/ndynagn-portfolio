@@ -1,10 +1,9 @@
 import type { JSX } from 'react';
-import Link from 'next/link';
 import { ArrowDown, ArrowUpRight, Download } from 'lucide-react';
 
 import type { ProfileTranslation } from '@/features/content/models';
 import { socialLinks } from '@/features/content/server';
-import { cataloguePath, type Locale } from '@/shared/i18n/locales';
+import type { Locale } from '@/shared/i18n/locales';
 import { getPortfolioDictionary } from '@/shared/i18n/portfolio';
 import { Button } from '@/shared/ui/button';
 import { StatusLabel } from '@/shared/ui/status-label';
@@ -68,15 +67,10 @@ export function HomeHero({ locale, profile }: HomeHeroProps): JSX.Element {
                     </div>
                     <div className="mt-6.25 flex flex-wrap items-center gap-7 md:mt-6.75 md:gap-5 lg:mt-8.25 lg:gap-7 2xl:mt-10">
                         <Button variant="pill" size="action" asChild>
-                            <Link
-                                href={cataloguePath(locale)}
-                                data-portfolio-route
-                                data-cursor="page"
-                                data-cursor-label={copy.projects}
-                            >
+                            <a href="#work">
                                 {copy.explore}
-                                <ArrowUpRight aria-hidden="true" />
-                            </Link>
+                                <ArrowDown aria-hidden="true" />
+                            </a>
                         </Button>
                         {hh && (
                             <TextLink
@@ -104,13 +98,7 @@ export function HomeHero({ locale, profile }: HomeHeroProps): JSX.Element {
                         )}
                     </div>
                 </div>
-                <HomePhoto
-                    alt={copy.photoAlt}
-                    failure={copy.photoFailure}
-                    credit={copy.photoCredit}
-                    caption={[copy.photoLineOne, copy.photoLineTwo]}
-                    badge={copy.badge}
-                />
+                <HomePhoto alt={copy.photoAlt} failure={copy.photoFailure} badge={copy.badge} />
             </div>
             <div className="mt-7 flex items-start justify-between gap-3.75 border-t pt-5 md:mt-8.75 md:items-center md:pt-6.75 lg:mt-10.5">
                 <TextLink variant="scroll" href="#about" iconPosition="start" icon={<ArrowDown />}>

@@ -27,6 +27,8 @@ export interface NavigationBackLink {
     readonly label: string;
     readonly href: string;
     readonly cursorLabel?: string;
+    /** Opt into the public page runtime; workbench links remain native. */
+    readonly animateRoute?: boolean;
 }
 
 interface PortfolioNavigationProps {
@@ -199,6 +201,7 @@ export function PortfolioNavigation({
         backLink && (
             <a
                 href={backLink.href}
+                data-portfolio-route={backLink.animateRoute || undefined}
                 data-navigation-focus="back"
                 data-cursor={backLink.cursorLabel ? 'page' : undefined}
                 data-cursor-label={backLink.cursorLabel}

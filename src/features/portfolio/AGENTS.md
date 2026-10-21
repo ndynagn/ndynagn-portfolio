@@ -22,5 +22,10 @@
   and clears the overlay after at most 8s of waiting. Preference/visibility changes
   finish pending navigation immediately; Back/Forward cancels stale navigation.
   Technical workbench links are excluded. No global state or source hash-router.
+- Route effects support mouse, keyboard and touch. Reduced motion bypasses them;
+  pointer capabilities do not. The hero CTA is a native #work anchor and shares
+  the document scroll/focus handling without entering the route sequence.
 - HomePhoto owns independent image/filter/dimming/content siblings and the badge's
   deliberate overlap. Errors retain geometry and a readable opaque badge.
+- The home uses the supplied portrait with localized alt text and no stock-photo
+  credit or architectural caption. Architecture remains available to kit demos.

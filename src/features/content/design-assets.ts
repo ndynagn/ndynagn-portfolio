@@ -37,6 +37,11 @@ export const designAssets: readonly DesignAsset[] = [
         sha256: 'f92d4b82250c197cc94a3174ee2794dfa641c546942df96f7cb31396ff0eaabf',
     },
     {
+        path: '/images/gennady-nagibin.jpeg',
+        bytes: 219698,
+        sha256: 'ab50680ea3a62e3601b1a9311bbb70762e906202963ad99b1ea02b48dfe6181c',
+    },
+    {
         path: '/images/projects/SOURCES.md',
         bytes: 2287,
         sha256: '55f8b1864627e5eb7b4eebfb7071544c1281cde8d13b017506c5e3c2bb5f024e',
