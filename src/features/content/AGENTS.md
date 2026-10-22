@@ -15,6 +15,11 @@
   JSON shares the application contract; no transport DTO or HTTP adapter exists.
 - featuredSlugs owns explicit selection/order; categories commerce/service are
   independent from professional/pet. Palette, title lines and labels are data.
+- Case translations own tagline, optional confirmed period/role, contributions and
+  optional engineering context/approach/outcome. Never infer these from headings.
+  Gallery groups own common local WebP paths/dimensions and localized titles,
+  captions/alt text. Missing translations are omitted, never synthesized. Media
+  IDs are unique across the catalogue. OOMI groups stay explicitly named OOMI.
 - The CV supplied on 21 October 2026 supersedes the source archive PDF. Preserve
   its bytes and updated inventory hash. SMD ended in October 2026; no current badge
   or inferred ongoing project dates. OmSTU graduation is expected in 2028.

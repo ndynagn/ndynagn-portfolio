@@ -72,7 +72,31 @@ export function ProjectDetail({ locale, record }: ProjectDetailProps): JSX.Eleme
                             </ul>
                         )}
                     </header>
-                    {translation.sections.map((section, index) => (
+                    {[
+                        ...(translation.role
+                            ? [{ heading: copy.role, paragraphs: [translation.role] }]
+                            : []),
+                        ...(translation.contributions.length
+                            ? [
+                                  {
+                                      heading: copy.contribution,
+                                      paragraphs: translation.contributions,
+                                  },
+                              ]
+                            : []),
+                        ...(translation.engineering
+                            ? [
+                                  {
+                                      heading: translation.engineering.title,
+                                      paragraphs: [
+                                          translation.engineering.context,
+                                          translation.engineering.approach,
+                                          translation.engineering.outcome,
+                                      ],
+                                  },
+                              ]
+                            : []),
+                    ].map((section, index) => (
                         <section key={`${index}-${section.heading}`} className="space-y-4">
                             <h2 className="text-2xl font-semibold">{section.heading}</h2>
                             {section.paragraphs.map((paragraph, paragraphIndex) => (

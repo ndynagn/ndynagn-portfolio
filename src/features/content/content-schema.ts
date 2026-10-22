@@ -18,6 +18,21 @@ const education = z.object({
         z.object({ title: text, description: text, yearNote: text.optional() }),
     ),
 });
+const imagePath = text.regex(/^\/images\/projects\/[a-z0-9-]+\/[a-z0-9-]+\.webp$/);
+const galleryGroup = z.object({
+    id: slug,
+    translations: translations(z.object({ title: text })),
+    images: z.array(
+        z.object({
+            id: slug,
+            src: imagePath,
+            thumbnail: imagePath,
+            width: z.number().int().positive(),
+            height: z.number().int().positive(),
+            translations: translations(z.object({ alt: text, caption: text })),
+        }),
+    ),
+});
 
 const catalogueSchema = z
     .object({
@@ -86,14 +101,24 @@ const catalogueSchema = z
                 technologies: z.array(text),
                 websiteUrl: webUrl.optional(),
                 sourceUrl: webUrl.optional(),
+                gallery: z.array(galleryGroup),
                 translations: translations(
                     z.object({
                         published: z.boolean(),
                         title: text,
                         summary: text,
-                        sections: z.array(
-                            z.object({ heading: text, paragraphs: z.array(text).min(1) }),
-                        ),
+                        tagline: text.optional(),
+                        periodLabel: text.optional(),
+                        role: text.optional(),
+                        contributions: z.array(text),
+                        engineering: z
+                            .object({
+                                title: text,
+                                context: text,
+                                approach: text,
+                                outcome: text,
+                            })
+                            .optional(),
                     }),
                 ),
             }),
@@ -132,6 +157,36 @@ const catalogueSchema = z
             'slug',
         );
         unique(catalogue.featuredSlugs, 'featuredSlugs');
+        const mediaIds = new Set<string>();
+        catalogue.projects.forEach((project, projectIndex) => {
+            project.gallery.forEach((group, groupIndex) => {
+                const entries = [
+                    { id: group.id, path: ['projects', projectIndex, 'gallery', groupIndex, 'id'] },
+                    ...group.images.map((image, imageIndex) => ({
+                        id: image.id,
+                        path: [
+                            'projects',
+                            projectIndex,
+                            'gallery',
+                            groupIndex,
+                            'images',
+                            imageIndex,
+                            'id',
+                        ],
+                    })),
+                ];
+                for (const entry of entries) {
+                    if (mediaIds.has(entry.id)) {
+                        context.addIssue({
+                            code: 'custom',
+                            path: entry.path,
+                            message: `Duplicate media ID ${entry.id}`,
+                        });
+                    }
+                    mediaIds.add(entry.id);
+                }
+            });
+        });
         catalogue.featuredSlugs.forEach((value, index) => {
             if (!catalogue.projects.some((project) => project.slug === value)) {
                 context.addIssue({

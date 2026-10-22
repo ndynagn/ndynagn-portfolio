@@ -81,7 +81,12 @@ empty collections remain valid and never synthesize public facts.
   role descriptions. Social links have a shared destination and localized labels.
 - Projects have a stable, unique lower-kebab-case slug, kind (`professional` or
   `pet`), technologies and optional website/source links. Each translation has
-  a title, summary, text sections and an explicit `published` flag.
+  a title, summary, optional tagline/role/confirmed period, contributions, an optional
+  engineering story (title/context/approach/outcome) and an explicit `published` flag.
+- Project `gallery` groups store common original/thumbnail WebP paths, positive
+  integer dimensions and unique media IDs; translated group titles and image
+  captions/alt text live under `translations`. Missing localized media is omitted.
+  Existing OOMI images are explicitly identified as OOMI within the combined case.
 - A published project appears in the localized catalogue and at
   `/{locale}/projects/{slug}`; the home uses the explicit featured selection. Missing/unpublished translations are not available.
   Text is rendered as escaped React content, not executable MDX or raw HTML.

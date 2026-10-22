@@ -142,6 +142,66 @@ test('empty content is valid and never synthesizes public records', () => {
     assert.equal(server.getFeaturedProjects('en').length, 0);
 });
 
+test('case media preserves approved files, captions and the OOMI provenance', () => {
+    const data = parseContent(source);
+    const oomi = data.projects.find((project) => project.id === 'potlucky');
+    assert.ok(oomi.gallery.every((group) => group.translations.en.title.startsWith('OOMI')));
+    for (const project of data.projects) {
+        for (const translation of Object.values(project.translations)) {
+            assert.ok(!('sections' in translation));
+            assert.ok(translation.role);
+            assert.ok(translation.contributions.length > 0);
+        }
+        for (const group of project.gallery) {
+            for (const image of group.images) {
+                for (const path of [image.src, image.thumbnail]) {
+                    assert.ok(
+                        readFileSync(new URL(`../public${path}`, import.meta.url)).length > 0,
+                    );
+                }
+                for (const locale of ['ru', 'en']) {
+                    assert.ok(image.translations[locale].alt);
+                    assert.ok(image.translations[locale].caption);
+                }
+            }
+        }
+    }
+});
+
+test('invalid media IDs, paths, dimensions and captions fail with actionable paths', () => {
+    for (const [field, value] of [
+        ['src', '/images/projects/../private.webp'],
+        ['thumbnail', 'https://example.com/image.webp'],
+        ['width', 0],
+        ['height', 1.5],
+        ['id', source.projects[0].gallery[0].id],
+        ['translations', { ru: { alt: '', caption: 'Caption' } }],
+    ]) {
+        const data = structuredClone(source);
+        data.projects[0].gallery[0].images[0][field] = value;
+        assert.throws(
+            () => parseContent(data),
+            (error) => error.message.includes(`projects.0.gallery.0.images.0.${field}`),
+        );
+    }
+});
+
+test('next case cycles only through published localized records and hides for zero or one', () => {
+    const data = structuredClone(source);
+    delete data.projects[1].translations.en;
+    let server = lookups(parseContent(data));
+    assert.equal(server.getNextProject('en', 'onetouch').project.slug, 'immergas');
+    assert.equal(server.getNextProject('ru', 'aventin').project.slug, 'onetouch');
+    assert.equal(server.getNextProject('en', 'missing'), undefined);
+    data.projects = data.projects.slice(0, 1);
+    data.featuredSlugs = [];
+    data.experience = [];
+    server = lookups(parseContent(data));
+    assert.equal(server.getNextProject('ru', 'onetouch'), undefined);
+    data.projects = [];
+    assert.equal(lookups(parseContent(data)).getNextProject('ru', 'onetouch'), undefined);
+});
+
 test('URL categories are bounded and unknown or repeated values select all projects', () => {
     assert.equal(parseProjectCategory('commerce'), 'commerce');
     assert.equal(parseProjectCategory('service'), 'service');
