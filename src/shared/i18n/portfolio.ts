@@ -63,6 +63,20 @@ const ru = {
     back: 'На главную',
     backCatalogue: 'Все проекты',
     unavailable: 'Материалы ещё не опубликованы.',
+    overview: 'О проекте',
+    role: 'Моя роль',
+    contribution: 'Личный вклад',
+    engineering: 'Инженерная задача',
+    context: 'Контекст',
+    approach: 'Мои действия',
+    outcome: 'Итог',
+    gallery: 'Галерея',
+    galleryEyebrow: 'ПРОДУКТ В ДЕЙСТВИИ',
+    galleryTitle: 'Ближе к продукту.',
+    technology: 'Технологии',
+    platforms: 'Платформы',
+    nextProject: 'Следующий проект',
+    next: 'Далее',
 };
 
 type PortfolioDictionary = Readonly<Record<keyof typeof ru, string>>;
@@ -128,6 +142,20 @@ const en: PortfolioDictionary = {
     back: 'Home',
     backCatalogue: 'All projects',
     unavailable: 'Content has not been published yet.',
+    overview: 'Overview',
+    role: 'My role',
+    contribution: 'Contribution',
+    engineering: 'Engineering focus',
+    context: 'Context',
+    approach: 'My approach',
+    outcome: 'Outcome',
+    gallery: 'Gallery',
+    galleryEyebrow: 'PRODUCT IN ACTION',
+    galleryTitle: 'A closer look.',
+    technology: 'Technology',
+    platforms: 'Platforms',
+    nextProject: 'Next project',
+    next: 'Next',
 };
 
 export function getPortfolioDictionary(locale: Locale): PortfolioDictionary {

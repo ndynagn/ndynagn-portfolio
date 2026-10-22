@@ -41,6 +41,16 @@ export function getProject(locale: Locale, slug: string): LocalizedProject | und
     return getProjects(locale).find(({ project }) => project.slug === slug);
 }
 
+/** Cycle through published translations in catalogue order, never linking a case to itself. */
+export function getNextProject(locale: Locale, slug: string): LocalizedProject | undefined {
+    const available = getProjects(locale);
+    const index = available.findIndex(({ project }) => project.slug === slug);
+
+    return index < 0 || available.length < 2
+        ? undefined
+        : available[(index + 1) % available.length];
+}
+
 export function getProjectAlternatives(slug: string): Readonly<Partial<Record<Locale, string>>> {
     return Object.fromEntries(
         locales

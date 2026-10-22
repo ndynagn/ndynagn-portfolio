@@ -50,9 +50,30 @@ export interface ProjectTranslation {
     readonly published: boolean;
     readonly title: string;
     readonly summary: string;
-    readonly sections: readonly {
-        readonly heading: string;
-        readonly paragraphs: readonly string[];
+    readonly tagline?: string;
+    readonly periodLabel?: string;
+    readonly role?: string;
+    readonly contributions: readonly string[];
+    readonly engineering?: {
+        readonly title: string;
+        readonly context: string;
+        readonly approach: string;
+        readonly outcome: string;
+    };
+}
+
+export interface ProjectGalleryGroup {
+    readonly id: string;
+    readonly translations: Readonly<Partial<Record<Locale, { readonly title: string }>>>;
+    readonly images: readonly {
+        readonly id: string;
+        readonly src: string;
+        readonly thumbnail: string;
+        readonly width: number;
+        readonly height: number;
+        readonly translations: Readonly<
+            Partial<Record<Locale, { readonly alt: string; readonly caption: string }>>
+        >;
     }[];
 }
 
@@ -77,6 +98,7 @@ export interface Project {
     readonly labels: Readonly<Record<Locale, string>>;
     readonly websiteUrl?: string;
     readonly sourceUrl?: string;
+    readonly gallery: readonly ProjectGalleryGroup[];
     readonly translations: Readonly<Partial<Record<Locale, ProjectTranslation>>>;
 }
 
