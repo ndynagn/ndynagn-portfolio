@@ -21,7 +21,7 @@ function events(extra = {}) {
 
 // Execute the real persistent adapter and scrolling/scene operations. Only the
 // browser, clock, router and hook scheduler are replaced, not lifecycle behavior.
-function environment({ reduced = false } = {}) {
+function environment({ reduced = false, routeError = false } = {}) {
     let now = 0;
     let position = 0;
     let nextId = 0;
@@ -180,6 +180,9 @@ function environment({ reduced = false } = {}) {
     react.useLayoutEffect = react.useEffect;
     const router = {
         push(href) {
+            if (routeError) {
+                throw new Error('Route request failed');
+            }
             navigations.push(href);
             location.href = new URL(href, location).href;
             position = 0;
@@ -257,6 +260,7 @@ function environment({ reduced = false } = {}) {
         },
         frames: () => frames.size,
         focusCount: () => focusCount,
+        cursorResetActive: lock.isCursorResetActive,
         assertUnlocked() {
             const release = lock.acquireTransition();
             assert.ok(release);
@@ -269,6 +273,7 @@ function environment({ reduced = false } = {}) {
 test('pending route suppresses anchor hash/focus/scroll through cover and reveal', async () => {
     const env = environment();
     env.click('/ru/projects', { route: true });
+    assert.equal(env.cursorResetActive(), true);
     await env.advance(100);
     assert.equal(env.click('#about').defaultPrevented, true);
     assert.equal(env.focusCount(), 0);
@@ -280,6 +285,7 @@ test('pending route suppresses anchor hash/focus/scroll through cover and reveal
     assert.deepEqual(env.writes, []);
     await env.advance(1250);
     env.assertUnlocked();
+    assert.equal(env.cursorResetActive(), false);
     env.click('#contact');
     assert.equal(env.focusCount(), 1);
     assert.deepEqual(env.hashes, ['#contact']);
@@ -316,16 +322,28 @@ test('history cancellation and unmount release route locks and frames', async ()
     for (const cancel of ['history', 'unmount']) {
         const env = environment();
         env.click('/ru/projects', { route: true });
+        assert.equal(env.cursorResetActive(), true);
         if (cancel === 'history') {
             env.history();
             await env.flush();
         } else await env.dispose();
         env.assertUnlocked();
+        assert.equal(env.cursorResetActive(), false);
         await env.advance(2000);
         assert.deepEqual(env.navigations, []);
         assert.equal(env.frames(), 0);
         await env.dispose();
     }
+});
+
+test('failed route replacement releases cursor reset and the transition lock', async () => {
+    const env = environment({ routeError: true });
+    env.click('/ru/projects', { route: true });
+    assert.equal(env.cursorResetActive(), true);
+    await env.advance(600);
+    assert.equal(env.cursorResetActive(), false);
+    env.assertUnlocked();
+    await env.dispose();
 });
 
 test('native exclusions remain untouched during a route effect', async () => {

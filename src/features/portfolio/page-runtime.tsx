@@ -202,7 +202,7 @@ export function PageRuntime(): JSX.Element | null {
             if (reduced.matches || document.hidden) {
                 return;
             }
-            const release = acquireTransition();
+            const release = acquireTransition({ resetCursor: true });
             if (!release) {
                 return;
             }

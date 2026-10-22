@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import '../globals.css';
 
 import { YandexMetrica } from '@/shared/analytics/yandex-metrica';
-import { PageRuntime } from '@/features/portfolio/client';
+import { PageRuntime, PortfolioCursor } from '@/features/portfolio/client';
 import { getDictionary } from '@/shared/i18n/dictionaries';
 import { isLocale, locales, type Locale } from '@/shared/i18n/locales';
 import { themeBootstrap } from '@/shared/theme/preference';
@@ -47,16 +47,18 @@ export default async function LocaleLayout({
             </head>
             <body className="min-h-dvh bg-background font-sans text-foreground">
                 <ThemeObserver />
-                <a
-                    href="#main"
-                    className="sr-only rounded-md bg-background p-3 focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:outline-2 focus:outline-ring"
-                >
-                    {dictionary.skipToContent}
-                </a>
-                {children}
-                <Suspense fallback={null}>
-                    <PageRuntime />
-                </Suspense>
+                <PortfolioCursor>
+                    <a
+                        href="#main"
+                        className="sr-only rounded-md bg-background p-3 focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:outline-2 focus:outline-ring"
+                    >
+                        {dictionary.skipToContent}
+                    </a>
+                    {children}
+                    <Suspense fallback={null}>
+                        <PageRuntime />
+                    </Suspense>
+                </PortfolioCursor>
                 <Suspense fallback={null}>
                     <YandexMetrica />
                 </Suspense>

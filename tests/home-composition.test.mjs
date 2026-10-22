@@ -74,7 +74,6 @@ function render(data, locale) {
     });
     const shell = load('features/portfolio/page-shell.tsx', {
         ...common,
-        '@/shared/animation/cursor-boundary': { CursorBoundary: leaf },
         '@/shared/theme/theme-toggle': { ThemeToggle: leaf },
         '@/shared/ui/language-links': { LanguageLinks: leaf },
         './page-header': {

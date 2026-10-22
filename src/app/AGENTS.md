@@ -11,6 +11,9 @@
   for correct native GET filtering without JS. Home and case prerendering remains.
   Its canonical excludes filter queries; sitemap lists only base locale catalogues
   with published projects. PageRuntime is mounted once under locale layout Suspense.
+  PortfolioCursor wraps public content at this persistent layout level so route
+  commits preserve the decorative dot and native-cursor suppression. Its boundary
+  covers at least the viewport, including empty space beneath short case pages.
 - Cache Components and Partial Prefetching are deliberately disabled: Next.js 16.4
   does not support `dynamicParams = false` with Cache Components, and streaming a
   missing case produced an HTTP 200 during acceptance. Do not re-enable them without

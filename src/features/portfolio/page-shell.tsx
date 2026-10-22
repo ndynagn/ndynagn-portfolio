@@ -1,6 +1,5 @@
 import type { JSX, ReactNode } from 'react';
 
-import { CursorBoundary } from '@/shared/animation/cursor-boundary';
 import { getPortfolioDictionary } from '@/shared/i18n/portfolio';
 import { cataloguePath, homePath, type Locale } from '@/shared/i18n/locales';
 import { ThemeToggle } from '@/shared/theme/theme-toggle';
@@ -42,27 +41,25 @@ export function PageShell({
             : homePath(target);
 
     return (
-        <CursorBoundary>
-            <div className="min-h-dvh font-design leading-normal text-foreground subpixel-antialiased">
-                <PageHeader
-                    links={links}
-                    label={copy.navigation}
-                    menuLabel={copy.menu}
-                    homeHref={homePath(locale)}
-                    backLabel={catalogue ? copy.back : undefined}
-                    controls={
-                        <>
-                            <LanguageLinks
-                                locale={locale}
-                                hrefs={{ ru: localeHref('ru'), en: localeHref('en') }}
-                                label={copy.language}
-                            />
-                            <ThemeToggle lightLabel={copy.light} darkLabel={copy.dark} />
-                        </>
-                    }
-                />
-                {children}
-            </div>
-        </CursorBoundary>
+        <div className="min-h-dvh font-design leading-normal text-foreground subpixel-antialiased">
+            <PageHeader
+                links={links}
+                label={copy.navigation}
+                menuLabel={copy.menu}
+                homeHref={homePath(locale)}
+                backLabel={catalogue ? copy.back : undefined}
+                controls={
+                    <>
+                        <LanguageLinks
+                            locale={locale}
+                            hrefs={{ ru: localeHref('ru'), en: localeHref('en') }}
+                            label={copy.language}
+                        />
+                        <ThemeToggle lightLabel={copy.light} darkLabel={copy.dark} />
+                    </>
+                }
+            />
+            {children}
+        </div>
     );
 }
