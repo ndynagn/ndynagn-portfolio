@@ -1,5 +1,6 @@
 import { Suspense, type JSX } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 // Register the global layer order before any component CSS Module is evaluated.
@@ -14,6 +15,10 @@ import { ThemeObserver } from '@/shared/theme/theme-observer';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
+
+export const metadata: Metadata = {
+    icons: { icon: { url: '/favicon.svg', type: 'image/svg+xml' } },
+};
 
 export const dynamicParams = false;
 

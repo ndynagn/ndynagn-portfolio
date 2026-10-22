@@ -27,12 +27,23 @@ empty catalogue. Cache Components and Partial Prefetching are disabled because
 Next.js 16.4 does not support `dynamicParams = false` with Cache Components and
 streaming missing cases returned HTTP 200 in verification. React Compiler remains enabled.
 
+`experimental.globalNotFound` is deliberately enabled for the top-level locale
+layout. The standalone global 404 document has Russian as its default language,
+an explicitly marked English block and native links to both home pages. It reuses
+theme initialization and styles, without portfolio route effects or analytics.
+Both this fallback and normal pages declare the supplied `/favicon.svg` through
+Next.js metadata. The experimental-mode banner is expected in Next.js output.
+Production requests to the development-only UI kit are rewritten internally to
+Next.js's global 404 entry before route rendering; their URL and HTTP 404 remain.
+
 ```bash
 pnpm format:check
 pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
+node scripts/check-built-glass.mjs
+node scripts/check-built-pages.mjs
 pnpm start
 ```
 

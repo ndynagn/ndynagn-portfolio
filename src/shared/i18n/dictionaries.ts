@@ -12,6 +12,7 @@ interface Dictionary {
     readonly languageNavigation: string;
     readonly skipToContent: string;
     readonly backToHome: string;
+    readonly pageNotFound: string;
     readonly experience: string;
     readonly professionalProjects: string;
     readonly petProjects: string;
@@ -32,6 +33,7 @@ const dictionaries: Readonly<Record<Locale, Dictionary>> = {
         languageNavigation: 'Язык сайта',
         skipToContent: 'Перейти к содержимому',
         backToHome: 'На главную',
+        pageNotFound: 'Страница не найдена.',
         experience: 'Опыт',
         professionalProjects: 'Проекты',
         petProjects: 'Пет-проекты',
@@ -50,6 +52,7 @@ const dictionaries: Readonly<Record<Locale, Dictionary>> = {
         languageNavigation: 'Site language',
         skipToContent: 'Skip to content',
         backToHome: 'Back to home',
+        pageNotFound: 'Page not found.',
         experience: 'Experience',
         professionalProjects: 'Projects',
         petProjects: 'Pet projects',
