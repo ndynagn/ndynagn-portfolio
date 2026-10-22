@@ -22,14 +22,14 @@ export function LanguageLinks({ locale, hrefs, label }: LanguageLinksProps): JSX
             {locales.map((target, index) => (
                 <span key={target} className="contents">
                     {index > 0 && (
-                        <span aria-hidden="true" className="text-muted-foreground opacity-45">
+                        <span aria-hidden="true" className="text-(--decorative-muted) opacity-45">
                             /
                         </span>
                     )}
                     <span
                         lang={target}
                         data-current={target === locale || undefined}
-                        className="text-muted-foreground data-current:text-foreground"
+                        className="text-(--decorative-muted) data-current:text-foreground"
                     >
                         {target.toUpperCase()}
                     </span>

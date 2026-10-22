@@ -12,6 +12,11 @@
   locale, including spacing and padding. Preserve one Tab stop, target hrefLang,
   language-specific text spans and visual current-locale emphasis; the accessible
   name identifies the destination. Consumers own translation availability and hrefs.
+- The owner-approved source palette is an exception to the text contrast policy
+  for LanguageLinks only: inactive locale/divider use decorative-muted (light
+  #92928a, dark #82847b), accepting about 2.9:1 nominal light contrast. Keep selected
+  foreground, native focus and forced colors. Revisit on a selector redesign or
+  owner request for accessible replacement colors; never relax other muted text.
 - `components.json` maps UI and the class-merging helper here. Generate primitives
   with the pinned `pnpm exec shadcn add <component>`, then review imports and format.
 - Add primitives for actual consumers. Import components directly; avoid a global

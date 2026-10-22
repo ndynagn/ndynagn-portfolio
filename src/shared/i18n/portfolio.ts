@@ -74,7 +74,7 @@ const ru = {
     outcome: 'Итог',
     gallery: 'Галерея',
     galleryEyebrow: 'ПРОДУКТ В ДЕЙСТВИИ',
-    galleryTitle: 'Ближе к продукту.',
+    galleryTitle: 'Ближе к интерфейсу.',
     technology: 'Технологии',
     platforms: 'Платформы',
     nextProject: 'Следующий проект',

@@ -45,7 +45,7 @@ function DetailSection({
             )}
             data-case-section
         >
-            <h2 className="text-[0.5625rem] leading-normal font-semibold tracking-[0.144em] uppercase md:pt-1.75">
+            <h2 className="text-[0.5rem] leading-[1.6] font-semibold tracking-[0.125em] uppercase md:pt-1.75 md:text-[0.625rem] md:tracking-[0.13em]">
                 {title}
             </h2>
             <div className="min-w-0">{children}</div>
@@ -157,12 +157,14 @@ export function ProjectDetail({ locale, record }: ProjectDetailProps): JSX.Eleme
                                 'mt-12.5 border-t pt-7.5 md:mt-22.5 md:pt-11.25',
                             )}
                         >
-                            <p className="text-[0.5625rem] font-semibold tracking-[0.144em]">
-                                {copy.galleryEyebrow}
-                            </p>
+                            <div className="text-base leading-normal">
+                                <span className="text-[0.5rem] leading-[1.6] font-semibold tracking-[0.125em] md:text-[0.625rem] md:tracking-[0.13em]">
+                                    {copy.galleryEyebrow}
+                                </span>
+                            </div>
                             <h2
                                 id="gallery-title"
-                                className="mt-4 mb-6.25 text-[1.875rem] leading-normal md:mb-8.75 md:text-[clamp(1.875rem,3.5vw,3.25rem)]"
+                                className="mt-2.5 mb-6.25 text-[1.875rem] leading-[1.22] font-medium tracking-[-0.055em] md:mt-4 md:mb-8.75 md:text-[clamp(1.875rem,3.5vw,3.25rem)]"
                             >
                                 {copy.galleryTitle}
                             </h2>

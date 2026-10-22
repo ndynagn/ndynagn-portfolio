@@ -106,9 +106,14 @@ Existing surface blur 24px and control blur 15px remain unchanged. Navigation ow
 its archive light border (foreground 22%) and three light shadows (foreground 8%/5%,
 white inset 90%). Dark desktop retains the surface recipe; dark mobile has the
 0 15px 35px #0000000d shadow. Local colors use the existing theme-light-weight
-channel, with system colors in forced colors. Readable muted ink replaces decorative
-ink on meaningful inactive language links. Live source blur compilation differences
-do not replace the archive's native blur recipe.
+channel, with system colors in forced colors. By explicit owner choice, LanguageLinks
+preserves the source decorative ink for the inactive locale and divider: light
+#92928a and dark #82847b. This component alone accepts the source light nominal text
+contrast of about 2.9:1 against the page background to preserve selected/inactive
+differentiation. Foreground selection, native focus and forced-color behavior remain;
+other meaningful muted text keeps its readable ink. Revisit this exception if the
+owner requests accessible replacement colors or changes the selector design. Live
+source blur compilation differences do not replace the archive's native blur recipe.
 
 MeasuredTrack adds optional className/indicatorTone (muted by default) without
 changing measurement or 420ms selection timing. Foreground native active links have
