@@ -3,6 +3,13 @@
 - Use the installed Next.js documentation for route, caching and metadata APIs.
 - The root layout lives under `[locale]` so server HTML has the correct language.
   `/` redirects to `/ru`; unsupported locales and missing translations return 404.
+- The accepted experimental `globalNotFound` flag gives unmatched routes a complete
+  document despite the dynamic locale root. Its bilingual fallback uses `lang=ru`
+  and an English `lang=en` block with native home links. It owns theme bootstrap,
+  observation, noindex/nofollow and the existing SVG favicon independently of the
+  locale layout; never mount route effects, cursor or analytics in this fallback.
+- Locale metadata and the global fallback declare `/favicon.svg` through Metadata
+  API. Keep its supplied bytes unchanged and preserve page-owned titles.
 - Routes compose feature entry points. Keep content records and analytics mechanics
   outside route files. Metadata and rendered content resolve the same project.
 - Prerender supported locales and published projects with `generateStaticParams`
@@ -23,7 +30,9 @@
 - Global CSS owns Tailwind imports, semantic tokens and base styles, not feature UI.
 - Compose document theme initialization/observation once, including routes without
   controls. The design-system workbench is development-only and returns HTTP 404
-  in production; never add it to public navigation or the sitemap.
+  in production; never add it to public navigation or the sitemap. Production
+  rewrites its RU/EN URLs to the framework's global 404 entry before matching
+  files, avoiding the language-less error shell from a prerendered page rejection.
 - The locale root layout imports global CSS once, before component imports that
   register CSS Modules. Global CSS declares properties/theme/base/components/utilities
   precedence before its imports. Preserve that order in production output; route
