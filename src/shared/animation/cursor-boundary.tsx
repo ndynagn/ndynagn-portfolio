@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, type JSX, type ReactNode } from 'react';
 
+import { isCursorResetActive, subscribeCursorReset } from './transition-lock';
+
 import styles from './cursor-boundary.module.css';
 
 interface CursorBoundaryProps {
@@ -31,6 +33,7 @@ export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
         );
         let position: { readonly x: number; readonly y: number } | undefined;
         let frame: number | undefined;
+        let waitingForPointer = isCursorResetActive();
         const hide = () => {
             root.removeAttribute('data-cursor-active');
             node.removeAttribute('data-visible');
@@ -61,7 +64,10 @@ export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
                 return;
             }
 
-            const control = target.closest('a[href],button,summary,[data-cursor]');
+            const control =
+                waitingForPointer || isCursorResetActive()
+                    ? null
+                    : target.closest('a[href],button,summary,[data-cursor]');
             const page = control?.getAttribute('data-cursor') === 'page';
             const label = page ? (control?.getAttribute('data-cursor-label') ?? '') : '';
             const palette =
@@ -106,8 +112,20 @@ export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
                 return;
             }
             position = { x: event.clientX, y: event.clientY };
+            waitingForPointer = isCursorResetActive();
             schedule();
         };
+        const unsubscribeCursorReset = subscribeCursorReset(() => {
+            if (isCursorResetActive()) {
+                // Reset immediately at activation; only a later pointer move may reselect a target.
+                waitingForPointer = true;
+                node.dataset.mode = 'default';
+                labelNode.textContent = '';
+                node.style.removeProperty('--cursor-page-fill');
+                node.style.removeProperty('--cursor-page-ink');
+            }
+            schedule();
+        });
         const observer = new MutationObserver(schedule);
 
         observer.observe(root, {
@@ -125,6 +143,7 @@ export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
         media.addEventListener('change', leave);
 
         return () => {
+            unsubscribeCursorReset();
             observer.disconnect();
             root.removeEventListener('pointermove', move);
             root.removeEventListener('pointerleave', leave);

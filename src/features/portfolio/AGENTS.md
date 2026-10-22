@@ -40,8 +40,10 @@
   credit or architectural caption. Architecture remains available to kit demos.
 - Public route links/cards explicitly carry the page cursor and a localized label;
   service controls (including language changes) retain the small translucent cursor.
-  Text cases also own a CursorBoundary. Navigation derives its page cursor from
-  animateRoute, with cursorLabel or the return-link text as its caption.
+  PortfolioCursor in the locale layout owns one persistent CursorBoundary across
+  home/catalogue/case commits; page shells must not remount it. The technical
+  design-system route retains its independent boundary. Navigation derives its page
+  cursor from animateRoute, with cursorLabel or the return-link text as its caption.
 - anchor-scroll.ts enhances only activated same-document anchors: 600–1200ms cubic
   easing, computed scroll-margin and document clamping. PageRuntime owns hash/focus
   and replacement/history/route/unmount aborts; the operation owns one frame and

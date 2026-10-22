@@ -37,5 +37,9 @@
   Pointer activation starts at the click; keyboard activation uses the control center.
   Clamp the stored origin into the current viewport before resizing its diagonal cover.
 - CursorBoundary uses explicit target attributes, one pending frame and no polling.
+  Public route effects opt into transition-lock's cursor reset. Activation clears
+  the hover label/palette and shrinks to the default dot; tracking continues while
+  target selection resumes only on pointer movement after release. Other lock users
+  retain their default behavior. This visual reset never blurs keyboard focus.
   Retain the native cursor for text/disabled targets and remove suppression on
   leave, blur, hidden documents, preference changes and cleanup.

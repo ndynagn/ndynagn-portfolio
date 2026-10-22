@@ -1,4 +1,8 @@
 @layer components {
+    .boundary {
+        min-height: 100dvh;
+    }
+
     .cursor {
         position: fixed;
         z-index: var(--layer-cursor);
