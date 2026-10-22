@@ -3,8 +3,9 @@
 A bilingual personal portfolio built with Next.js App Router, React Compiler,
 strict TypeScript, Tailwind CSS v4, shadcn/ui (new-york/Radix) and Motion.
 The public home and project catalogue compose the migrated UI kit in Russian and
-English. Eight published projects link to server-rendered text case studies;
-the full visual case-page and gallery composition remains a later phase.
+English. Eight published projects have complete server-rendered visual case studies:
+palette covers, facts, contributions, engineering stories, localized galleries,
+technology, public links and next-project navigation.
 
 ## Getting started
 
@@ -109,6 +110,32 @@ project screenshots and their OOMI/Potlucky provenance remain unchanged.
 
 No CMS, database, authentication, network data client or global-state library is installed.
 Zod validates repository JSON; no browser form or backend transport is introduced.
+
+## Preparing a release
+
+The site is prepared locally; hosting, domain configuration and deployment are
+separate actions. Before publishing:
+
+1. Review both translations and publication flags. Keep screenshots with their
+   actual product; omit unavailable materials instead of adding placeholders.
+2. Set `SITE_URL` to the final public origin before building. Without it, pages
+   stay noindex and the sitemap is empty. Canonical, hreflang and Open Graph URLs
+   are derived from published content. Never use a preview origin for publication.
+3. Set the optional public analytics counter only when it is intended to run.
+   An absent counter keeps analytics disabled; no credentials belong in this file.
+4. Run the verification commands above on the final source revision. The HTTP
+   check compares every published locale/slug with the prerender manifest and
+   verifies case HTML, original-image links, next-case destinations and real 404s.
+   The glass check includes every prerendered case route.
+5. Inspect the production preview in both locales/themes on mobile and desktop,
+   including keyboard navigation, gallery failures and reduced motion. Keep
+   temporary content scenarios in a separate checkout.
+
+Known compatibility limit: Safari can show the system pointer after a page
+transition. This issue is tracked separately; it is not resolved by case-page
+completion. Physical-device testing and a full assistive-technology audit remain
+separate from desktop browser emulation. There is currently no configured GitHub
+CI; local checks must not be presented as remote checks or a deployed release.
 
 ## Selected integration standards
 
@@ -226,9 +253,8 @@ technology tags, contextual status dots, current-workplace labels and FlutterBad
 These are source fixtures, not published profile facts. FlutterBadge reuses the
 existing badge material; the photo demo owns placement, failure and opaque mode.
 Its two-line caption is fully opaque for readable fallback contrast, and rem-based
-circle dimensions support text enlargement. Other UI-kit components and page
-composition remain later stages. No dependency
-was added, and the CSS loader remains unchanged.
+circle dimensions support text enlargement. Public pages compose these primitives
+with validated content; technical workbench examples remain independent.
 
 The navigation increment is at `http://localhost:3000/ru/design-system#navigation`
 (also EN). It demonstrates home/catalogue/case link sets in independent local

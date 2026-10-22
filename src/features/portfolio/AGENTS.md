@@ -2,12 +2,20 @@
 
 - Server entry points compose local content with shared primitives. Keep home and
   project details server-rendered; interactive effects are optional enhancements.
-- The current home is explicitly a technical placeholder until a published profile
-  exists. Do not present technical configuration as the eventual portfolio design.
+- A missing published profile uses the technical home fallback. Never replace
+  unavailable profile facts with fictional content.
 - Hide empty sections; never replace missing records with fictional case studies.
 - Language links preserve the case slug when that translation is published, otherwise
   link to the target language home. Use content-owned publication lookups.
 - Details render safe text/paragraphs, not executable MDX or unsanitized HTML.
+- Cases compose ProjectCover, facts, contributions, optional engineering story,
+  localized ProjectGallery, technologies, existing public links, next case and
+  ContactSection. Their PageShell retains published language alternatives and
+  links back to the catalogue. Hide empty sections and their navigation targets.
+- Case gallery display mapping omits unavailable group/image translations. Pass
+  only localized display groups to the client gallery, never the full catalogue.
+  Next-case links use the next published locale record in catalogue order, wrap
+  cyclically, hide with a single record and inherit the destination palette.
 - Portfolio composition owns section rhythm and placement of shared primitives;
   keep feature-specific effects beside their component rather than in global CSS.
 - Public home/catalogue compose the kit with approved JSON records, never workbench

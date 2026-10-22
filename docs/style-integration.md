@@ -953,5 +953,21 @@ CV (updated 20 October 2026) supersedes the archive PDF at its existing URL and 
 an updated inventory hash. Middle positioning, SMD's October 2026 end date and
 expected 2028 graduation intentionally supersede outdated source copy. The source
 photo, fonts, project images and provenance retain their original bytes. OOMI
-screenshots are not relabeled as Potlucky. Full visual case/gallery composition
-remains deferred; published cards open the existing text case routes.
+screenshots are not relabeled as Potlucky.
+
+## Public case composition
+
+The selector inventory above records the original migration classification. Case
+composition is now implemented in `portfolio/project-detail.tsx`: ProjectCover,
+overview/facts, contributions, engineering story, ProjectGallery, technology tags,
+existing public links, next-project link and ContactSection. PageShell/PageHeader
+own published language destinations, catalogue return and section navigation.
+The presentation uses Tailwind utilities and existing component Modules; it does
+not introduce another global stylesheet, cursor owner or transition runtime.
+
+Desktop case gutters are 5%, top/bottom padding 170/100px, detail section margin
+65px and column gap 60px with a 1:1.8 ratio. Below 768px, gutters are 6%, padding
+127/60px and detail margin/gap 38/22px. Rem-based values preserve text enlargement;
+section anchors use the application's accessible header clearance. Cover geometry
+and gallery rails/modal remain owned by their existing components. Source periods
+claiming ongoing employment are not copied without confirmed per-project dates.

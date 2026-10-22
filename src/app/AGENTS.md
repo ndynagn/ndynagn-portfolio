@@ -14,6 +14,9 @@
   outside route files. Metadata and rendered content resolve the same project.
 - Prerender supported locales and published projects with `generateStaticParams`
   and `dynamicParams = false`. Unknown records must return an actual HTTP 404.
+- Case static params enumerate complete published locale/slug pairs. Returning
+  only child slugs per parent locale lost valid RU cases when EN was empty in
+  Next.js 16.4.1. Verify the complete build manifest and an asymmetric fixture.
 - The public projects index intentionally renders per request from searchParams
   for correct native GET filtering without JS. Home and case prerendering remains.
   Its canonical excludes filter queries; sitemap lists only base locale catalogues

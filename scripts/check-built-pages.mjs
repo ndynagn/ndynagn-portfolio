@@ -11,17 +11,17 @@ const expectedCases = content.projects.flatMap((project) =>
         .filter((locale) => project.translations[locale]?.published)
         .map((locale) => `/${locale}/projects/${project.slug}`),
 );
-assert.deepEqual(
-    Object.keys(manifest.routes)
-        .filter((path) => /^\/(ru|en)\/projects\/[^/]+$/.test(path))
-        .sort(),
-    expectedCases.sort(),
-    'Every published translation must be prerendered, including when its sibling locale is empty.',
-);
 const app = next({ dev: false, hostname: '127.0.0.1' });
 const server = createServer(app.getRequestHandler());
 
 try {
+    assert.deepEqual(
+        Object.keys(manifest.routes)
+            .filter((path) => /^\/(ru|en)\/projects\/[^/]+$/.test(path))
+            .sort(),
+        expectedCases.sort(),
+        'Every published translation must be prerendered, including when its sibling locale is empty.',
+    );
     await app.prepare();
     await new Promise((resolve, reject) => {
         server.once('error', reject);
