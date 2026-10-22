@@ -46,6 +46,8 @@
   deliberate overlap. Errors retain geometry and a readable opaque badge.
 - The home uses the supplied portrait with localized alt text and no stock-photo
   credit or architectural caption. Architecture remains available to kit demos.
+- Route overlay titles use data-transition-label with the localized destination
+  name, independently of control text, accessible names and cursor captions.
 - Public route links/cards explicitly carry the page cursor and a localized label;
   service controls (including language changes) retain the small translucent cursor.
   PortfolioCursor in the locale layout owns one persistent CursorBoundary across

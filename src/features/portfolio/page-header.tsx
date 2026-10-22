@@ -10,6 +10,7 @@ interface PageHeaderProps {
     readonly menuLabel: string;
     readonly homeHref: string;
     readonly backLabel?: string;
+    readonly backTransitionLabel?: string;
     readonly controls: ReactNode;
 }
 
@@ -20,6 +21,7 @@ export function PageHeader({
     menuLabel,
     homeHref,
     backLabel,
+    backTransitionLabel,
     controls,
 }: PageHeaderProps): JSX.Element {
     const [position, setPosition] = useState({ progress: 0, active: links[0]?.key ?? '' });
@@ -91,7 +93,12 @@ export function PageHeader({
                     controls={controls}
                     backLink={
                         backLabel
-                            ? { label: backLabel, href: homeHref, animateRoute: true }
+                            ? {
+                                  label: backLabel,
+                                  href: homeHref,
+                                  animateRoute: true,
+                                  transitionLabel: backTransitionLabel,
+                              }
                             : undefined
                     }
                 />

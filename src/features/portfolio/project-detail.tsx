@@ -218,6 +218,7 @@ export function ProjectDetail({ locale, record }: ProjectDetailProps): JSX.Eleme
                             <Link
                                 href={projectPath(locale, next.project.slug)}
                                 data-next-project
+                                data-transition-label={next.translation.title}
                                 data-portfolio-route
                                 data-cursor="page"
                                 data-cursor-label={copy.next}

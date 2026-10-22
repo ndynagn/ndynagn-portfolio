@@ -76,6 +76,9 @@ export function HomeHero({ locale, profile, projectsAction }: HomeHeroProps): JS
                                 <a
                                     href={projectsAction.href}
                                     data-portfolio-route={projectsAction.animateRoute || undefined}
+                                    data-transition-label={
+                                        projectsAction.animateRoute ? copy.projects : undefined
+                                    }
                                     data-cursor={projectsAction.animateRoute ? 'page' : undefined}
                                     data-cursor-label={
                                         projectsAction.animateRoute ? copy.projects : undefined

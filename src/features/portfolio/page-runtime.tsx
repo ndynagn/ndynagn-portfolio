@@ -222,6 +222,7 @@ export function PageRuntime(): JSX.Element | null {
             const style = getComputedStyle(anchor.querySelector('[data-palette]') ?? anchor);
             const initial = {
                 label:
+                    anchor.dataset.transitionLabel ??
                     anchor.getAttribute('aria-label') ??
                     anchor.dataset.cursorLabel ??
                     anchor.textContent?.trim() ??
