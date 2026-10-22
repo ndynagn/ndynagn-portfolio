@@ -47,7 +47,11 @@ try {
         server.listen(0, '127.0.0.1', resolve);
     });
     const origin = `http://127.0.0.1:${server.address().port}`;
-    for (const path of ['/ru', '/en', '/ru/projects', '/en/projects']) {
+    const manifest = JSON.parse(readFileSync('.next/prerender-manifest.json', 'utf8'));
+    const cases = Object.keys(manifest.routes).filter((path) =>
+        /^\/(ru|en)\/projects\/[^/]+$/.test(path),
+    );
+    for (const path of ['/ru', '/en', '/ru/projects', '/en/projects', ...cases]) {
         const response = await fetch(`${origin}${path}`);
         assert.equal(response.status, 200, path);
         const html = await response.text();

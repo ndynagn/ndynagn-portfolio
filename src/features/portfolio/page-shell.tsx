@@ -1,5 +1,6 @@
 import type { JSX, ReactNode } from 'react';
 
+import { getProjectAlternatives } from '@/features/content/server';
 import { getPortfolioDictionary } from '@/shared/i18n/portfolio';
 import { cataloguePath, homePath, type Locale } from '@/shared/i18n/locales';
 import { ThemeToggle } from '@/shared/theme/theme-toggle';
@@ -18,6 +19,7 @@ interface PageShellProps {
     readonly catalogue?: boolean;
     readonly category?: string;
     readonly homeLinks?: readonly NavigationLink[];
+    readonly projectSlug?: string;
     readonly children: ReactNode;
 }
 
@@ -26,9 +28,11 @@ export function PageShell({
     catalogue = false,
     category = 'all',
     homeLinks = [],
+    projectSlug,
     children,
 }: PageShellProps): JSX.Element {
     const copy = getPortfolioDictionary(locale);
+    const alternatives = projectSlug ? getProjectAlternatives(projectSlug) : {};
     const links = catalogue
         ? [
               { key: 'projects', label: copy.projects, href: '#projects' },
@@ -36,9 +40,11 @@ export function PageShell({
           ]
         : homeLinks;
     const localeHref = (target: Locale) =>
-        catalogue
-            ? `${cataloguePath(target)}${category === 'all' ? '' : `?category=${category}`}`
-            : homePath(target);
+        projectSlug
+            ? (alternatives[target] ?? homePath(target))
+            : catalogue
+              ? `${cataloguePath(target)}${category === 'all' ? '' : `?category=${category}`}`
+              : homePath(target);
 
     return (
         <div className="min-h-dvh font-design leading-normal text-foreground subpixel-antialiased">
@@ -46,8 +52,8 @@ export function PageShell({
                 links={links}
                 label={copy.navigation}
                 menuLabel={copy.menu}
-                homeHref={homePath(locale)}
-                backLabel={catalogue ? copy.back : undefined}
+                homeHref={projectSlug ? cataloguePath(locale) : homePath(locale)}
+                backLabel={projectSlug ? copy.backCatalogue : catalogue ? copy.back : undefined}
                 controls={
                     <>
                         <LanguageLinks

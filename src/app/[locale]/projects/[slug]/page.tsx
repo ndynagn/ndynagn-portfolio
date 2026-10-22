@@ -4,23 +4,16 @@ import { notFound } from 'next/navigation';
 
 import { getProject, getProjectAlternatives, getProjects } from '@/features/content/server';
 import { ProjectDetail } from '@/features/portfolio/server';
-import { isLocale, projectPath } from '@/shared/i18n/locales';
+import { isLocale, locales, projectPath, type Locale } from '@/shared/i18n/locales';
 import { createPageMetadata } from '@/shared/seo/metadata';
 
 export const dynamicParams = false;
 
-interface ProjectStaticParamsInput {
-    readonly params: { readonly locale: string };
-}
-
-export function generateStaticParams({
-    params,
-}: ProjectStaticParamsInput): { readonly slug: string }[] {
-    if (!isLocale(params.locale)) {
-        return [];
-    }
-
-    return getProjects(params.locale).map(({ project }) => ({ slug: project.slug }));
+export function generateStaticParams(): { readonly locale: Locale; readonly slug: string }[] {
+    // Enumerate complete pairs: an empty sibling locale must not erase published cases.
+    return locales.flatMap((locale) =>
+        getProjects(locale).map(({ project }) => ({ locale, slug: project.slug })),
+    );
 }
 
 export async function generateMetadata({

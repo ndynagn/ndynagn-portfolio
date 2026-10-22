@@ -5,6 +5,19 @@ import next from 'next';
 
 // Exercise real production responses, including routes rejected before a locale layout renders.
 const manifest = JSON.parse(readFileSync('.next/prerender-manifest.json', 'utf8'));
+const content = JSON.parse(readFileSync('src/features/content/portfolio.json', 'utf8'));
+const expectedCases = content.projects.flatMap((project) =>
+    ['ru', 'en']
+        .filter((locale) => project.translations[locale]?.published)
+        .map((locale) => `/${locale}/projects/${project.slug}`),
+);
+assert.deepEqual(
+    Object.keys(manifest.routes)
+        .filter((path) => /^\/(ru|en)\/projects\/[^/]+$/.test(path))
+        .sort(),
+    expectedCases.sort(),
+    'Every published translation must be prerendered, including when its sibling locale is empty.',
+);
 const app = next({ dev: false, hostname: '127.0.0.1' });
 const server = createServer(app.getRequestHandler());
 
@@ -31,11 +44,11 @@ try {
             { path: `/${locale}/design-system`, status: 404, language: 'ru' },
             { path: `/${locale}/projects/not-existing-audit-case`, status: 404, language: 'ru' },
         );
-        const publishedCase = Object.keys(manifest.routes).find((path) =>
+        const publishedCases = Object.keys(manifest.routes).filter((path) =>
             new RegExp(`^/${locale}/projects/[^/]+$`).test(path),
         );
-        if (publishedCase) {
-            routes.push({ path: publishedCase, status: 200, language: locale });
+        for (const path of publishedCases) {
+            routes.push({ path, status: 200, language: locale });
         }
     }
 
@@ -60,6 +73,53 @@ try {
             assert.doesNotMatch(html, /data-portfolio-route|data-cursor-active|mc\.yandex\./, path);
         } else {
             assert.equal((html.match(/id="main"/g) ?? []).length, 1, path);
+            assert.equal((html.match(/<h1\b/g) ?? []).length, 1, path);
+            if (/^\/(ru|en)\/projects\/[^/]+$/.test(path)) {
+                const available = content.projects.filter(
+                    (project) => project.translations[language]?.published,
+                );
+                const index = available.findIndex((project) => path.endsWith(`/${project.slug}`));
+                assert.ok(index >= 0, path);
+                const project = available[index];
+                assert.match(html, /data-project-cover/, path);
+                assert.match(html, /id="project-overview"/, path);
+                assert.equal(
+                    html.includes('id="project-contribution"'),
+                    project.translations[language].contributions.length > 0,
+                    path,
+                );
+                const groups = project.gallery.filter(
+                    (group) =>
+                        group.translations[language] &&
+                        group.images.some((image) => image.translations[language]),
+                );
+                assert.equal(html.includes('id="project-gallery"'), groups.length > 0, path);
+                for (const group of groups) {
+                    for (const image of group.images.filter(
+                        (item) => item.translations[language],
+                    )) {
+                        assert.ok(
+                            links.length > 0 && html.includes(`href="${image.src}"`),
+                            `${path}: native original image link`,
+                        );
+                        assert.ok(
+                            html.includes(`src="${image.thumbnail}"`),
+                            `${path}: SSR thumbnail`,
+                        );
+                    }
+                }
+                assert.equal(html.includes('data-next-project'), available.length > 1, path);
+                if (available.length > 1) {
+                    const next = available[(index + 1) % available.length];
+                    const nextAnchor = (html.match(/<a\b[^>]*>/g) ?? []).find((tag) =>
+                        tag.includes('data-next-project'),
+                    );
+                    assert.ok(
+                        nextAnchor?.includes(`href="/${language}/projects/${next.slug}"`),
+                        path,
+                    );
+                }
+            }
         }
         console.log(`Verified ${status}, document language and favicon for ${path}.`);
     }
