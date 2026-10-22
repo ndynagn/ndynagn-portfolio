@@ -2,6 +2,10 @@
 
 - Render ready links, activeKey and normalized progress; never read routes, catalogue,
   publication policy or window scroll here. The embedding consumer owns them.
+- Navigation and return links opt into public route effects through animateRoute; the
+  primitive only emits the runtime marker and keeps its native href.
+- animateRoute also selects the large page cursor; its caption is cursorLabel or
+  the link label. Explicit cursorLabel still supports standalone kit demonstrations.
 - Preserve native anchors and a nonmodal details/summary mobile menu. JS only adds
   Escape/outside/link/desktop closing and focus restoration. No document scroll lock.
 - Keep separate desktop/mobile markup; hidden controls must not enter the Tab order.
@@ -19,6 +23,8 @@
   the mobile header readable. This pointer-transparent sibling sits behind return
   and menu controls; never wrap the dropdown in another backdrop-filter ancestor.
   Preserve the existing menu icons, disclosure behavior and rounded dropdown.
+- Mobile controls may wrap to a second line at enlarged text sizes; keep both
+  language navigation and theme controls inside the panel from 320px upward.
 - Private CSS variables coordinate compaction. A local scroller may supply
   --navigation-available-height; its documented fallback is the viewport.
 - Reduced motion resets progress to zero reactively. MeasuredTrack owns selection

@@ -3,9 +3,25 @@ import 'server-only';
 import { locales, projectPath, type Locale } from '@/shared/i18n/locales';
 
 import type { LocalizedProject, ProfileTranslation } from './models';
-import { experience, profile, projects, socialLinks } from './records';
+import {
+    experience,
+    profile,
+    projects,
+    socialLinks,
+    education,
+    courses,
+    skills,
+    featuredSlugs,
+} from './records';
 
-export { experience, socialLinks };
+export { experience, socialLinks, education, courses, skills };
+
+export function getFeaturedProjects(locale: Locale): readonly LocalizedProject[] {
+    const published = getProjects(locale);
+    return featuredSlugs.flatMap((slug) =>
+        published.filter(({ project }) => project.slug === slug),
+    );
+}
 
 export function getProfile(locale: Locale): ProfileTranslation | undefined {
     const translation = profile?.translations[locale];

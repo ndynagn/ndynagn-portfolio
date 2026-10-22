@@ -28,8 +28,12 @@
   independently of the root font size; reduced motion still removes the lift.
 - AnimatedItems accepts an optional className for consumer-owned grid geometry;
   omitted values preserve the original two/four-column defaults and all timings.
-- SceneTransition demonstrates 600/650 ms cover/reveal on technical scenes only;
-  never await it for routing or focus. Theme/scene effects share transition-lock.
+- SceneTransition remains a technical-only visual wrapper. The public portfolio
+  route adapter reuses runSceneSequence with an async replacement: the adapter owns
+  route commit, an 8s wait bound, abort settlement, routing and focus. The sequence
+  owns only 600/650ms cover/reveal timing and accepts sync or async replacement.
+  This explicit public-route consumer supersedes the technical-only restriction;
+  do not make technical demos responsible for history. Theme/scene share transition-lock.
   Pointer activation starts at the click; keyboard activation uses the control center.
   Clamp the stored origin into the current viewport before resizing its diagonal cover.
 - CursorBoundary uses explicit target attributes, one pending frame and no polling.

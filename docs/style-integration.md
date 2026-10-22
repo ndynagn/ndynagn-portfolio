@@ -18,7 +18,9 @@ No Vite configuration, hash-router, history writes, source instructions, depende
 versions or monolithic App.tsx are imported. The first UI-kit increment adds only
 buttons and links; subsequent increments add labels, navigation and project cards.
 Subsequent increments add filters, covers, content elements and the gallery below.
-Page composition remains a later stage. No manual dialog focus trap is copied.
+The public home/catalogue increment below supersedes their page-composition
+deferrals; full visual case composition remains a later stage. No manual dialog
+focus trap is copied.
 
 ### Buttons and links increment
 
@@ -315,7 +317,7 @@ does not overflow the viewport or clip labels to preserve a fixed panel height.
 | Eight project palettes                              | Portfolio-owned scoped PaletteSurface data                                               | Light/dark; source Potlucky accent override                         | No route or catalogue dependency                        | Source colors and readable foreground       | All palette samples                         | Adapted                                       |
 | Lift/radius/title/icon/thumbnail effects            | Isolated HoverDemo with a colocated Module                                               | Hover/focus, reduced motion                                         | Automatic text heights                                  | Static content                              | Keyboard and motion                         | Adapted as effects; cards/controls deferred   |
 | Smooth scroll / snap                                | Explicit local technical scroller                                                        | Normal/reduced motion                                               | Desktop snap from md; mobile free flow                  | Native scroll                               | Keyboard/wheel; document unaffected         | Adapted; gallery rail deferred                |
-| Public resources                                    | Byte/hash inventory in content feature, originals in public                              | Resource availability                                               | Original full-size/thumb pairs                          | No fabricated images                        | 88 files / all hashes                       | Transferred                                   |
+| Public resources                                    | Byte/hash inventory in content feature, originals in public                              | Resource availability                                               | Original full-size/thumb pairs                          | No fabricated images                        | 89 files / all hashes                       | Transferred                                   |
 | Buttons/links/chips/brand/navigation/menu           | Future UI-kit consumers; existing Button used now                                        | Focus/hover/active/disabled as applicable                           | Source measurements retained in inventory               | Native HTML                                 | Next stage                                  | Deferred to UI kit                            |
 | Cards/covers/timeline/education/contact/case layout | Future portfolio presentation                                                            | Content-dependent                                                   | Source grids and long-text adaptation                   | No fictional records                        | Later UI/page acceptance                    | Deferred to UI kit/pages                      |
 | Gallery/rail/lightbox/zoom/swipe/retry              | Future gallery with reviewed shadcn/Radix interaction                                    | Focus/Escape/restore/loading/error/recovery                         | Touch and local scroll contracts                        | Accessible images/links                     | Later gallery acceptance                    | Deferred to UI kit                            |
@@ -892,3 +894,64 @@ owners, states, fallback and verification; deferred selectors are not copied.
 | 506  | `html`                                                                                                     | Document/reset     | Adapted to existing base; unsafe globals excluded          |
 | 507  | `main > section`                                                                                           | Document/reset     | Adapted to existing base; unsafe globals excluded          |
 | 510  | `body, a, button`                                                                                          | UI/presentation    | Deferred; shared effect parameters demonstrated separately |
+
+## Public home and catalogue composition
+
+The public home now composes the migrated UI kit: HomeHero/HomePhoto, selected
+ProjectCards, about/toolkit, experience/education/courses and ContactSection/footer.
+The page shell reuses PortfolioNavigation, LanguageLinks, ThemeToggle and
+CursorBoundary. Document scrolling belongs to PageHeader; technical samples keep
+local scrollers. Source grids, section rhythm and typography retain the normalized
+768/1024/1536px breakpoints. Long text can grow instead of clipping. TextLink's
+optional start icon position reproduces the home scroll cue without changing its
+existing consumers.
+
+The catalogue at `/{locale}/projects` renders query-filtered HTML on the server.
+Its GET form uses all/commerce/service; App Router enhances navigation and history,
+AnimatedItems receives stable IDs and ready server card nodes. Public counters and
+featured ordering come from published localized JSON, not workbench fixtures.
+The source hash-router and manual history restoration are not imported.
+
+PageRuntime adapts the existing scene sequence to explicit page links/cards using
+the shared transition lock. The 600ms cover is followed by route dispatch; reveal
+waits for the pathname to commit, with an 8s bound. The overlay cannot retain a lock
+after cancellation. Reduced motion bypasses the effect on all input types; preference and
+visibility changes settle navigation immediately. Back/Forward cancels stale work.
+Native modified clicks, external links, downloads and no-JS navigation are preserved.
+Route palette colors are read from the card's existing palette boundary. The
+technical SceneTransition wrapper retains its own API and fixture behavior.
+The public circle follows the latest pointer position throughout cover, route
+arrival and reveal. One pending animation frame updates CSS geometry; phase changes
+retain the position and animation progress. Resize clamps the center and updates
+the viewport diagonal, and completion/cancellation removes tracking subscriptions.
+
+Public route links/cards carry the large labeled cursor; service actions, anchors,
+filters, theme and language use the small translucent cursor. Case pages have their
+own CursorBoundary. Native cursor/accessibility exclusions remain unchanged.
+Same-document anchors use a cancellable cubic ease-in-out scroll lasting
+min(1200, 600 + distance * 0.15) milliseconds, honoring scroll-margin and document
+bounds. Manual scrolling, Escape, resize, history, replacement anchors and routes
+stop it without a jump. Reduced motion settles the target immediately; native href,
+hash, focus and no-JS navigation remain available.
+
+The catalogue return link opts into the route effect through backLink.animateRoute.
+The hero's native #work CTA scrolls/focuses the selected-work section without a
+route effect, including without JavaScript. If no featured translation is available,
+both its CTA and the project navigation link instead open the localized catalogue
+with route effects; if no projects are published, both links are omitted. Localized
+work/education/course lists own experience visibility and its navigation link.
+Pending route effects suppress same-document anchor activation before hash/focus
+changes, and pathname commits cancel any old anchor frames. Global CSS is imported
+before component Modules and registers properties/theme/base/components/utilities
+in that order; the built-material check validates delivered stylesheet precedence.
+HomePhoto uses the owner's original
+JPEG portrait with CSS-only cropping/monochrome and localized alt text; stock-photo
+credit and architectural captions are absent. The architecture asset stays in the kit.
+
+Editorial facts are validated server-side from portfolio.json. The newly supplied
+CV (updated 20 October 2026) supersedes the archive PDF at its existing URL and has
+an updated inventory hash. Middle positioning, SMD's October 2026 end date and
+expected 2028 graduation intentionally supersede outdated source copy. The source
+photo, fonts, project images and provenance retain their original bytes. OOMI
+screenshots are not relabeled as Potlucky. Full visual case/gallery composition
+remains deferred; published cards open the existing text case routes.

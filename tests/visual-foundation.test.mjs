@@ -122,13 +122,13 @@ const options = () => ({
     signal: new AbortController().signal,
 });
 
-test('all supplied public resources retain original byte lengths and hashes', () => {
-    assert.equal(designAssets.length, 88);
+test('all supplied public resources match the approved inventory including the CV and portrait', () => {
+    assert.equal(designAssets.length, 89);
     assert.equal(
         designAssets.reduce((sum, file) => sum + file.bytes, 0),
-        6437875,
+        6657366,
     );
-    assert.equal(new Set(designAssets.map((file) => file.path)).size, 88);
+    assert.equal(new Set(designAssets.map((file) => file.path)).size, 89);
 
     for (const file of designAssets) {
         assert.match(file.path, /^\/[a-zA-Z0-9/_.-]+$/);
@@ -451,6 +451,59 @@ test('scene sequence preserves source timing, reduced mode and failure recovery'
         }, input),
     );
     assert.equal(phases.at(-1), 'idle');
+});
+
+test('route reveal waits for async replacement commit', async () => {
+    const { runSceneSequence } = load(
+        'shared/animation/scene-sequence.ts',
+        {},
+        {
+            setTimeout(callback) {
+                queueMicrotask(callback);
+                return 0;
+            },
+        },
+    );
+    let commit;
+    const phases = [];
+    const pending = runSceneSequence(
+        () =>
+            new Promise((resolve) => {
+                commit = resolve;
+            }),
+        {
+            signal: new AbortController().signal,
+            animated: true,
+            phase: (phase) => phases.push(phase),
+        },
+    );
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.deepEqual(phases, ['cover']);
+    commit();
+    await pending;
+    assert.deepEqual(phases, ['cover', 'reveal', 'idle']);
+});
+
+test('rejected route replacement clears the scene without revealing stale content', async () => {
+    const { runSceneSequence } = load(
+        'shared/animation/scene-sequence.ts',
+        {},
+        {
+            setTimeout(callback) {
+                queueMicrotask(callback);
+                return 0;
+            },
+        },
+    );
+    const phases = [];
+    await assert.rejects(
+        runSceneSequence(() => Promise.reject(Error('Route failed')), {
+            signal: new AbortController().signal,
+            animated: true,
+            phase: (phase) => phases.push(phase),
+        }),
+    );
+    assert.deepEqual(phases, ['cover', 'idle']);
 });
 
 test('installed optimizer retains standard and prefixed native glass in prefix-first order', () => {

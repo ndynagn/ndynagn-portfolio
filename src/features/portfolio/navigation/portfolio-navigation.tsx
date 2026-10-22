@@ -21,12 +21,16 @@ export interface NavigationLink {
     readonly key: string;
     readonly label: string;
     readonly href: string;
+    /** Opt into page effects for a route destination; fragment links remain native. */
+    readonly animateRoute?: boolean;
 }
 
 export interface NavigationBackLink {
     readonly label: string;
     readonly href: string;
     readonly cursorLabel?: string;
+    /** Opt into the public page runtime; workbench links remain native. */
+    readonly animateRoute?: boolean;
 }
 
 interface PortfolioNavigationProps {
@@ -199,9 +203,12 @@ export function PortfolioNavigation({
         backLink && (
             <a
                 href={backLink.href}
+                data-portfolio-route={backLink.animateRoute || undefined}
                 data-navigation-focus="back"
-                data-cursor={backLink.cursorLabel ? 'page' : undefined}
-                data-cursor-label={backLink.cursorLabel}
+                data-cursor={backLink.animateRoute || backLink.cursorLabel ? 'page' : undefined}
+                data-cursor-label={
+                    backLink.cursorLabel ?? (backLink.animateRoute ? backLink.label : undefined)
+                }
                 className={cn(
                     styles.link,
                     'inline-flex min-w-0 max-w-full items-center gap-2.25 rounded-[40px] font-design leading-normal font-medium wrap-anywhere transition-[color] duration-250 ease-[ease]',
@@ -221,6 +228,9 @@ export function PortfolioNavigation({
         <a
             key={link.key}
             href={link.href}
+            data-portfolio-route={link.animateRoute || undefined}
+            data-cursor={link.animateRoute ? 'page' : undefined}
+            data-cursor-label={link.animateRoute ? link.label : undefined}
             data-track-key={link.key}
             data-navigation-focus={link.key}
             aria-current={link.key === activeKey ? 'location' : undefined}
@@ -250,7 +260,7 @@ export function PortfolioNavigation({
                 className={cn(
                     'relative z-1 flex items-center',
                     mobile
-                        ? 'mt-1.5 w-full justify-between gap-4.5 border-t px-1.5 pt-4 pb-1'
+                        ? 'mt-1.5 w-full flex-wrap justify-between gap-4.5 border-t px-1.5 pt-4 pb-1'
                         : 'ml-2 gap-3.25 border-l pr-2 pl-4.5 lg:gap-4',
                 )}
             >

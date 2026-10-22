@@ -9,6 +9,7 @@ interface CursorBoundaryProps {
 }
 
 /** Explicit page targets use data-cursor="page" and data-cursor-label.
+ * Page palettes mirror the transition target, including its nested artwork palette.
  * data-cursor="native", text controls and disabled controls retain the system cursor.
  */
 export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
@@ -33,6 +34,8 @@ export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
         const hide = () => {
             root.removeAttribute('data-cursor-active');
             node.removeAttribute('data-visible');
+            node.style.removeProperty('--cursor-page-fill');
+            node.style.removeProperty('--cursor-page-ink');
             if (frame !== undefined) {
                 cancelAnimationFrame(frame);
                 frame = undefined;
@@ -61,6 +64,23 @@ export function CursorBoundary({ children }: CursorBoundaryProps): JSX.Element {
             const control = target.closest('a[href],button,summary,[data-cursor]');
             const page = control?.getAttribute('data-cursor') === 'page';
             const label = page ? (control?.getAttribute('data-cursor-label') ?? '') : '';
+            const palette =
+                page && control
+                    ? getComputedStyle(control.querySelector('[data-palette]') ?? control)
+                    : undefined;
+            const accent = palette?.getPropertyValue('--palette-accent').trim();
+
+            if (accent) {
+                node.style.setProperty('--cursor-page-fill', accent);
+                node.style.setProperty(
+                    '--cursor-page-ink',
+                    palette?.getPropertyValue('--palette-transition-ink').trim() ||
+                        getComputedStyle(document.body).backgroundColor,
+                );
+            } else {
+                node.style.removeProperty('--cursor-page-fill');
+                node.style.removeProperty('--cursor-page-ink');
+            }
 
             node.dataset.mode = page ? 'page' : control ? 'link' : 'default';
             if (labelNode.textContent !== label) {

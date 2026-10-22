@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 import { getProfile, getProjectAlternatives, getProjects } from '@/features/content/server';
-import { homePath, locales, projectPath } from '@/shared/i18n/locales';
+import { cataloguePath, homePath, locales, projectPath } from '@/shared/i18n/locales';
 import { getSiteUrl } from '@/shared/seo/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -37,5 +37,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         })),
     );
 
-    return [...homes, ...projects];
+    const catalogues: MetadataRoute.Sitemap = locales
+        .filter((locale) => getProjects(locale).length > 0)
+        .map((locale) => ({
+            url: new URL(cataloguePath(locale), origin).href,
+            alternates: {
+                languages: Object.fromEntries(
+                    locales
+                        .filter((target) => getProjects(target).length > 0)
+                        .map((target) => [target, new URL(cataloguePath(target), origin).href]),
+                ),
+            },
+        }));
+
+    return [...homes, ...catalogues, ...projects];
 }

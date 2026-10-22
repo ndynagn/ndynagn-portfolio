@@ -12,6 +12,10 @@ export function homePath(locale: Locale): string {
     return `/${locale}`;
 }
 
+export function cataloguePath(locale: Locale): string {
+    return `/${locale}/projects`;
+}
+
 export function projectPath(locale: Locale, slug: string): string {
     return `/${locale}/projects/${encodeURIComponent(slug)}`;
 }

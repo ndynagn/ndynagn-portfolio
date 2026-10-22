@@ -34,6 +34,8 @@
   scaling text/spacing must not change these source motion amplitudes.
 - Primitives own internal spacing and expose intentional variants; composition owns
   their external placement. Keep class merging in the configured local `cn` helper.
+- TextLink iconPosition defaults to end; the home scroll cue uses start to preserve
+  source ordering. Existing consumers retain their layout.
 - Labels render consumer-supplied text, never profile facts. Status context variants
   preserve source mobile geometry; long text may wrap and the decorative dot cannot
   shrink. Do not add focus, live-region semantics, hover or pulse to static labels.
