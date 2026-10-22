@@ -35,9 +35,9 @@
             width: 90px;
             height: 90px;
             text-align: center;
-            color: var(--foreground);
+            color: var(--cursor-page-ink, var(--foreground));
             border: 1px solid var(--cursor-page-border);
-            background: var(--glass-solid);
+            background: var(--cursor-page-fill, var(--glass-solid));
             box-shadow: var(--cursor-page-shadow);
         }
     }
@@ -66,7 +66,7 @@
             backdrop-filter: blur(var(--cursor-blur));
         }
         .cursor[data-mode='page'] {
-            background: var(--glass);
+            background: var(--cursor-page-fill, var(--glass));
         }
     }
 
