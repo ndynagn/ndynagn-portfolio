@@ -54,6 +54,7 @@ export function PageShell({
                 menuLabel={copy.menu}
                 homeHref={projectSlug ? cataloguePath(locale) : homePath(locale)}
                 backLabel={projectSlug ? copy.backCatalogue : catalogue ? copy.back : undefined}
+                backTransitionLabel={projectSlug ? copy.projects : copy.home}
                 controls={
                     <>
                         <LanguageLinks

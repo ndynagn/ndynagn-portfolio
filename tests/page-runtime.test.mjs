@@ -59,8 +59,8 @@ function environment({ reduced = false, routeError = false } = {}) {
         querySelector() {
             return null;
         }
-        getAttribute() {
-            return null;
+        getAttribute(name) {
+            return name === 'aria-label' ? (this.ariaLabel ?? null) : null;
         }
     }
     const section = {
@@ -190,7 +190,10 @@ function environment({ reduced = false, routeError = false } = {}) {
     };
     const { PageRuntime } = load('features/portfolio/page-runtime.tsx', {
         react,
-        'react/jsx-runtime': { jsx: () => null, jsxs: () => null },
+        'react/jsx-runtime': {
+            jsx: (type, props) => ({ type, props }),
+            jsxs: (type, props) => ({ type, props }),
+        },
         'next/navigation': { usePathname: () => location.pathname, useRouter: () => router },
         '@/shared/analytics/browser': { trackEvent() {} },
         '@/shared/animation/scene-sequence': load('shared/animation/scene-sequence.ts'),
@@ -199,10 +202,11 @@ function environment({ reduced = false, routeError = false } = {}) {
         './anchor-scroll': load('features/portfolio/anchor-scroll.ts'),
         './page-runtime.module.css': { default: {} },
     });
+    let rendered;
     function render() {
         index = 0;
         pending = [];
-        PageRuntime();
+        rendered = PageRuntime();
         for (const effect of pending) effect();
     }
     const flush = async () => {
@@ -261,6 +265,7 @@ function environment({ reduced = false, routeError = false } = {}) {
         frames: () => frames.size,
         focusCount: () => focusCount,
         cursorResetActive: lock.isCursorResetActive,
+        overlayLabel: () => rendered?.props.children.props.children,
         assertUnlocked() {
             const release = lock.acquireTransition();
             assert.ok(release);
@@ -269,6 +274,34 @@ function environment({ reduced = false, routeError = false } = {}) {
         flush,
     };
 }
+
+test('route overlay uses the destination title independently of control and cursor captions', async () => {
+    for (const [options, expected] of [
+        [
+            {
+                dataset: { transitionLabel: 'OneTouch', cursorLabel: 'Далее' },
+                ariaLabel: 'Next project',
+                textContent: 'Следующий проект OneTouch',
+            },
+            'OneTouch',
+        ],
+        [
+            {
+                ariaLabel: 'Accessible title',
+                dataset: { cursorLabel: 'Explore' },
+                textContent: 'Card',
+            },
+            'Accessible title',
+        ],
+        [{ dataset: { cursorLabel: 'Explore' }, textContent: 'Card' }, 'Explore'],
+        [{ textContent: '  На главную  ' }, 'На главную'],
+    ]) {
+        const env = environment();
+        env.click('/ru/projects/onetouch', { route: true, ...options });
+        assert.equal(env.overlayLabel(), expected);
+        await env.dispose();
+    }
+});
 
 test('pending route suppresses anchor hash/focus/scroll through cover and reveal', async () => {
     const env = environment();

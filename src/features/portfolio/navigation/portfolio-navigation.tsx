@@ -18,6 +18,8 @@ import { cn } from '@/shared/ui/cn';
 import styles from './portfolio-navigation.module.css';
 
 export interface NavigationLink {
+    /** Destination title shown by the route overlay, independently of the control caption. */
+    readonly transitionLabel?: string;
     readonly key: string;
     readonly label: string;
     readonly href: string;
@@ -26,6 +28,8 @@ export interface NavigationLink {
 }
 
 export interface NavigationBackLink {
+    /** Destination title shown by the route overlay, independently of the control caption. */
+    readonly transitionLabel?: string;
     readonly label: string;
     readonly href: string;
     readonly cursorLabel?: string;
@@ -204,6 +208,7 @@ export function PortfolioNavigation({
             <a
                 href={backLink.href}
                 data-portfolio-route={backLink.animateRoute || undefined}
+                data-transition-label={backLink.animateRoute ? backLink.transitionLabel : undefined}
                 data-navigation-focus="back"
                 data-cursor={backLink.animateRoute || backLink.cursorLabel ? 'page' : undefined}
                 data-cursor-label={
@@ -229,6 +234,7 @@ export function PortfolioNavigation({
             key={link.key}
             href={link.href}
             data-portfolio-route={link.animateRoute || undefined}
+            data-transition-label={link.animateRoute ? link.transitionLabel : undefined}
             data-cursor={link.animateRoute ? 'page' : undefined}
             data-cursor-label={link.animateRoute ? link.label : undefined}
             data-track-key={link.key}

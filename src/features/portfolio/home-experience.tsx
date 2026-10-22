@@ -78,34 +78,40 @@ export function HomeExperience({
                             </span>
                         </h2>
                         <div className="grid gap-8.75">
-                            {work.map(({ record, translation }) => (
-                                <ExperienceEntry
-                                    key={record.id}
-                                    periodLabel={translation.periodLabel}
-                                    organization={translation.organizationLabel}
-                                    role={translation.role}
-                                    description={translation.description}
-                                    projectLines={translation.projectLines}
-                                    action={
-                                        record.projectSlug &&
-                                        translation.actionLabel &&
-                                        projects.some(
-                                            ({ project }) => project.slug === record.projectSlug,
-                                        ) ? (
-                                            <TextLink
-                                                href={projectPath(locale, record.projectSlug)}
-                                                data-portfolio-route
-                                                data-cursor="page"
-                                                data-cursor-label={copy.view}
-                                                icon={<ArrowUpRight />}
-                                                className="mt-5"
-                                            >
-                                                {translation.actionLabel}
-                                            </TextLink>
-                                        ) : undefined
-                                    }
-                                />
-                            ))}
+                            {work.map(({ record, translation }) => {
+                                const linkedProject = projects.find(
+                                    ({ project }) => project.slug === record.projectSlug,
+                                );
+                                return (
+                                    <ExperienceEntry
+                                        key={record.id}
+                                        periodLabel={translation.periodLabel}
+                                        organization={translation.organizationLabel}
+                                        role={translation.role}
+                                        description={translation.description}
+                                        projectLines={translation.projectLines}
+                                        action={
+                                            record.projectSlug &&
+                                            translation.actionLabel &&
+                                            linkedProject ? (
+                                                <TextLink
+                                                    href={projectPath(locale, record.projectSlug)}
+                                                    data-portfolio-route
+                                                    data-transition-label={
+                                                        linkedProject.translation.title
+                                                    }
+                                                    data-cursor="page"
+                                                    data-cursor-label={copy.view}
+                                                    icon={<ArrowUpRight />}
+                                                    className="mt-5"
+                                                >
+                                                    {translation.actionLabel}
+                                                </TextLink>
+                                            ) : undefined
+                                        }
+                                    />
+                                );
+                            })}
                         </div>
                     </div>
                     {educationGroups.map((group) => {

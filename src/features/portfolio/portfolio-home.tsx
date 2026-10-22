@@ -70,6 +70,7 @@ export function PortfolioHome({ locale }: PortfolioHomeProps): JSX.Element {
                       label: copy.projects,
                       href: projectsAction.href,
                       animateRoute: projectsAction.animateRoute,
+                      transitionLabel: copy.projects,
                   },
               ]
             : []),
@@ -126,6 +127,7 @@ export function PortfolioHome({ locale }: PortfolioHomeProps): JSX.Element {
                             href={cataloguePath(locale)}
                             count={projects.length}
                             data-portfolio-route
+                            data-transition-label={copy.projects}
                             data-cursor="page"
                             data-cursor-label={copy.projects}
                             icon={<ArrowUpRight />}

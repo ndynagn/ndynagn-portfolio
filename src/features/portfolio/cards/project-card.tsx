@@ -162,6 +162,7 @@ export function ProjectCard({
         href: data.href,
         'aria-label': data.title,
         'data-project-card': variant,
+        'data-transition-label': data.title,
         'data-cursor': 'page',
         'data-cursor-label': cursorLabel,
         className: cn(
